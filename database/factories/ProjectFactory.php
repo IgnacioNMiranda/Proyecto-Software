@@ -15,6 +15,6 @@ $factory->define(App\Project::class, function (Faker $faker) {
         'startDate' => $faker->date,
         'endDate' => $faker->date,
         'slug' => str_slug($title),
-        'investigationGroupId' => rand(1,30)
+        'investigationGroup_id' => rand(1,30)
     ];
 });

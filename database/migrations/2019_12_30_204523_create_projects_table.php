@@ -23,9 +23,9 @@ class CreateProjectsTable extends Migration
             $table->string('slug',128)->unique();
 
             
-            $table->bigInteger('investigationGroupId')->unsigned();
+            $table->bigInteger('investigationGroup_id')->unsigned();
             
-            $table->foreign('investigationGroupId')->references('id')->on('investigation_groups')
+            $table->foreign('investigationGroup_id')->references('id')->on('investigation_groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             

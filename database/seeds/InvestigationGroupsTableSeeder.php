@@ -11,6 +11,6 @@ class InvestigationGroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\InvestigationGroup::class,30)->create();
     }
 }

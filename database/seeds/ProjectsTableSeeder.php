@@ -11,6 +11,10 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Project::class,30)->create()->each(function(App\InvestigationGroup $investigationGroup){
+            $investigationGroup->projects()->attach([
+                rand(1,30),
+            ]);
+        });
     }
 }
