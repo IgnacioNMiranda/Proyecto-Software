@@ -16,14 +16,14 @@ class CreateProductUserTable extends Migration
         Schema::create('product_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->bigInteger('productId')->unsigned();
-            $table->bigInteger('userId')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
 
-            $table->foreign('productId')->references('id')->on('products')
+            $table->foreign('product_id')->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('userId')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             

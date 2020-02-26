@@ -16,14 +16,14 @@ class CreateInvestigationGroupUnitTable extends Migration
         Schema::create('investigation_group_unit', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->bigInteger('unitId')->unsigned();
-            $table->bigInteger('investigationGroupId')->unsigned();
+            $table->bigInteger('unit_id')->unsigned();
+            $table->bigInteger('investigation_group_id')->unsigned();
 
-            $table->foreign('unitId')->references('id')->on('units')
+            $table->foreign('unit_id')->references('id')->on('units')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('investigationGroupId')->references('id')->on('investigation_groups')
+            $table->foreign('investigation_group_id')->references('id')->on('investigation_groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             

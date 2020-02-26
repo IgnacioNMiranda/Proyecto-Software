@@ -16,13 +16,13 @@ class CreateInvestigationGroupUserTable extends Migration
         Schema::create('investigation_group_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->bigInteger('userId')->unsigned();
-            $table->bigInteger('investigationGroupId')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('investigation_group_id')->unsigned();
 
-            $table->foreign('userId')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('investigationGroupId')->references('id')->on('investigation_groups')
+            $table->foreign('investigation_group_id')->references('id')->on('investigation_groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             

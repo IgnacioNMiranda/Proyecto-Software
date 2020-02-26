@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
             'description' => $faker->text(500),
             'date' => $faker->date,
             'slug' => str_slug($title),
-            'investigationGroup_id' => rand(1,30),
+            'investigation_group_id' => rand(1,30),
             'project_id' => rand(1,30)
         ];
 });

@@ -28,7 +28,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'country' => $faker->country,
         'userType' => $faker->randomElement(['Administrador','Investigador']),
 
-        'unit_id' => $faker->rand(1,30),
+        'unit_id' => rand(1,30),
 
     ];
 });

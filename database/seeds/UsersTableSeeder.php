@@ -11,21 +11,24 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class,75)->create()->each(function(App\Unit $unit, App\Product $product, App\InvestigationGroup $investigationGroup, App\Project $project){
-            $unit->users()->attach([
-                rand(1,30),
+        factory(App\User::class,75)->create()->each(function(App\User $user){
+            $user->products()->attach([
+                rand(1,10),
+                rand(11,20),
+                rand(21,30),
+                rand(31,40)
             ]);
 
-            $product->users()->attach([
-                rand(1,40),
+            $user->investigation_groups()->attach([
+                rand(1,10),
+                rand(11,20),
+                rand(21,30),
             ]);
 
-            $investigationGroup->users()->attach([
-                rand(1,30),
-            ]);
-
-            $project->users()->attach([
-                rand(1,30),
+            $user->projects()->attach([
+                rand(1,10),
+                rand(11,20),
+                rand(21,30),
             ]);
         });
 

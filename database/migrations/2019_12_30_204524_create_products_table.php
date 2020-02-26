@@ -21,10 +21,10 @@ class CreateProductsTable extends Migration
             $table->string('slug',128)->unique();
 
             
-            $table->bigInteger('investigationGroup_id')->unsigned();
+            $table->bigInteger('investigation_group_id')->unsigned();
             $table->bigInteger('project_id')->unsigned();
             
-            $table->foreign('investigationGroup_id')->references('id')->on('investigation_groups')
+            $table->foreign('investigation_group_id')->references('id')->on('investigation_groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('project_id')->references('id')->on('projects')

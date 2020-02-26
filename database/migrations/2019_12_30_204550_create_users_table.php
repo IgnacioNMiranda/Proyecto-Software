@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('name',128)->nullable();
             $table->string('state',128)->nullable();
             $table->string('country',128)->nullable();
-            $table->enum('userType',['Administrador','Investigador'])->nullable();
+            $table->enum('userType',['Administrador','Investigador'])->default('Investigador')->nullable();
             $table->rememberToken();
 
             $table->bigInteger('unit_id')->unsigned()->nullable();
