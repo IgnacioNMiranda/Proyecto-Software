@@ -17,15 +17,15 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('code',128)->nullable();
             $table->string('name',128);
-            $table->string('state',128);
+            $table->enum('state', ['Postulado','En ejecucion','Aceptado','Cancelado'])->default('Postulado');
             $table->date('startDate');
             $table->date('endDate')->nullable();
             $table->string('slug',128)->unique();
 
             
-            $table->bigInteger('investigationGroupId')->unsigned();
+            $table->bigInteger('investigation_group_id')->unsigned();
             
-            $table->foreign('investigationGroupId')->references('id')->on('investigation_groups')
+            $table->foreign('investigation_group_id')->references('id')->on('investigation_groups')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             

@@ -15,22 +15,22 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rut',128);//Buscar libreria para validar rut
+            $table->string('rut',128)->nullable();//Buscar libreria para validar rut
             $table->string('email',128)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password',128);
             $table->string('name',128)->nullable();
             $table->string('state',128)->nullable();
             $table->string('country',128)->nullable();
-            $table->string('userType',128);
+            $table->enum('userType',['Administrador','Investigador'])->default('Investigador')->nullable();
             $table->rememberToken();
 
-            $table->bigInteger('unitId')->unsigned();
+            $table->bigInteger('unit_id')->unsigned()->nullable();
 
             $table->timestamps();
 
             //Relación
-            $table->foreign('unitId')->references('id')->on('units')
+            $table->foreign('unit_id')->references('id')->on('units')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             
