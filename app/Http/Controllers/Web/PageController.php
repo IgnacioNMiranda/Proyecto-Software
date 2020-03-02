@@ -10,7 +10,7 @@ use App\InvestigationGroup;
 class PageController extends Controller
 {
     public function investigation_groups(){
-        $invGroups = InvestigationGroup::orderBy('id','DESC');
+        $invGroups = InvestigationGroup::orderBy('id','DESC')->paginate(12);
 
         return view('welcome',compact('invGroups'));
     }

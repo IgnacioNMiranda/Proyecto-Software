@@ -16,3 +16,7 @@ Route::get('/', 'Web\PageController@investigation_groups')->name('welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Admin
+Route::resource('users','Admin\UserController');
+
