@@ -41,6 +41,7 @@
                                 class="sr-only">(current)</span></a>
                     </li>
 
+                    @auth
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,17 +50,37 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('users.create') }}">Crear usuario</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Editar usuario</a>
+                        <a class="dropdown-item" href="#">Editar usuario</a>
                         </div>
                     </li>
 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Proyectos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Crear proyecto</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Editar proyecto</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Productos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Crear producto</a>
+                            <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Editar producto</a>
+                        </div>
+                    </li>
+                    @endauth
+
+
                 </ul>
-
-                &nbsp;
-                <span class="navbar-text text-white btn-lg">Proyectos <span class="sr-only">(current)</span>
-                &nbsp;
-                <span class="navbar-text text-white btn-lg">Productos <span class="sr-only">(current)</span>
-
             </div>
 
             @auth
