@@ -22,3 +22,6 @@ Route::get('product', 'Product\PageController@product')->name('product');
 //Admin
 Route::resource('users','Admin\UserController');
 
+//Project
+Route::resource('projects','Project\ProjectController');
+
