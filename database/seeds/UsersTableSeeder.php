@@ -35,30 +35,35 @@ class UsersTableSeeder extends Seeder
         App\User::create([
             'email' => 'carlos.mena@alumnos.ucn.cl',
             'password' => bcrypt('pichiconcaca'),
+            'name' => 'Carlos Mena',
             'userType' => 'Administrador'
         ]);
 
         App\User::create([
             'email' => 'ignacio.miranda01@alumnos.ucn.cl',
             'password' => bcrypt('elcarlosselacome'),
+            'name' => 'Ignacio Miranda',
             'userType' => 'Administrador'
         ]);
 
         App\User::create([
             'email' => 'ignacio.santander@alumnos.ucn.cl',
             'password' => bcrypt('toypensando'),
+            'name' => 'Ignacio Santander',
             'userType' => 'Administrador'
         ]);
 
         App\User::create([
             'email' => 'fmp009@alumnos.ucn.cl',
             'password' => bcrypt('pichiconcaca2'),
+            'name' => 'Fabian',
             'userType' => 'Administrador'
         ]);
 
         App\User::create([
             'email' => 'eduardo.alvarez@alumnos.ucn.cl',
             'password' => bcrypt('novoyalajunta'),
+            'name' => 'Eduardo',
             'userType' => 'Administrador'
         ]);
 
