@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Web\PageController@investigation_groups')->name('welcome');
 
 Auth::routes();
 
