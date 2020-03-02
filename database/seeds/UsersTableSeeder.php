@@ -67,5 +67,11 @@ class UsersTableSeeder extends Seeder
             'userType' => 'Administrador'
         ]);
 
+        App\User::create([
+            'email' => 'soy.ejemplo@alumnos.ucn.cl',
+            'password' => bcrypt('123'),
+            'userType' => 'Investigador'
+        ]);
+
     }
 }
