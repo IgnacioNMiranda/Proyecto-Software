@@ -8,9 +8,15 @@ use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
-    public function product(){
-        return view('product');
+    public function create(){
+        return view('products.create');
 
     }
+
+    public function edit(){
+        //return view('products.edit');
+
+    }
+
 
 }
