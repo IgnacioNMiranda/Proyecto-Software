@@ -17,6 +17,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('products', 'Product\ProductController');
+
 //Admin
 Route::resource('users','Admin\UserController');
+
+//Project
+Route::resource('projects','Project\ProjectController');
 

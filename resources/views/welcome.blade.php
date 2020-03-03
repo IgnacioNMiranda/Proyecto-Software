@@ -10,18 +10,19 @@
         @foreach ($invGroups as $invGroup)
         <div class="col-1 col-md-3 offset-1">
             <a href="{{ url('#') }}">
-                @if (!empty($invGroup->logo))
-                    <img class="card-img-top img-responsive" src="#"
-                    alt="LogoGrupoInvestigacion">
+                @if ($invGroup->logo)
+                    <img class="img-responsive border" src="{{ $invGroup->logo }}" alt="LogoGrupoInvestigacion">
                 @else
-                    <img class="card-img-top img-responsive" src="https://static.wixstatic.com/media/c7a2b4_e0415203ebc349a980edca8688decc16.png"
-                    alt="LogoGrupoInvestigacion">
+                    <img class="img-responsive" src="{{ asset('images/signos_interrogacion.png') }}"
+                    width="400" height="400" alt="LogoGrupoInvestigacion">
                 @endif
-                <h3 class="card-text  text-dark d-flex d-inline align-self-stretch">{{ $invGroup->name }}</h3>
+                <h3 class="text-dark d-flex d-inline align-self-stretch">{{ $invGroup->name }}</h3>
             </a>
         </div>
         @endforeach
         {{ $invGroups->render() }}
+    
     </div>
 </div>
+
 @endsection
