@@ -11,6 +11,12 @@
                         {{ Form::label('name', 'Nombre del usuario') }}
                         {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
                     </div>
+
+                    <div class = "form-group">
+                        <label for="Rol">Tipo de Usuario</label>
+                        <select name="" id=""></select>
+
+                    </div>
                 </div>
             </div>
         </div>
