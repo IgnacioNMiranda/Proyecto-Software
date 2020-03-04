@@ -81,7 +81,7 @@
         </ul>
 
         @auth
-          <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->name }}</p>
+          <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
         @endauth
 
         @if (Route::has('login'))
