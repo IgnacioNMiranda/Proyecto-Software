@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
-    public function users(){
+    public function researchers(){
         return $this->hasMany(User::class);
     }
 

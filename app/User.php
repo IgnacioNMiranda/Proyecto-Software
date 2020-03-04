@@ -37,15 +37,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function products(){
-        return $this->belongsToMany(Product::class);
-    }
 
-    public function investigation_groups(){
-        return $this->belongsToMany(InvestigationGroup::class);
-    }
-
-    public function projects(){
-        return $this->belongsToMany(Project::class);
-    }
 }

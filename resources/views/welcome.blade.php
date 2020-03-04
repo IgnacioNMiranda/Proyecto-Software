@@ -17,7 +17,7 @@
                     <img class="img-fluid d-flex mx-auto" src="{{ $invGroup->logo }}" alt="LogoGrupoInvestigacion">
                 @else
                     <img class="img-fluid d-flex mx-auto" src="{{ asset('images/signos_interrogacion.png') }}"
-                    width="400" height="400" alt="LogoGrupoInvestigacion">
+                    width="300" height="300" alt="LogoGrupoInvestigacion">
                 @endif
                 <h3 class="text-dark d-flex d-inline align-self-stretch">{{ $invGroup->name }}</h3>
             </a>
