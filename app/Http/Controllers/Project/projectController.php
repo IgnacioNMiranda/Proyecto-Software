@@ -4,9 +4,21 @@ namespace App\Http\Controllers\Project;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Project;
 
 class ProjectController extends Controller
 {
+
+    /* Redigire a iniciar sesion si se intenta ingresar
+    a la url sin haber ingresado sesion
+    */
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        //$projects = Project::orderBy('id','DESC')->paginate();
+        //return view('#.projects.index',compact('projects'));
     }
 
     /**
