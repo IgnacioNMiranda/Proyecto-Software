@@ -24,6 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
         'userType' => $faker->randomElement(['Administrador','Investigador']),
 
-        'researcher_id'=> rand(1,75),
+        'researcher_id' => rand(1,75),
     ];
 });

@@ -24,7 +24,6 @@
         </div>
         @endforeach
         {{ $invGroups->render() }}
-        <br><br><br><br><br><br>
     </div>
 </section>
 
