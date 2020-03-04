@@ -21,15 +21,11 @@
 
 <body>
   <div id="app">
-    <style>
-      .dropdown:hover>.dropdown-menu {
-        display: block;
-      }
-    </style>
+    <style>.dropdown:hover>.dropdown-menu {display: block;}</style>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="http://www.ucn.cl/">
-        <img src="{{ asset('images/Escudo-UCN-Full-Color.png') }}" width="50" height="50" alt="Logo UCN">
+        <img class="img-responsive" src="{{ asset('images/Escudo-UCN-Full-Color.png') }}" width="50" height="50" alt="Logo UCN">
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -38,10 +34,9 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="nav navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link text-white font-weight-bold btn-lg" href="{{ url('/') }}">Inicio <span
-                class="sr-only">(current)</span></a>
+            <a class="nav-link text-white font-weight-bold btn-lg" href="{{ url('/') }}">Inicio</a>
           </li>
 
           @auth
@@ -84,20 +79,18 @@
 
 
         </ul>
-      </div>
 
-      @auth
-        <span class="navbar-text text-white d-flex d-inline border-right">Bienvenido, {{ Auth::user()->name }} <span
-          class="sr-only">(current)</span>
-      @endauth
+        @auth
+          <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->name }}</p>
+        @endauth
 
         @if (Route::has('login'))
-        <div class="top-right links navbar-item">
+
           @auth
-          <a class="text-white navbar-text" href="{{ route('logout') }}" onclick="event.preventDefault();
+          <a class="text-white navbar-text pl-4 border-left" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
-            <span class="sr-only">(current)</span>
+            
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
@@ -105,26 +98,27 @@
           @else
           <a href="{{ route('login') }}" class="text-white">Login <span class="sr-only">(current)</span></a>
           @endauth
-        </div>
+
         @endif
 
+      </div>
     </nav>
 
     <main class="py-4">
       @yield('content')
     </main>
 
-    <footer class="page-footer font-small bg-primary pt-4 fixed-bottom">
+    <footer class="page-footer font-small bg-primary pt-4 mt-4 fixed-bottom">
       
       <div class="container-fluid text-center text-md-left">
         <h4 class="text-white mb-3">Informacion adicional</h4>
         <div class="row">
 
           <div class="col-1">
-            <a class="text-white mb-4 d-flex d-inline" href="#">Quiénes somos</a>
+            <a class="text-white d-flex d-inline mb-4" href="#">Quiénes somos</a>
           </div>
 
-          <div class="col-1">
+          <div class="col-2">
             <a class="text-white d-flex d-inline mb-4" href="#">¿Necesitas ayuda?</a>
           </div>
 
