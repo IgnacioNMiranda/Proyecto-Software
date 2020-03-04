@@ -9,7 +9,7 @@ use App\Product;
 class ProductController extends Controller
 {
     public function create(){
-        return view('products.create');
+        return view('admin-invest.products.create');
     }
 
 }
