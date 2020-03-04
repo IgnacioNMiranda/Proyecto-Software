@@ -108,7 +108,7 @@
       @yield('content')
     </main>
 
-    <footer class="page-footer font-small bg-primary pt-4 mt-4 fixed-bottom">
+    <footer class="page-footer font-small bg-primary pt-4">
       
       <div class="container-fluid text-center text-md-left">
         <h4 class="text-white mb-3">Informacion adicional</h4>
