@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable =[
-        'name','slug'
+    protected $fillable = [
+        'name', 'description', 'date', 'slug', 'investigation_group_id', 'project_id'
     ];
 
     public function researchers(){
