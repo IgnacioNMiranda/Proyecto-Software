@@ -17,6 +17,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Product
 Route::resource('products', 'Product\productController');
 
 //Admin
