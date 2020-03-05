@@ -39,7 +39,7 @@
             <a class="nav-link text-white font-weight-bold btn-lg" href="{{ url('/') }}">Inicio</a>
           </li>
 
-          @auth
+          @if(Auth::user()->userType == "Administrador")
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,6 +50,18 @@
             </div>
           </li>
 
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Grupos de investigacion
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('investigationGroups.create') }}">Crear grupo de investigacion</a>
+            </div>
+          </li>
+          @endif
+
+          @auth
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

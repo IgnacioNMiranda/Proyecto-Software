@@ -25,3 +25,5 @@ Route::resource('users','Admin\UserController');
 //Project
 Route::resource('projects','Project\ProjectController');
 
+//Investigation group
+Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');

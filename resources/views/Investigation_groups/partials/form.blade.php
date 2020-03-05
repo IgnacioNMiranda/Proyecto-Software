@@ -1,9 +1,9 @@
-<div class = "container">
+<section class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
             <div class = "panel panel default">
                 <div class = "panel-heading h4" >
-                    Crear Usuario 
+                    Crear Grupo de investigación 
                 </div>
 
                 <div class="panel-body">
@@ -12,28 +12,28 @@
                         <select class="form-control" id="Rol">
                             <option disabled selected>Selecciona una opción</option>
                             <option>Administrador</option>
-                            <option>Investigador</option> 
+                            <option>Investigador</option>
                         </select>
                     </div>
 
 
                     <div class="form-group">
-                        {{ Form::label('email', 'Correo electronico') }}
-                        {{ Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) }}
+                        {{ Form::label('name', 'Nombre') }}
+                        {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('password', 'Contraseña') }}
-                        {{ Form::text('password', null, ['class' => 'form-control', 'id' => 'password']) }}
+                        {{ Form::label('logo', 'Logo') }}
+                        {{ Form::text('logo', null, ['class' => 'form-control', 'id' => 'logo']) }}
                     </div>
 
                     <div class = "form-group mt-4">
-                        {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+                        {{ Form::submit('Crear', ['class' => 'btn btn-sm btn-primary']) }}
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
-</div>
+</section>
