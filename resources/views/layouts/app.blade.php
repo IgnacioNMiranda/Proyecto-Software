@@ -109,17 +109,17 @@
     </main>
 
     <footer class="page-footer font-small bg-primary pt-4">
-      
+
       <div class="container-fluid text-center text-md-left">
         <h4 class="text-white mb-3">Informacion adicional</h4>
         <div class="row">
 
           <div class="col-1">
-            <a class="text-white d-flex d-inline mb-4" href="#">Quiénes somos</a>
+            <a class="text-white d-flex" href="#">Quiénes somos</a>
           </div>
 
           <div class="col-2">
-            <a class="text-white d-flex d-inline mb-4" href="#">¿Necesitas ayuda?</a>
+            <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
           </div>
 
         </div>
@@ -129,7 +129,7 @@
   </div>
 
 
-  
+
   <!--Archivos JS-->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

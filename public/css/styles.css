@@ -9,3 +9,17 @@
 .bg-tertiary{
     background-color: #E0EBF6;
 }
+
+body {
+    position: relative;
+    padding-bottom: 58px;
+    min-height: 100vh;
+  }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
