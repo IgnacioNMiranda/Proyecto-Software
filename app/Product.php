@@ -13,4 +13,5 @@ class Product extends Model
     public function researchers(){
         return $this->belongsToMany(User::class);
     }
+
 }

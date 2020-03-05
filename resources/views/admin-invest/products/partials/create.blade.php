@@ -2,11 +2,11 @@
 
 @section('content')
 <div class = "container">
-    <div class = "row">
-        <div class = "col-md-8 col-md-offset-2">
-            <div class = "panel panel-default">
-                <div class = "panel-heading">
-                    <font color="Aqua" size=24>Lista de Productos</font>
+    <div class = "row justify-content-center">
+        <div class = "col-md-8 border shadow pt-4">
+            <div class = "panel panel default">
+                <div class = "panel-heading h4" >
+                    Crear Producto
                 </div>
 
                 <div class="panel-body">
