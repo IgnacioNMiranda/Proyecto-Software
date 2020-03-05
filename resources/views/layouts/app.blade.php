@@ -47,8 +47,6 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('users.create') }}">Crear usuario</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Editar usuario</a>
             </div>
           </li>
 

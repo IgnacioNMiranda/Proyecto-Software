@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
+    protected $fillable = [
+        'name', 'country', 'slug',
+    ];
+
     public function researchers(){
         return $this->hasMany(User::class);
     }
