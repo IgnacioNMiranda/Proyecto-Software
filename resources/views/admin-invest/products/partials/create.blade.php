@@ -3,10 +3,12 @@
 @section('content')
 <div class = "container">
     <div class = "row">
-        <div class = "col-md-8 col-md-offset-2">
+        <div class = "col-md-8 col-md-offset-3">
             <div class = "panel panel-default">
                 <div class = "panel-heading">
-                    <font color="Aqua" size=24>Lista de Productos</font>
+                    <div class="bg bg-tertiary mb-4 border border-primary">
+                        <p class="font-weight-bold text-dark pt-2 h5 text-center">Grupos de investigación</p>
+                    </div>
                 </div>
 
                 <div class="panel-body">
