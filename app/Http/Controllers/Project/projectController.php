@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Project;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
+
 use App\Project;
 
 class ProjectController extends Controller
 {
 
-    /* Redigire a iniciar sesion si se intenta ingresar
+    /* Redirige a iniciar sesion si se intenta ingresar
     a la url sin haber ingresado sesion
     */
     public function __construct()
@@ -24,6 +28,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Muestra la lista de proyectos
     public function index()
     {
         //$projects = Project::orderBy('id','DESC')->paginate();
@@ -35,6 +40,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Crea un proyecto 
     public function create()
     {
         return view('admin-invest.projects.create');
@@ -46,9 +52,13 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    //Salva los datos del proyecto
+    public function store(ProjectStoreRequest $request)
     {
-        //
+        //Validado en archivo externo
+        $project = Project::create($request->all());
+        return redirect()->route('projects.edit',$project->id)
+            ->with('info','Proyecto creado con exito');
     }
 
     /**
@@ -57,9 +67,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Se ve el detalle del registro en la Bd
     public function show($id)
     {
-        //
+        $project = Project::find($id);
+        return view('admin-invest.projects.show',compact('project'));
     }
 
     /**
@@ -68,9 +80,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Formulario de edicion
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+        return view('admin-invest.projects.edit',compact('project'));
     }
 
     /**
@@ -80,9 +94,15 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    //Se actualiza lo del formulario de edicion
+    public function update(ProjectUpdateRequest $request, $id)
     {
-        //
+        //validado en archivo externo
+        $project = Project::find($id);
+        $project->fill($request->all())->save();
+        $project = Project::create($request->all());
+        return redirect()->route('projects.edit',$project->id)
+            ->with('info','Proyecto actualizado con exito');
     }
 
     /**
@@ -93,6 +113,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::find($id)->delete();
+        return back()->with('info','Eliminado correctamente');
     }
 }
