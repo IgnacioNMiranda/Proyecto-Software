@@ -115,11 +115,11 @@
         <div class="row">
 
           <div class="col-1">
-            <a class="text-white d-flex d-inline mb-4" href="#">Quiénes somos</a>
+            <a class="text-white d-flex" href="#">Quiénes somos</a>
           </div>
 
           <div class="col-2">
-            <a class="text-white d-flex d-inline mb-4" href="#">¿Necesitas ayuda?</a>
+            <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
           </div>
 
         </div>

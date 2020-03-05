@@ -23,8 +23,15 @@
             </a>
         </div>
         @endforeach
-        {{ $invGroups->render() }}
+        
+        
+
     </div>
+    <div class="mb-4">
+        {{ $invGroups->render() }}  
+    </div>
+    
+    
 </section>
 
 @endsection
