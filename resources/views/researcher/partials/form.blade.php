@@ -14,7 +14,7 @@
                         </div>
 
                         <div class = "form-group">
-                            <label for="Rol">Estado</label>
+                            <label for="Rol">País</label>
                             <select class="form-control" id="Rol">
                                 <option disabled selected>Selecciona una opción</option>
                                 @php
@@ -39,8 +39,8 @@
                             </select>
                         </div>
                         
-                        <div class = "form-group mt-4">
-                            {{ Form::submit('Crear', ['class' => 'btn btn-sm btn-primary']) }}
+                        <div class = "form-group mt-4 d-flex justify-content-center">
+                            {{ Form::submit('Crear investigador', ['class' => 'btn btn-secondary']) }}
                         </div>
 
                     </div>

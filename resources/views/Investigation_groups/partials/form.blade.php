@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="form-group mt-4 d-flex justify-content-center">
-                        {{ Form::submit('Crear nuevo grupo', ['class' => 'btn btn-secondary']) }}
+                        {{ Form::submit('Crear grupo', ['class' => 'btn btn-secondary']) }}
                     </div>
 
                 </div>

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class = "col-md-8 justify-content-center">   
             <div class="panel panel-default">
-                <div class = "panel-heading h4 d-flex justify-content-center mb-4">
+                <div class = "panel-heading h2 d-flex justify-content-center mb-4">
                     Editar Grupo de investigación 
                 </div>
 
