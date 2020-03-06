@@ -28,3 +28,6 @@ Route::resource('projects','Project\ProjectController');
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
+
+//Research
+Route::resource('researchers', "Researcher\ResearcherController");

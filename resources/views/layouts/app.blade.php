@@ -87,6 +87,18 @@
               <a class="dropdown-item" href="#">Editar producto</a>
             </div>
           </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Investigadores <!--Cuando este listo vista grupo se cambiara pa alla-->
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Editar Investigador</a>
+            </div>
+          </li>
           @endauth
 
 
