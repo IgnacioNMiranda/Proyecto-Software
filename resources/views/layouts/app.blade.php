@@ -80,6 +80,8 @@
               Productos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Listado productos</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Editar producto</a>

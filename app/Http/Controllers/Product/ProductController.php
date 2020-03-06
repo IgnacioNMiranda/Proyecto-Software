@@ -29,8 +29,6 @@ class productController extends Controller
     public function index()
     {
         $products = Product::orderBy('id','DESC')->paginate();
-        dd($products);
-        //para verlos registros
         return view('admin-invest.products.partials.index',compact('products'));
     }
 
