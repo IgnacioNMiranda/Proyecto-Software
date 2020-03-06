@@ -23,22 +23,18 @@ class InvestigationGroupStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'name' => 'required',
-            'slug' => 'required|unique:investigation_groups,slug'
+        return [
+            'name' => 'required|unique:investigation_groups,name',
+            'logo' => 'image | mimes:jpg,png',
         ];
-
-        if($this->get('file')){
-            $rules = array_merge($rules, ['file' => 'mimes:jpg,png']);
-        }
-
-        return $rules;
     }
 
     public function messages(){
 
         return [
-            'name.required' => 'Debe ingresar un nombre valido'
+            'name.required' => 'El campo nombre es obligatorio.',
+            'name.unique' => 'Este nombre ya se encuentra en uso.',
+            'mimes' => 'El logo debe estar en formato jpg o png.'
         ];
     }
 }

@@ -15,9 +15,9 @@ class CreateInvestigationGroupsTable extends Migration
     {
         Schema::create('investigation_groups', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',128);
+            $table->string('name',128)->unique();
             $table->string('logo',128)->nullable();
-            $table->string('slug',128)->unique();
+            $table->string('slug',128)->default('name');
             $table->timestamps();
         });
     }

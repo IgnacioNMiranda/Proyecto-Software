@@ -21,24 +21,22 @@ class InvestigationGroupUpdateRequest extends FormRequest
      *
      * @return array
      */
+    
     public function rules()
     {
-        $rule = [
-            'name' => 'required',
-            'slug' => 'required|unique:investigation_groups,slug,' . $this->investigationGroup,
+        return [
+            'name' => 'required|unique:investigation_groups,name,' . $this->invGroup,
+            'logo' => 'image|file|mimes:jpg,png',
         ];
-
-        if($this->get('logo')){
-            $rules = array_merge($rule, ['logo' => 'mimes:jpg,png']);
-        }
-
-        return $rules;
     }
+    
 
     public function messages(){
 
         return [
-            'name.required' => 'Debe ingresar un nombre valido'
+            'name.required' => 'Debe ingresar un nombre valido',
+            'name.unique' => 'Este nombre ya se encuentra en uso',
+            'mimes' => 'El logo debe estar en formato jpg o png'
         ];
     }
 }

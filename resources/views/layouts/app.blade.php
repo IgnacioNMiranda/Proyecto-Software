@@ -15,17 +15,24 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
   <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
 </head>
 
 <body>
   <div id="app">
-    <style>.dropdown:hover>.dropdown-menu {display: block;}</style>
+    <style>
+      .dropdown:hover>.dropdown-menu {
+        display: block;
+      }
+    </style>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
       <a class="navbar-brand" href="http://www.ucn.cl/">
-        <img class="img-responsive" src="{{ asset('images/Escudo-UCN-Full-Color.png') }}" width="50" height="50" alt="Logo UCN">
+        <img class="img-responsive" src="{{ asset('systemImages/Escudo-UCN-Full-Color.png') }}" width="50" height="50"
+          alt="Logo UCN">
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -91,34 +98,65 @@
         </ul>
 
         @auth
-          <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
+        <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
         @endauth
 
         @if (Route::has('login'))
 
-          @auth
-          <a class="text-white navbar-text pl-4 border-left" href="{{ route('logout') }}" onclick="event.preventDefault();
+        @auth
+        <a class="text-white navbar-text pl-4 border-left" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
-            
-          </a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-          </form>
-          @else
-          <a href="{{ route('login') }}" class="text-white">Login <span class="sr-only">(current)</span></a>
-          @endauth
+          {{ __('Logout') }}
+
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+        @else
+        <a href="{{ route('login') }}" class="text-white">Login <span class="sr-only">(current)</span></a>
+        @endauth
 
         @endif
 
       </div>
     </nav>
 
+    @if (session('info'))
+    <section class="container">
+      <div class="row">
+        <div class="col-md-8 offset-2">
+          <div class="alert alert-success">
+            {{ session('info') }}
+          </div>
+        </div>
+      </div>
+    </section>
+    @endif
+
+    @if (count($errors))
+    <section class="container">
+      <div class="row">
+        <div class="col-md-8 offset-2">
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>
+                  {{ $error }}
+                </li>
+              @endforeach
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    @endif
+
     <main class="py-4">
       @yield('content')
     </main>
 
-    <footer class="page-footer font-small bg-primary pt-4">
+    <footer class="page-footer font-small bg-primary pt-4 mt-4">
 
       <div class="container-fluid text-center text-md-left">
         <h4 class="text-white mb-3">Informacion adicional</h4>
@@ -142,11 +180,14 @@
 
   <!--Archivos JS-->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
 
   <!-- Bootstrap Dropdown Hover JS -->
   <script src="js/bootstrap-dropdownhover.min.js"></script>
