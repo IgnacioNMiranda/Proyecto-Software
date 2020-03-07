@@ -9,6 +9,7 @@ use App\Http\Requests\InvestigationGroupStoreRequest;
 use App\Http\Requests\InvestigationGroupUpdateRequest;
 
 use App\InvestigationGroup;
+use App\Unit;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -37,7 +38,9 @@ class InvestigationGroupController extends Controller
      */
     public function create()
     {
-        return view('Investigation_groups.create');
+        $units = Unit::orderBy('name','ASC')->get();
+
+        return view('Investigation_groups.create',compact('units'));
     }
 
     /**
@@ -65,12 +68,12 @@ class InvestigationGroupController extends Controller
             $invGroup->fill(['logo' => asset($path)])->save();
         }
 
-        $invGroup->save();
-
         //Asignacion n-n con unidades, attach para crear la relacion
         //$invGroup->units()->attach($request->get('units'));
 
-        return redirect()->route('investigationGroups.edit', $invGroup->id)->with('info','Grupo de investigación creado con exito!');
+        return redirect()->route('investigationGroups.edit',$invGroup->id)->with('info','Grupo de investigación creado con exito!');
+        
+        
     }
 
     /**
@@ -96,7 +99,9 @@ class InvestigationGroupController extends Controller
     {
         $invGroup = InvestigationGroup::find($id);
 
-        return view('Investigation_groups.edit',compact('invGroup'));
+        $units = Unit::orderBy('name','ASC')->pluck('id','name');
+
+        return view('Investigation_groups.edit',compact('invGroup','units'));
     }
 
     /**
@@ -120,7 +125,7 @@ class InvestigationGroupController extends Controller
         }
 
         //Asignacion n-n con unidades, sync para actualizar la relacion invGroup con units
-        $invGroup->units()->sync($request->get('units'));
+        //$invGroup->units()->sync($request->get('units'));
 
         return redirect()->route('investigationGroups.edit', $invGroup->id)->with('info','Grupo de investigación actualizado con exito!');
         

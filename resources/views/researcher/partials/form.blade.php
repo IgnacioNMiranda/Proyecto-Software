@@ -14,8 +14,8 @@
                         </div>
 
                         <div class = "form-group">
-                            <label for="Rol">País</label>
-                            <select class="form-control" id="Rol">
+                            <label for="country">País</label>
+                            <select class="form-control" id="country">
                                 <option disabled selected>Selecciona una opción</option>
                                 @php
                                 $countries = countries();
@@ -31,8 +31,8 @@
                         </div>
                         
                         <div class = "form-group">
-                            <label for="Rol">Estado</label>
-                            <select class="form-control" id="Rol">
+                            <label for="state">Estado</label>
+                            <select class="form-control" id="state">
                                 <option disabled selected>Selecciona una opción</option>
                                 <option>Activo</option>
                                 <option>Inactivo</option> 

@@ -21,12 +21,11 @@ class InvestigationGroupUpdateRequest extends FormRequest
      *
      * @return array
      */
-    
     public function rules()
     {
         return [
             'name' => 'required|unique:investigation_groups,name,' . $this->invGroup,
-            'logo' => 'image|file|mimes:jpg,png',
+            'logo' => 'mimes:png,jpeg,jpg',
         ];
     }
     

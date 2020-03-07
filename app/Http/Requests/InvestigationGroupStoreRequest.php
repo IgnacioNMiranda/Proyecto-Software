@@ -25,7 +25,7 @@ class InvestigationGroupStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:investigation_groups,name',
-            'logo' => 'image | mimes:jpg,png',
+            'logo' => 'mimes:png,jpeg,jpg',
         ];
     }
 
