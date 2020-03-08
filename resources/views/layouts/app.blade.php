@@ -88,11 +88,7 @@
               Productos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Listado productos</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Editar producto</a>
             </div>
           </li>
 
@@ -170,7 +166,7 @@
     <main class="py-4">
       @yield('content')
     </main>
-
+      
     <footer class="page-footer font-small bg-primary pt-4 mt-4">
 
       <div class="container-fluid text-center text-md-left">
