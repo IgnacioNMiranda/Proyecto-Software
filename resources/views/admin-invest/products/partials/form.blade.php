@@ -1,12 +1,7 @@
-
-
 <div class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
             <div class = "panel panel default">
-                <div class = "panel-heading h4" >
-                    Crear Producto
-                </div>
 
                 <div class="panel-body">
                     <div class = "form-group">
@@ -30,7 +25,6 @@
                         <input type="date" name="Fecha" disabled value="<?php echo date("Y-m-d");?>">
                     </div>
                     <div class="form-group">
-                        <label for="projects">Proyecto Asociado</label>
                         {{ Form::label('project_id', "Nombre del Proyecto asociado")}}
                         {{ Form::select('project_id', $projects, null, ['class' => 'form-control'])}}
                     </div>
