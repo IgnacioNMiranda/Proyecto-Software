@@ -13,5 +13,15 @@ class Product extends Model
     public function researchers(){
         return $this->belongsToMany(User::class);
     }
+    
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
 
+    public function invGroups(){
+        return $this->belongsToMany(InvestigationGroup::class);
+    }
+
+
+    
 }

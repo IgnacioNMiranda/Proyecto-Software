@@ -7,6 +7,9 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Project;
+use App\Researcher;
+use App\InvestigationGroup;
 
 class productController extends Controller
 {
@@ -39,6 +42,9 @@ class productController extends Controller
      */
     public function create()
     {
+        $projects = Project::orderBy('name','ASC')->get();
+        $researchers = Researcher::orderBy('id','DESC')->get();
+        $invGroups = InvestigationGroup::orderBy('id','DESC')->get();
         return view('admin-invest.products.partials.create');
     }
 
@@ -52,7 +58,8 @@ class productController extends Controller
     {
         //validar campos obligatorios 
         $product =Product::create($request->all());
-        return redirect()->route('admin-invest.products.partials.edit', $tag->id)
+        $product->slug = Str::slug($product->name);
+        return redirect()->route('admin-invest.products.partials.edit', $product->id)
             ->with('info', 'Producto creado con éxito');
     }
 
@@ -65,7 +72,7 @@ class productController extends Controller
     public function show($id)
     {
         $Product = Product::find($id);
-        return view('admin-invest.products.partials.show', compact('tag'));
+        return view('admin-invest.products.partials.show', compact('product'));
     }
 
     /**
@@ -77,7 +84,10 @@ class productController extends Controller
     public function edit($id)
     {
         $Product = Product::find($id);
-        return view('admin-invest.products.partials.edit', compact('tag'));
+        $projects = Project::orderBy('name','ASC')->pluck('id','name');
+        $researchers = Researcher::orderBy('name','ASC')->pluck('id','name');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('id','name');
+        return view('admin-invest.products.partials.edit', compact('product'));
     }
 
     /**
@@ -91,8 +101,8 @@ class productController extends Controller
     {
         //validar campos obligatorios 
         $Product = Product::find($id);
-        $tag -> fill($request->all())->save();
-        return redirect()->route('admin-invest.products.partials.edit', $tag->id)
+        $Product -> fill($request->all())->save();
+        return redirect()->route('admin-invest.products.partials.edit', $product->id)
             ->with('info', 'Producto actualizada con éxito');
     
     }
@@ -106,7 +116,7 @@ class productController extends Controller
     public function destroy($id)
     {
         Product::find($id)->delete();
-        return redirect()->route('admin-invest.products.partials.index', $tag->id)
+        return redirect()->route('admin-invest.products.partials.index', $product->id)
             ->with('info', 'Eliminado correctamente');
 
     }

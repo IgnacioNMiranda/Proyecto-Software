@@ -13,4 +13,8 @@ class InvestigationGroup extends Model
     public function units(){
         return $this->hasMany(Unit::class);
     }
+
+    public function products(){
+        return $this->belongsToMany(Product::class);
+    }
 }
