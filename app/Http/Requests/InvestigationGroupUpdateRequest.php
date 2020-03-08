@@ -26,6 +26,7 @@ class InvestigationGroupUpdateRequest extends FormRequest
         return [
             'name' => 'required|unique:investigation_groups,name,' . $this->invGroup,
             'logo' => 'mimes:png,jpeg,jpg',
+            'units' => 'required|array'
         ];
     }
     
@@ -35,7 +36,8 @@ class InvestigationGroupUpdateRequest extends FormRequest
         return [
             'name.required' => 'Debe ingresar un nombre valido',
             'name.unique' => 'Este nombre ya se encuentra en uso',
-            'mimes' => 'El logo debe estar en formato jpg o png'
+            'mimes' => 'El logo debe estar en formato jpg o png',
+            'units.required' => 'Debe elegir al menos una unidad asociada.'
         ];
     }
 }
