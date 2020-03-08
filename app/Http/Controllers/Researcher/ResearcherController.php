@@ -9,6 +9,17 @@ use App\Researcher;
 
 class ResearcherController extends Controller
 {
+
+    /* Redirige a iniciar sesion si se intenta ingresar
+    a la url sin haber iniciado sesion
+    */
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *

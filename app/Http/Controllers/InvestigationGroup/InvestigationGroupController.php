@@ -38,9 +38,11 @@ class InvestigationGroupController extends Controller
      */
     public function create()
     {
-        $units = Unit::orderBy('name','ASC')->get();
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
 
-        return view('Investigation_groups.create',compact('units'));
+        $countries = countries();
+
+        return view('Investigation_groups.create',compact('units','countries'));
     }
 
     /**
@@ -52,6 +54,7 @@ class InvestigationGroupController extends Controller
     public function store(InvestigationGroupStoreRequest $request)
     {
         //validacion con ayuda de InvestigationGroupStoreRequest
+
         $invGroup = InvestigationGroup::create($request->all());
 
         $invGroup->slug = Str::slug($invGroup->name);
@@ -69,10 +72,9 @@ class InvestigationGroupController extends Controller
         }
 
         //Asignacion n-n con unidades, attach para crear la relacion
-        //$invGroup->units()->attach($request->get('units'));
+        $invGroup->units()->attach($request->get('units'));
 
         return redirect()->route('investigationGroups.edit',$invGroup->id)->with('info','Grupo de investigación creado con exito!');
-        
         
     }
 
@@ -99,9 +101,11 @@ class InvestigationGroupController extends Controller
     {
         $invGroup = InvestigationGroup::find($id);
 
-        $units = Unit::orderBy('name','ASC')->pluck('id','name');
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
 
-        return view('Investigation_groups.edit',compact('invGroup','units'));
+        $countries = countries();
+
+        return view('Investigation_groups.edit',compact('invGroup','units','countries'));
     }
 
     /**
@@ -125,7 +129,7 @@ class InvestigationGroupController extends Controller
         }
 
         //Asignacion n-n con unidades, sync para actualizar la relacion invGroup con units
-        //$invGroup->units()->sync($request->get('units'));
+        $invGroup->units()->sync($request->get('units'));
 
         return redirect()->route('investigationGroups.edit', $invGroup->id)->with('info','Grupo de investigación actualizado con exito!');
         
@@ -139,6 +143,8 @@ class InvestigationGroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        InvestigationGroup::find($id)->delete();
+
+        return back();
     }
 }
