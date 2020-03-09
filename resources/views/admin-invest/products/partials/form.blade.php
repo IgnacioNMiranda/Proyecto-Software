@@ -34,9 +34,12 @@
                         {{ Form::select('project_id', $projects, null, 
                             ['class' => 'form-control', 'placeholder' => 'Seleccione Proyecto asociado', 'id' => 'project_id']) }}
                     </div>
+
                     <div class="form-group mt-4 d-flex justify-content-center">
-                        {{ Form::submit('Crear Producto', ['class' => 'btn btn-secondary']) }}
+                        {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
                     </div>
+
+
                 </div>
             </div>
         </div>
