@@ -2,18 +2,10 @@
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
             <div class = "panel panel default">
-                <div class = "panel-heading h4" >
-                    Crear Usuario 
-                </div>
-
                 <div class="panel-body">
                     <div class = "form-group">
-                        <label for="Rol">Tipo de Usuario</label>
-                        <select class="form-control" id="Rol">
-                            <option disabled selected>Selecciona una opción</option>
-                            <option>Administrador</option>
-                            <option>Investigador</option> 
-                        </select>
+                        {{ Form::label('userType','Tipo de Usuario')}}
+                        {{ Form::select("userType",["Investigador" => "Investigador", "Administrador" => "Administrador"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
                     </div>
 
 
