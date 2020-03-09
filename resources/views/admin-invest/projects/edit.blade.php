@@ -10,8 +10,10 @@
                 </div>
 
                 <div class="panel-body">
-                    {!! Form::open(['route' => 'projects.store']) !!}
+                    {!! Form::model($project,['route' => ['projects.update',$project->id,'method' => 'PUT']]) !!}
+                    
                     @include('admin-invest.projects.partials.form')
+
                     {!! Form::close() !!}
                 </div>    
             </div>

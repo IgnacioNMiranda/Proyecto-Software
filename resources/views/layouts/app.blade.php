@@ -82,9 +82,9 @@
               Proyectos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('projects.create') }}">Crear proyecto</a>
+              <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Editar proyecto</a>
+            <a class="dropdown-item" href="#">Editar Proyecto</a>
             </div>
           </li>
 
