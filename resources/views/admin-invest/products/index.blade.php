@@ -27,21 +27,25 @@
                             @foreach($products as $product)
                             <tr>
                                 <td>{{ $product->id}}</td>
-                                <td>{{ $tag->name}}</td>
+                                <td>{{ $product->name}}</td>
                                 <td width="10px">
                                     <a href=" {{route('products.show', $product->id) }}" class="btn btn-sm btn-default">
                                         ver
                                     </a>
                                 </td>
                                 <td>{{ $product->id}}</td>
-                                <td>{{ $tag->name}}</td>
+                                <td>{{ $product->name}}</td>
                                 <td width="10px">
                                     <a href=" {{route('products.edit', $product->id) }}" class="btn btn-sm btn-default">
-                                        edit
+                                        editar
                                     </a>
                                 </td>
                                 <td width="10px">
-                                    Eliminar
+                                    {!! Form:open(['route' => ['products.destroy', $product->id], 'method' => 'DELETE']) !!}
+                                        <button class="btn btn-sm btn-danger">
+                                            Eliminar
+                                        </button>
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                             @endforeach

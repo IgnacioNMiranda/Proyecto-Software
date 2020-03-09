@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+  <!-- Bootstrap select styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
   
 
 </head>
@@ -88,11 +91,7 @@
               Productos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Listado productos</a>
-              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Editar producto</a>
             </div>
           </li>
 
@@ -170,7 +169,7 @@
     <main class="py-4">
       @yield('content')
     </main>
-
+      
     <footer class="page-footer font-small bg-primary pt-4 mt-4">
 
       <div class="container-fluid text-center text-md-left">
@@ -204,6 +203,10 @@
   
   <!-- Bootstrap Dropdown Hover JS -->
   <script src="js/bootstrap-dropdownhover.min.js"></script>
+
+  <!--Bootstrap Select JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
 </body>
 

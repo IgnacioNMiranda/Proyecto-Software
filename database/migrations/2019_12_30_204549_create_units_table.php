@@ -17,7 +17,7 @@ class CreateUnitsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',128)->unique();
             $table->string('country',128);
-            $table->string('slug',128);
+            $table->string('slug',128)->default('name');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name',128);
             $table->mediumText('description')->nullable();
             $table->date('date');
-            $table->string('slug',128)->unique();
+            $table->string('slug',128)->unique()->default('name');
 
             
             $table->bigInteger('investigation_group_id')->unsigned();

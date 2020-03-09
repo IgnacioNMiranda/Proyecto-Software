@@ -38,7 +38,7 @@ class InvestigationGroupController extends Controller
      */
     public function create()
     {
-        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        $units = Unit::orderBy('name','ASC')->get();
 
         $countries = countries();
 
@@ -54,10 +54,11 @@ class InvestigationGroupController extends Controller
     public function store(InvestigationGroupStoreRequest $request)
     {
         //validacion con ayuda de InvestigationGroupStoreRequest
-
+        
         $invGroup = InvestigationGroup::create($request->all());
 
         $invGroup->slug = Str::slug($invGroup->name);
+        $invGroup->save();
 
         /*if(checkRut($invGroup->rut == false)){
             destroy($invGroup->id);

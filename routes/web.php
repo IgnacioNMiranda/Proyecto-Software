@@ -31,3 +31,6 @@ Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupCont
 
 //Research
 Route::resource('researchers', "Researcher\ResearcherController");
+
+//Unit
+Route::resource('units',"Unit\UnitController");
