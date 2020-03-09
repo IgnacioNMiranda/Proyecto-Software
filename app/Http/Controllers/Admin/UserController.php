@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\User;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -39,11 +40,11 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         $user = User::create($request->all());
-
-        return redirect()->route('User.edit', $user->id)->with('info','Usuario creado con exito!');
+        //No debe redirect al edit ya que un usuario no se puede editar
+        return redirect()->route('users.edit', $user->id)->with('info','Usuario creado con exito!');
     }
 
     /**
@@ -65,7 +66,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('User.edit', compact('user'));
     }
 
     /**
@@ -75,9 +78,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->fill($request->all())->save();
+
+        return redirect()->route('users.edit', $user->id)->with('info','Usuario actualizado con exito!');
     }
 
     /**

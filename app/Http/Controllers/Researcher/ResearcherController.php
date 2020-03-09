@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Researcher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\ResearchStoreRequest;
+use App\Http\Requests\ResearchUpdateRequest;
+
 use App\Researcher;
 use App\Unit;
 
@@ -38,7 +41,7 @@ class ResearcherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResearchStoreRequest $request)
     {
         $researcher = Researcher::create($request->all());
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador creado con exito!');
@@ -78,7 +81,7 @@ class ResearcherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ResearchUpdateRequest $request, $id)
     {
         //validar
         $researcher = Researcher::find($id);
