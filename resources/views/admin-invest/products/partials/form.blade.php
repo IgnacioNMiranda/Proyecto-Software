@@ -10,7 +10,7 @@
                     <div class = "form-group">
                         {{ Form::label('investigation_group_id', "Nombre del Grupo de investigacion") }}
                         {{ Form::select('investigation_group_id', $invGroups, null, 
-                            ['placeholder' => 'Seleccione Grupo de investigacion...'], ['multiple' => 'multiple'], 
+                            ['placeholder' => 'Seleccione Grupo de investigacion'], 
                                 ['class' => 'form-control', 'id' => 'investigation_group_id']) }}
                     </div>
                     <div class="form-group">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         {{ Form::label('project_id', "Nombre del Proyecto asociado (opcional)") }}
-                        {{ Form::select('project_id', $projects, null, ['placeholder' => 'Seleccione Proyecto asociado...'], 
+                        {{ Form::select('project_id', $projects, null, ['placeholder' => 'Seleccione Proyecto asociado'], 
                             ['class' => 'form-control', 'id' => 'project_id']) }}
                     </div>
                     <div class="form-group mt-4 d-flex justify-content-center">

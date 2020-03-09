@@ -10,6 +10,7 @@ use App\Product;
 use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
+use Illuminate\Support\Str;
 
 class productController extends Controller
 {
@@ -62,7 +63,8 @@ class productController extends Controller
         //validar campos obligatorios 
         $product =Product::create($request->all());
         $product->slug = Str::slug($product->name);
-        return redirect()->route('admin-invest.products.edit', $product->id)
+        $product->save();
+        return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto creado con éxito');
     }
 
@@ -88,7 +90,7 @@ class productController extends Controller
     {
         $product = Product::find($id);
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('name','ASC')->pluck('name', 'id');
+        $researchers = Researcher::orderBy('name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
         return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups'));
     }
@@ -105,8 +107,8 @@ class productController extends Controller
         //validar campos obligatorios 
         $product = Product::find($id);
         $product -> fill($request->all())->save();
-        return redirect()->route('admin-invest.products.edit', $product->id)
-            ->with('info', 'Producto actualizada con éxito');
+        return redirect()->route('products.edit', $product->id)
+            ->with('info', 'Producto actualizado con éxito');
     
     }
 
