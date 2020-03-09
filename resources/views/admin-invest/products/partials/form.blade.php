@@ -2,7 +2,6 @@
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
             <div class = "panel panel default">
-
                 <div class="panel-body">
                     <div class="form-group">
                         {{ Form::label('name', 'Nombre del Producto') }}
@@ -10,15 +9,21 @@
                     </div>
                     <div class = "form-group">
                         {{ Form::label('investigation_group_id', "Nombre del Grupo de investigacion") }}
-                        {{ Form::select('investigation_group_id', $invGroups, null, ['placeholder' => 'Seleccione Grupo de investigacion...'], ['class' => 'form-control']) }}
+                        {{ Form::select('investigation_group_id', $invGroups, null, 
+                            ['placeholder' => 'Seleccione Grupo de investigacion...'], ['multiple' => 'multiple'], 
+                                ['class' => 'form-control', 'id' => 'investigation_group_id']) }}
                     </div>
                     <div class="form-group">
                         {{ Form::label('description', 'Descripcion del Producto') }}
-                        {{ Form::textarea('description', null, ['class' => 'form-control']) }}
+                        {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
                     </div>
-                    <div class = "form-group">
-                        {{ Form::label('researcher', "Nombre de los Investigadores") }}
-                        {{ Form::select('researcher', $researchers, null, ['placeholder' => 'Seleccione Investigador(es)...'], ['class' => 'form-control']) }}
+                    <div class="form-group">
+                            <label for="researchers">Investigador(es) Asociado(s)</label>
+                            <select id="researchers" name="researchers[]" class="selectpicker" multiple data-live-search="true" title="Seleccione Investigador(es) asociado(s)">
+                                @foreach ($researchers as $researcher)
+                                    <option value="{{ $researcher->id }}"> {{ $researcher->name }}</option>
+                                @endforeach
+                            </select>
                     </div>
                     <div class = "form-group">
                         {{ Form::label('date', 'Fecha de Creacion') }}
@@ -26,22 +31,14 @@
                     </div>
                     <div class="form-group">
                         {{ Form::label('project_id', "Nombre del Proyecto asociado (opcional)") }}
-                        {{ Form::select('project_id', $projects, null, ['placeholder' => 'Seleccione Proyecto asociado...'], ['class' => 'form-control']) }}
+                        {{ Form::select('project_id', $projects, null, ['placeholder' => 'Seleccione Proyecto asociado...'], 
+                            ['class' => 'form-control', 'id' => 'project_id']) }}
                     </div>
                     <div class="form-group mt-4 d-flex justify-content-center">
                         {{ Form::submit('Crear Producto', ['class' => 'btn btn-secondary']) }}
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('.selectpicker').selectpicker();
-    })
-</script>
