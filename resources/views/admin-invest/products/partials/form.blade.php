@@ -27,7 +27,7 @@
                     </div>
                     <div class = "form-group">
                         {{ Form::label('date', 'Fecha de Creacion') }}
-                        <input type="date" name="date" disabled value="<?php echo date("Y-m-d");?>">  
+                        {{ Form::date('date', \Carbon\Carbon::now())}}
                     </div>
                     <div class="form-group">
                         {{ Form::label('project_id', "Nombre del Proyecto asociado (opcional)") }}

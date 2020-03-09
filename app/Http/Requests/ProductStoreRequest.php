@@ -24,11 +24,10 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:Product,name,' . $this->product,
+            'name' => 'required|unique:products,name,',
             'description' => 'required',
             'researcher_id' => 'required|array',
             'date' => 'required',
-            'slug' => 'required|unique:products,slug' . $this->product,
             'investigation_group_id' => 'required',
         ];
     }
