@@ -25,7 +25,7 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'email' => 'required|unique:users,email',
-            'password' => 'required',
+            'password' => 'required|regex:^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
             'userType' => 'required'
         ];
     }
