@@ -10,6 +10,7 @@ use App\Http\Requests\ProjectUpdateRequest;
 
 use App\Project;
 use App\Researcher;
+use App\InvestigationGroup;
 
 class ProjectController extends Controller
 {
@@ -45,7 +46,8 @@ class ProjectController extends Controller
     public function create()
     {
         $researchers = Researcher::orderBy('name','ASC')->get();
-        return view('admin-invest.projects.create',compact('researchers'));
+        $investigation_groups = InvestigationGroup::orderBy('name','ASC')->get();
+        return view('admin-invest.projects.create',compact('researchers','investigation_groups'));
     }
 
     /**
