@@ -7,18 +7,10 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-              <label for="investigation_group_id">Grupo de Investigador Asociado</label>
-              <select class="form-control" id="investigation_group_id">
-                <option disabled selected>Seleccionar Grupo de Investigación</option>
-                @foreach ($investigation_groups as $investigation_group)
-                <option value="{{ $investigation_group->id }}"> {{ $investigation_group->name }}</option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="form-group">
-              {{ Form::label('investigation_group_id','Estado') }}
-              {{ Form::select('investigation_group_id',$investigation_groups ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar grupo de investigación']) }}
+              {{ Form::label('investigation_group_id', "Nombre del Grupo de investigacion") }}
+              {{ Form::select('investigation_group_id', $investigation_groups, null, 
+                  ['placeholder' => 'Seleccione Grupo de investigacion'], 
+                      ['class' => 'form-control', 'id' => 'investigation_group_id']) }}
             </div>
 
             <div class="form-group">
