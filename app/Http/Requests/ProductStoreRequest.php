@@ -25,11 +25,12 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:products,name',
-            'description' => 'required',
+            'description' => 'nullable',
             'researchers' => 'required|array',
             'date' => 'required',
             'investigation_group_id' => 'required',
-        ];
+            'project_id'=> 'nullable',
+        ];    
     }
 
     public function messages(){
@@ -37,7 +38,6 @@ class ProductStoreRequest extends FormRequest
         return [
             'name.required' => 'El campo nombre es obligatorio.',
             'name.unique' => 'Este nombre ya se encuentra en uso.',
-            'description.required' => 'El campo descripcion es obligatorio.',
             'researchers.required' => 'Debe elegir al menos un investigador registrado.',
             'date.required' => 'El campo fecha es obligatorio.',
             'investigation_group_id' => 'el campo grupo de investigacion es obligatorio.',

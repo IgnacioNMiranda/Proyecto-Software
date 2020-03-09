@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
 
             
             $table->bigInteger('investigation_group_id')->unsigned();
-            $table->bigInteger('project_id')->unsigned();
+            $table->bigInteger('project_id')->unsigned()->nullable();
             
             $table->foreign('investigation_group_id')->references('id')->on('investigation_groups')
                 ->onDelete('cascade')
