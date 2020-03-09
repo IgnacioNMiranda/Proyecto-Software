@@ -21,7 +21,10 @@
 
   <!-- Bootstrap select styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-  
+
+  <!-- Bootstrap datetime-picker -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 
 </head>
 
@@ -98,7 +101,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Investigadores <!--Cuando este listo vista grupo se cambiara pa alla-->
+              Investigadores
+              <!--Cuando este listo vista grupo se cambiara pa alla-->
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
@@ -154,12 +158,12 @@
           <div class="alert alert-danger">
             <ul>
               @foreach ($errors->all() as $error)
-                <li>
-                  {{ $error }}
-                </li>
+              <li>
+                {{ $error }}
+              </li>
               @endforeach
             </ul>
-            
+
           </div>
         </div>
       </div>
@@ -169,7 +173,7 @@
     <main class="py-4">
       @yield('content')
     </main>
-      
+
     <footer class="page-footer font-small bg-primary pt-4 mt-4">
 
       <div class="container-fluid text-center text-md-left">
@@ -200,13 +204,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
-  
+
   <!-- Bootstrap Dropdown Hover JS -->
   <script src="js/bootstrap-dropdownhover.min.js"></script>
 
   <!--Bootstrap Select JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+
+  <!-- Bootstrap datetime-picker JS -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js">
+  </script>
 
 </body>
 
