@@ -13,6 +13,7 @@
                             ['placeholder' => 'Seleccione Grupo de investigacion'], 
                                 ['class' => 'form-control', 'id' => 'investigation_group_id']) }}
                     </div>
+                    
                     <div class="form-group">
                         {{ Form::label('description', 'Descripcion del Producto') }}
                         {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}

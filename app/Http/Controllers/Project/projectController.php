@@ -12,6 +12,8 @@ use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
 
+use Illuminate\Support\Str;
+
 class ProjectController extends Controller
 {
 
@@ -61,6 +63,9 @@ class ProjectController extends Controller
     {
         //Validado en archivo externo
         $project = Project::create($request->all());
+        $project->slug = Str::slug($project->name);
+        $project->save();
+
         return redirect()->route('projects.edit',$project->id)
             ->with('info','Proyecto creado con exito');
     }
@@ -88,7 +93,9 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        return view('admin-invest.projects.edit',compact('project'));
+        $researchers = Researcher::orderBy('name','ASC')->get();
+        $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+        return view('admin-invest.projects.edit',compact('project','researchers','investation_groups'));
     }
 
     /**

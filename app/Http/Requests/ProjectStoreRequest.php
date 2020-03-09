@@ -23,7 +23,6 @@ class ProjectStoreRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this);
         return [
             'name' => 'required',
             'state' => 'required',
