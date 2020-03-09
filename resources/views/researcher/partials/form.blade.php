@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 
 </div>
 @include("\investigation_groups\partials\unit_form")

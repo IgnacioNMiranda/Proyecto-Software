@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="panel-body">
-                    {!! Form::open(['route' => 'projects.store', 'files' => true]) !!}
+                    {!! Form::open(['route' => 'projects.store']) !!}
                     @include('admin-invest.projects.partials.form')
                     {!! Form::close() !!}
                 </div>    

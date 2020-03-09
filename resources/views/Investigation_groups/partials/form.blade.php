@@ -1,4 +1,5 @@
 <section class="container">
+    enctype="multipart/form-data"
     <div class="row justify-content-center">
         <div class="col-md-8 border shadow pt-4">
             <div class="panel panel default">
