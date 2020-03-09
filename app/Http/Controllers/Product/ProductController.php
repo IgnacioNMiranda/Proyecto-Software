@@ -64,6 +64,10 @@ class productController extends Controller
         $product =Product::create($request->all());
         $product->slug = Str::slug($product->name);
         $product->save();
+
+        //Asignacion n-n con researchers, attach para crear la relacion
+        $product->researchers()->attach($request->get('researchers'));
+
         return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto creado con éxito');
     }
@@ -107,6 +111,10 @@ class productController extends Controller
         //validar campos obligatorios 
         $product = Product::find($id);
         $product -> fill($request->all())->save();
+
+        //Asignacion n-n con researcher, sync para actualizar la relacion products con researchers
+        $product->researchers()->sync($request->get('researchers'));
+
         return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto actualizado con éxito');
     
