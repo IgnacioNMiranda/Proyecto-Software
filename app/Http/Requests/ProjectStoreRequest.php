@@ -24,12 +24,13 @@ class ProjectStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'nullable|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/',
-            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:projects,name',
+            'code' => 'nullable',
+            'name' => 'required',
             'state' => 'required',
             'startDate' => 'required',
             'endDate' => 'required',
             'investigation_group_id' => 'required',
+            'researchers' => 'required|array',
         ];
     }
 
@@ -43,6 +44,8 @@ class ProjectStoreRequest extends FormRequest
             'units.required' => 'Debe elegir al menos una unidad asociada.',
             'investigation_group_id.required' => 'El campo de Grupo de investigacion es obligatorio.',
             'endDate.required' => 'El campo fecha de finalización es obligatorio.',
+            'researchers.required' => 'Es necesario por lo menos 1 investigador',
+
         ];
     }
 }
