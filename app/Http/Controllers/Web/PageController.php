@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\InvestigationGroup;
+use App\Product;
 
 class PageController extends Controller
 {
@@ -14,4 +15,12 @@ class PageController extends Controller
 
         return view('welcome',compact('invGroups'));
     }
+
+    public function products(){
+        $products = Product::orderBy('id','name','DESC')->paginate(12);
+        return view('welcome',compact('products'));
+    }
+    
+
+
 }

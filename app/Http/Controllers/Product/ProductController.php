@@ -7,6 +7,9 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\Project;
+use App\Researcher;
+use App\InvestigationGroup;
 
 class productController extends Controller
 {
@@ -28,8 +31,10 @@ class productController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id','DESC')->paginate();
-        return view('admin-invest.products.partials.index',compact('products'));
+        $products = Product::orderBy('id','DESC')
+        ->where('user_id',auth()->user()->id)
+        ->paginate();
+        return view('admin-invest.products.index',compact('products'));
     }
 
     /**
@@ -39,7 +44,11 @@ class productController extends Controller
      */
     public function create()
     {
-        return view('admin-invest.products.partials.create');
+        $projects = Project::orderBy('name','ASC')->pluck('name','id');
+        $researchers = Researcher::orderBy('name','ASC')->pluck('name','id');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+        
+        return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups'));
     }
 
     /**
@@ -52,7 +61,8 @@ class productController extends Controller
     {
         //validar campos obligatorios 
         $product =Product::create($request->all());
-        return redirect()->route('admin-invest.products.partials.edit', $tag->id)
+        $product->slug = Str::slug($product->name);
+        return redirect()->route('admin-invest.products.edit', $product->id)
             ->with('info', 'Producto creado con éxito');
     }
 
@@ -64,8 +74,8 @@ class productController extends Controller
      */
     public function show($id)
     {
-        $Product = Product::find($id);
-        return view('admin-invest.products.partials.show', compact('tag'));
+        $product = Product::find($id);
+        return view('admin-invest.products.show', compact('product'));
     }
 
     /**
@@ -76,8 +86,11 @@ class productController extends Controller
      */
     public function edit($id)
     {
-        $Product = Product::find($id);
-        return view('admin-invest.products.partials.edit', compact('tag'));
+        $product = Product::find($id);
+        $projects = Project::orderBy('name','ASC')->pluck('name','id');
+        $researchers = Researcher::orderBy('name','ASC')->pluck('name', 'id');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
+        return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups'));
     }
 
     /**
@@ -90,9 +103,9 @@ class productController extends Controller
     public function update(ProductUpdateRequest $request, $id)
     {
         //validar campos obligatorios 
-        $Product = Product::find($id);
-        $tag -> fill($request->all())->save();
-        return redirect()->route('admin-invest.products.partials.edit', $tag->id)
+        $product = Product::find($id);
+        $product -> fill($request->all())->save();
+        return redirect()->route('admin-invest.products.edit', $product->id)
             ->with('info', 'Producto actualizada con éxito');
     
     }
@@ -105,9 +118,8 @@ class productController extends Controller
      */
     public function destroy($id)
     {
-        Product::find($id)->delete();
-        return redirect()->route('admin-invest.products.partials.index', $tag->id)
-            ->with('info', 'Eliminado correctamente');
+        $product = Product::find($id)->delete();
+        return back()->with('info', 'Eliminado correctamente');
 
     }
 }
