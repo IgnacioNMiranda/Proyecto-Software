@@ -13,7 +13,6 @@
                     {!! Form::open(['route' => 'products.store']) !!}
                     @include('admin-invest.products.partials.form')
                     {!! Form::close() !!}
-
                 </div>
             </div>
         </div>

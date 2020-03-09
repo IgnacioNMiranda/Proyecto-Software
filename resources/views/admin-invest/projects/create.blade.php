@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div class = "container">
-    <div class = "row">
-        <div class = "col-md-8 col-md-offset-2">
-            <div class = "panel panel-default">
-                <div class = "panel-heading">
-                    Lista de Etiquetas
-                    <a href="" class ="btn btn-sm btn-primary pull-right">
-
-                    </a>
+<section class="container p-4">
+    <div class="row justify-content-center">
+        <div class = "col-md-8 justify-content-center">   
+            <div class="panel panel-default">
+                <div class = "panel-heading h2 d-flex justify-content-center mb-4" >
+                    Registrar Proyecto
                 </div>
+
+                <div class="panel-body">
+                    {!! Form::open(['route' => 'projects.store', 'files' => true]) !!}
+                    @include('admin-invest.projects.partials.form')
+                    {!! Form::close() !!}
+                </div>    
             </div>
         </div>
     </div>
-</div>
+</section>
 
 @endsection
