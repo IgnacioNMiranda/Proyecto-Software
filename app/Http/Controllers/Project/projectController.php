@@ -9,6 +9,7 @@ use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 
 use App\Project;
+use App\Researcher;
 
 class ProjectController extends Controller
 {
@@ -43,7 +44,8 @@ class ProjectController extends Controller
     //Crea un proyecto 
     public function create()
     {
-        return view('admin-invest.projects.create');
+        $researchers = Researcher::orderBy('name','ASC')->get();
+        return view('admin-invest.projects.create',compact('researchers'));
     }
 
     /**
@@ -70,8 +72,8 @@ class ProjectController extends Controller
     //Se ve el detalle del registro en la Bd
     public function show($id)
     {
-        $project = Project::find($id);
-        return view('admin-invest.projects.show',compact('project'));
+        $projects = Project::find($id);
+        return view('admin-invest.projects.show',compact('projects'));
     }
 
     /**
