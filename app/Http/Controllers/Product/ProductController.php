@@ -45,7 +45,7 @@ class productController extends Controller
     public function create()
     {
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('name','ASC')->pluck('name','id');
+        $researchers = Researcher::orderBy('name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
         
         return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups'));

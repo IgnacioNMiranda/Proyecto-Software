@@ -13,9 +13,7 @@ class Project extends Model
     public function researchers(){
         return $this->belongsToMany(User::class);
     }
-
     public function products(){
         return $this->belongsToMany(Product::class);
     }
-
 }
