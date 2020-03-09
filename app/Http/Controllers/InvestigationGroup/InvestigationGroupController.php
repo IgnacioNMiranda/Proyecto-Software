@@ -71,12 +71,11 @@ class InvestigationGroupController extends Controller
             $path = Storage::disk('public')->put('image', $request->file('logo'));
             $invGroup->fill(['logo' => asset($path)])->save();
         }
-
+        dd($request);
         //Asignacion n-n con unidades, attach para crear la relacion
         $invGroup->units()->attach($request->get('units'));
 
         return redirect()->route('investigationGroups.edit',$invGroup->id)->with('info','Grupo de investigación creado con exito!');
-        
     }
 
     /**
@@ -102,7 +101,7 @@ class InvestigationGroupController extends Controller
     {
         $invGroup = InvestigationGroup::find($id);
 
-        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        $units = Unit::orderBy('name','ASC')->get();
 
         $countries = countries();
 
@@ -133,7 +132,6 @@ class InvestigationGroupController extends Controller
         $invGroup->units()->sync($request->get('units'));
 
         return redirect()->route('investigationGroups.edit', $invGroup->id)->with('info','Grupo de investigación actualizado con exito!');
-        
     }
 
     /**

@@ -27,10 +27,10 @@
                         </div>
 
                         <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#unit_form">Crear nueva unidad</a>
-
+                        
                         <div class="form-group">
                             <label for="logo">Logo</label>
-                            <input type="file" id="logo" name="logo" accept="image/png, image/jpeg, image/jpg">
+                            <input type="file" id="logo" name="logo">
                         </div>
                         
                         <div class="form-group mt-4 d-flex justify-content-center">
