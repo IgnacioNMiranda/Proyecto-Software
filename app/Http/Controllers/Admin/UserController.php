@@ -5,8 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\User;
+
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
+
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
+
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -44,7 +51,17 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
+        $validator = new EmailValidator();
+        $result = $validator->isValid($request->email, new RFCValidation());
+        if(!$result){
+            return redirect()->route('users.create')->withErrors(['Formato de email inválido.']);
+        }
+
         $user = User::create($request->all());
+
+        //Permite que la clave del usuario se hashee y permite el logueo
+        $user->password = Hash::make($request->password);
+        $user->save();
         //No debe redirect al edit ya que un usuario no se puede editar
         return redirect()->route('users.edit', $user->id)->with('info','Usuario creado con exito!');
     }

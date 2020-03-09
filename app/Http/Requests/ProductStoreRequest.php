@@ -24,7 +24,7 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:Product,name,' . $this->product,
+            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:Product,name',
             'description' => 'required',
             'researcher_id' => 'required|array',
             'date' => 'required',

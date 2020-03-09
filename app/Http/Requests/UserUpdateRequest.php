@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
+
 class UserUpdateRequest extends FormRequest
 {
     /**
@@ -31,7 +34,6 @@ class UserUpdateRequest extends FormRequest
     }
 
     public function messages(){
-
         return [
             'email.required' => 'El campo rut es obligatorio.',
             'password.unique' => 'Este rut ya se encuentra en uso.',
