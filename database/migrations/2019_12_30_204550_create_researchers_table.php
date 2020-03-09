@@ -17,7 +17,7 @@ class CreateResearchersTable extends Migration
             $table->bigIncrements('id');
             $table->string('rut',128)->unique();//Buscar libreria para validar rut
             $table->string('name',128);
-            $table->string('state',128);
+            $table->enum('state', ['Activo','Inactivo'])->default('Activo');
             $table->string('country',128);
 
             $table->bigInteger('unit_id')->unsigned()->nullable();

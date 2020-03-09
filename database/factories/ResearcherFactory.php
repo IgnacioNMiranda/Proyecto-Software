@@ -10,7 +10,7 @@ $factory->define(App\Researcher::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'rut' => $faker->regexify('^\d{1,2}\.\d{3}\.\d{3}[-][0-9kK]{1}$'),
-        'state' => $faker->state,
+        'state' => $faker->randomElement(['Activo','Inactivo']),
         'country' => $faker->country,
         'unit_id' => rand(1,30),
     ];
