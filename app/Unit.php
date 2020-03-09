@@ -11,7 +11,7 @@ class Unit extends Model
     ];
 
     public function researchers(){
-        return $this->hasMany(User::class);
+        return $this->hasMany(Researcher::class);
     }
 
     public function investigation_groups(){

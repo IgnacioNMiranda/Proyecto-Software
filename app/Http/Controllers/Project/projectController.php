@@ -66,6 +66,8 @@ class ProjectController extends Controller
         $project->slug = Str::slug($project->name);
         $project->save();
 
+        $project->researchers()->attach($request->get('researchers'));
+
         return redirect()->route('projects.edit',$project->id)
             ->with('info','Proyecto creado con exito');
     }
@@ -112,6 +114,10 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $project->fill($request->all())->save();
         $project = Project::create($request->all());
+
+        $project->researchers()->sync($request->get('researchers'));
+
+
         return redirect()->route('projects.edit',$project->id)
             ->with('info','Proyecto actualizado con exito');
     }

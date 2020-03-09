@@ -71,7 +71,6 @@ class InvestigationGroupController extends Controller
             $path = Storage::disk('public')->put('image', $request->file('logo'));
             $invGroup->fill(['logo' => asset($path)])->save();
         }
-        dd($request);
         //Asignacion n-n con unidades, attach para crear la relacion
         $invGroup->units()->attach($request->get('units'));
 
