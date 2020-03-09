@@ -23,14 +23,23 @@ class ProjectStoreRequest extends FormRequest
      */
     public function rules()
     {
+        dd($this);
         return [
-            'code' => 'required',
             'name' => 'required',
             'state' => 'required',
-            'startDate' => 'required',
             'endDate' => 'required',
-            'slug' => 'required|unique:projects,slug',
             'investigation_group_id' => 'required',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'name.required' => 'El campo nombre es obligatorio.',
+            'name.unique' => 'Este nombre ya se encuentra en uso.',
+            'state.required' => 'El campo estado es obligatorio',
+            'units.required' => 'Debe elegir al menos una unidad asociada.',
+            'investigation_group_id.required' => 'El campo de Grupo de investigacion es obligatorio',
+            'endDate.required' => 'El campo fecha de Finalizacion es obligatorio',
         ];
     }
 }
