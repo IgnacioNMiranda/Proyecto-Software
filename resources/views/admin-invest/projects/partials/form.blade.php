@@ -11,9 +11,14 @@
               <select class="form-control" id="investigation_group_id">
                 <option disabled selected>Seleccionar Grupo de Investigación</option>
                 @foreach ($investigation_groups as $investigation_group)
-                  <option value="{{ $investigation_group->id }}"> {{ $investigation_group->name }}</option>
+                <option value="{{ $investigation_group->id }}"> {{ $investigation_group->name }}</option>
                 @endforeach
               </select>
+            </div>
+
+            <div class="form-group">
+              {{ Form::label('investigation_group_id','Estado') }}
+              {{ Form::select('investigation_group_id',$investigation_groups ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar grupo de investigación']) }}
             </div>
 
             <div class="form-group">
@@ -27,22 +32,17 @@
             </div>
 
             <div class="form-group">
-              <label class=" mr-sm-2" for="state">Estado</label>
-              <select class="custom-select mr-sm-2 form-control" id="state">
-                <option disabled selected>Seleccionar Estado</option>
-                <option value="1">Postulado</option>
-                <option value="2">En Ejecución</option>
-                <option value="3">Finalizado</option>
-                <option value="4">Cancelado</option>
-              </select>
+              {{ Form::label('state','Estado') }}
+              {{ Form::select('state', array('P' => 'Postulado','EN' => 'En Ejecucion', 'F' => 'Finalizado','C' =>'Cancelado') ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar Estado...']) }}
             </div>
+
 
             <div class="form-group">
               <label for="researchers">Investigador(es) asociado(s)</label>
               <select id="researchers" name="researchers[]" class="selectpicker" multiple data-live-search="true"
                 title="Seleccione Investigador(es) Asociado(s)">
                 @foreach ($researchers as $researcher)
-                  <option value="{{ $researcher->id }}"> {{ $researcher->name }}</option>
+                <option value="{{ $researcher->id }}"> {{ $researcher->name }}</option>
                 @endforeach
               </select>
             </div>
