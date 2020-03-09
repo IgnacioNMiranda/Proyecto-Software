@@ -5,21 +5,14 @@ namespace App\Http\Controllers\Researcher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\ResearchStoreRequest;
+use App\Http\Requests\ResearchUpdateRequest;
+
 use App\Researcher;
+use App\Unit;
 
 class ResearcherController extends Controller
 {
-
-    /* Redirige a iniciar sesion si se intenta ingresar
-    a la url sin haber iniciado sesion
-    */
-    public function __construct()
-    {
-        $this->middleware('auth');
-
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +30,9 @@ class ResearcherController extends Controller
      */
     public function create()
     {
-        return view('researcher.create');
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+
+        return view('researcher.create', compact('units'));
     }
 
     /**
@@ -46,11 +41,10 @@ class ResearcherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResearchStoreRequest $request)
     {
-        $user = Researcher::create($request->all());
-
-        return redirect()->route('researcher.edit', $researcher->id)->with('info','Investigador creado con exito!');
+        $researcher = Researcher::create($request->all());
+        return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador creado con exito!');
     }
 
     /**
@@ -75,8 +69,9 @@ class ResearcherController extends Controller
     public function edit($id)
     {
         $researcher = Researcher::find($id);
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
 
-        return view('researcher.edit', compact('researcher'));
+        return view('researcher.edit', compact('researcher','units'));
     }
 
     /**
@@ -86,14 +81,16 @@ class ResearcherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ResearchUpdateRequest $request, $id)
     {
         //validar
         $researcher = Researcher::find($id);
 
         $researcher->fill($request->all())->save();
+        
+        $researcher->units()->attach($request->get('units'));
 
-        return redirect()->route('researcher.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
+        return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }
 
     /**

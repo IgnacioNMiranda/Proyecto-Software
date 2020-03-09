@@ -14,33 +14,32 @@
                         </div>
 
                         <div class = "form-group">
-                            <label for="country">País</label>
-                            <select class="form-control" id="country">
-                                <option disabled selected>Selecciona una opción</option>
                                 @php
                                 $countries = countries();
+                                $paises = array();
                                 @endphp
-                                @foreach($countries as $clave=>$valor)
+                                @foreach ($countries as $clave=>$valor)
                                     @php
-                                    $country = country($clave);
+                                    $country = country($clave);    
+                                    $paises[$country->getName()] = $country->getName();
                                     @endphp
-                                   <option>  {{ $country->getName() }} </option>
                                 @endforeach
-
-                            </select>
+                                {{ Form::label('country','País') }}
+                                {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
                         </div>
                         
                         <div class = "form-group">
-                            <label for="state">Estado</label>
-                            <select class="form-control" id="state">
-                                <option disabled selected>Selecciona una opción</option>
-                                <option>Activo</option>
-                                <option>Inactivo</option> 
-                            </select>
+                            {{ Form::label('state','Estado')}}
+                            {{ Form::select("state",["Activo" => "Activo", "Inactivo" => "Inactivo"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
                         </div>
                         
+                        <div class = "form-group">
+                            {{ Form::label('units','Unidad') }}
+                            {{ Form::select('unit_id', $units ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar unidad']) }}
+                        </div>    
+
                         <div class = "form-group mt-4 d-flex justify-content-center">
-                            {{ Form::submit('Crear investigador', ['class' => 'btn btn-secondary']) }}
+                            {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
                         </div>
 
                     </div>
@@ -50,3 +49,4 @@
     </div>    
 
 </div>
+@include("\investigation_groups\partials\unit_form")
