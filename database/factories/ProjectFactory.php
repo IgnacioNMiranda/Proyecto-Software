@@ -11,7 +11,7 @@ $factory->define(App\Project::class, function (Faker $faker) {
     return [
         'code' => $title,
         'name' => $title,
-        'state' => $faker->randomElement(['Postulado','En ejecucion','Aceptado','Cancelado']),
+        'state' => $faker->randomElement(['Postulado','En ejecucion','Finalizado','Cancelado']),
         'startDate' => $faker->date,
         'endDate' => $faker->date,
         'slug' => str_slug($title),
