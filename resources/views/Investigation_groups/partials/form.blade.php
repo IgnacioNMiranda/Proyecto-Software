@@ -23,11 +23,10 @@
                     <div class="form-group mt-4 d-flex justify-content-center">
                         {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
                     </div>
-
+                    
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 @include("\investigation_groups\partials\unit_form")

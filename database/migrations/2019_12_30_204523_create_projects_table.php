@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->enum('state', ['Postulado','En ejecucion','Aceptado','Cancelado'])->default('Postulado');
             $table->date('startDate');
             $table->date('endDate')->nullable();
-            $table->string('slug',128)->unique();
+            $table->string('slug',128)->unique()->default('name');
 
             
             $table->bigInteger('investigation_group_id')->unsigned();
