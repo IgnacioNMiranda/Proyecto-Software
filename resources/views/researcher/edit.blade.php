@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 
                 <div class="panel-body">
-                    {!! Form::open(['route' => ['researchers.update', $researcher->id],
+                    {!! Form::model($researcher, ['route' => ['researchers.update', $researcher->id],
                     'method' => 'PUT']) !!}
 
                         @include('researcher.partials.form')

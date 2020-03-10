@@ -16,7 +16,7 @@ class CreateResearchersTable extends Migration
         Schema::create('researchers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('rut',128)->unique();//Buscar libreria para validar rut
-            $table->string('name',128);
+            $table->string('researcher_name',128);
             $table->enum('state', ['Activo','Inactivo'])->default('Activo');
             $table->string('country',128);
 

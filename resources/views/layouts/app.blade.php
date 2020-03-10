@@ -103,7 +103,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Editar Investigador</a>
+              <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista Investigadores</a>
             </div>
           </li>
           @endauth

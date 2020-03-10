@@ -3,32 +3,29 @@
         <div class = "col-md-8 border shadow pt-4">
             <div class = "panel panel default">
                 <div class="panel-body">
-
                     <div class="form-group">
-                        {{ Form::label('name', 'name') }}
-                        {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
-                    </div>
-                    <div class = "form-group">
                         {{ Form::label('rut', 'Rut') }}
                         {{ Form::text('rut', null, ['class' => 'form-control', 'id' => 'rut']) }}
                     </div>
 
-                    
-                    
+                    <div class="form-group">
+                        {{ Form::label('researcher_name', 'Nombre') }}
+                        {{ Form::text('researcher_name', null, ['class' => 'form-control']) }}
+                    </div>
 
                     <div class = "form-group">
-                        @php
-                        $countries = countries();
-                        $paises = array();
-                        @endphp
-                        @foreach ($countries as $clave=>$valor)
                             @php
-                            $country = country($clave);    
-                            $paises[$country->getName()] = $country->getName();
+                            $countries = countries();
+                            $paises = array();
                             @endphp
-                        @endforeach
-                        {{ Form::label('country','País') }}
-                        {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
+                            @foreach ($countries as $clave=>$valor)
+                                @php
+                                $country = country($clave);    
+                                $paises[$country->getName()] = $country->getName();
+                                @endphp
+                            @endforeach
+                            {{ Form::label('country','País') }}
+                            {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
                     </div>
                         
                     <div class = "form-group">
@@ -49,6 +46,4 @@
             </div>
         </div>
     </div>
-
 </div>
-@include("\investigation_groups\partials\unit_form")

@@ -20,7 +20,9 @@ class ResearcherController extends Controller
      */
     public function index()
     {
-        //
+        $researchers = Researcher::orderBy('researcher_name','DESC')->paginate();
+
+        return view('researcher.index', compact('researchers'));
     }
 
     /**
@@ -44,7 +46,7 @@ class ResearcherController extends Controller
     public function store(ResearchStoreRequest $request)
     {
         $researcher = Researcher::create($request->all());
-        return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador creado con exito!');
+        return redirect()->route('researchers.index')->with('info','Investigador creado con exito!');
     }
 
     /**
@@ -88,8 +90,6 @@ class ResearcherController extends Controller
 
         $researcher->fill($request->all())->save();
         
-        $researcher->units()->attach($request->get('units'));
-
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }
 

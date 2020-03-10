@@ -25,8 +25,8 @@ class ResearchUpdateRequest extends FormRequest
     {
         return [
             'rut' => 'required|unique:researchers,rut,'. $this->researcher,
-            //Regex alfabetico que toma nombre y apellido
-            'name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
+            //Regex alfanumerico que toma nombre y apellido
+            'researcher_name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'state' => 'required',
             'country' => 'required',
             'unit_id' => 'required'
@@ -38,8 +38,8 @@ class ResearchUpdateRequest extends FormRequest
         return [
             'rut.required' => 'El campo rut es obligatorio.',
             'rut.unique' => 'Este rut ya se encuentra en uso.',
-            'name.required' => 'El campo nombre es obligatorio.',
-            'name.regex' => 'Formato de nombre inválido.',
+            'researcher_name.required' => 'El campo nombre es obligatorio.',
+            'researcher_name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
             'unit_id.required' => 'Debe elegir una unidad asociada.'
