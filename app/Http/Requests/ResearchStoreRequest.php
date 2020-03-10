@@ -25,7 +25,7 @@ class ResearchStoreRequest extends FormRequest
     {
         return [
             'rut' => 'required|unique:researchers,rut,', //validar rut
-            'name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
+            'researcher_name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
             'state' => 'required',
             'country' => 'required',
             'unit_id' => 'required'
@@ -33,12 +33,11 @@ class ResearchStoreRequest extends FormRequest
     }
 
     public function messages(){
-
         return [
             'rut.required' => 'El campo rut es obligatorio.',
             'rut.unique' => 'Este rut ya se encuentra en uso.',
-            'name.required' => 'El campo nombre es obligatorio.',
-            'name.regex' => 'Formato de nombre inválido.',
+            'researcher_name.required' => 'Nombre requerido.',
+            'researcher_name.regex' => 'Ingrese un nombre valido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
             'unit_id.required' => 'Debe elegir una unidad asociada.'

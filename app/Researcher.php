@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Researcher extends Model
 {
     protected $fillable = [
-        'rut','name','state','country','unit_id'
+        'rut','researcher_name','state','country','unit_id'
     ];
 
     public function products(){
