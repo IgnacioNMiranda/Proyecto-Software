@@ -30,7 +30,9 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        $units = Unit::orderBy('name','DESC')->paginate();
+
+        return view('units.index', compact('units'));
     }
 
     /**
@@ -40,7 +42,25 @@ class UnitController extends Controller
      */
     public function create()
     {
+        return view('units.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeFromInvestigationGroups(UnitStoreRequest $request)
+    {
+        //validacion con ayuda de UnitStoreRequest
         
+        $unit = Unit::create($request->all());
+
+        $unit->slug = Str::slug($unit->name);
+        $unit->save();
+
+        return redirect()->route('investigationGroups.create')->with('info','Nueva unidad creada con exito!');
     }
 
     /**
@@ -58,7 +78,7 @@ class UnitController extends Controller
         $unit->slug = Str::slug($unit->name);
         $unit->save();
 
-        return redirect()->route('investigationGroups.create')->with('info','Nueva unidad creada con exito!');
+        return redirect()->route('units.create')->with('info','Nueva unidad creada con exito!');
     }
 
     /**
@@ -80,7 +100,9 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        //
+        $unit = Unit::find($id);
+
+        return view('units.edit', compact('unit'));
     }
 
     /**

@@ -79,8 +79,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
-              <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Editar Proyecto</a>
+            <!--  <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Editar Proyecto</a> -->
             </div>
           </li>
 
@@ -104,6 +104,18 @@
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista Investigadores</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Unidades
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('units.create') }}">Crear Unidad</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('units.index') }}">Listado Unidades</a>
             </div>
           </li>
           @endauth
@@ -171,20 +183,20 @@
       @yield('content')
     </main>
 
-    <footer class="page-footer font-small bg-primary pt-4 mt-4">
+    <footer class="page-footer font-small bg-primary">
 
       <div class="container-fluid text-center text-md-left">
         <h4 class="text-white mb-3">Informacion adicional</h4>
         <div class="row">
-
+    
           <div class="col-1">
             <a class="text-white d-flex" href="#">Quiénes somos</a>
           </div>
-
+    
           <div class="col-2">
             <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
           </div>
-
+    
         </div>
       </div>
     </footer>
