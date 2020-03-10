@@ -79,8 +79,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
-            <!--  <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Editar Proyecto</a> -->
+              <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="{{ route('projects.index')}}">Lista de Proyectos</a>
             </div>
           </li>
 
@@ -103,7 +103,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista Investigadores</a>
+              <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
             </div>
           </li>
 
