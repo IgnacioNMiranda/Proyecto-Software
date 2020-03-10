@@ -21,10 +21,9 @@
 
           <div class="form-group">
             {{ Form::label('state','Estado') }}
-            {{ Form::select('state', array('Postulado' => 'Postulado','En Ejecucion' => 'En Ejecución','Finalizado' => 'Finalizado','Cancelado' =>'Cancelado') ,null,
-              ['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }} 
+            {{ Form::select('state', array('Postulado' => 'Postulado','En Ejecucion' => 'En Ejecución','Finalizado' => 'Finalizado','Cancelado' =>'Cancelado') 
+                ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }} 
           </div>
-
 
           <div class="form-group">
             <label for="researchers">Investigador(es) asociado(s)</label>
