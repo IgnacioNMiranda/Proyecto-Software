@@ -5,9 +5,8 @@
                 <div class="panel-body">
                     <div class = "form-group">
                         {{ Form::label('userType','Tipo de Usuario')}}
-                        {{ Form::select("userType",["Investigador" => "Investigador", "Administrador" => "Administrador"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
+                        {{ Form::select("userType",["Investigador" => "Investigador", "Administrador" => "Administrador"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar tipo']) }}
                     </div>
-
 
                     <div class="form-group">
                         {{ Form::label('email', 'Correo electronico') }}
@@ -16,7 +15,7 @@
 
                     <div class="form-group">
                         {{ Form::label('password', 'Contraseña') }}
-                        {{ Form::text('password', null, ['class' => 'form-control', 'id' => 'password']) }}
+                        {{ Form::password('password', null, ['class' => 'form-control', 'id' => 'password']) }}
                     </div>
 
                     <div class = "form-group mt-4">

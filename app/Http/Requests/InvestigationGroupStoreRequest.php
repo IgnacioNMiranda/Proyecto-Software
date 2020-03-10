@@ -26,7 +26,7 @@ class InvestigationGroupStoreRequest extends FormRequest
         //dd($this);
         //Las reglas son definidas sobre los atributos de laravel Form.
         return [
-            'name' => 'required|regex:/(^[a-zA-Z0-9_]*$)|unique:investigation_groups,name',
+            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:investigation_groups,name',
             //'logo' => 'mimes:png,jpeg,jpg',
             'units' => 'required|array'
         ];
@@ -37,6 +37,7 @@ class InvestigationGroupStoreRequest extends FormRequest
         return [
             'name.required' => 'El campo nombre es obligatorio.',
             'name.unique' => 'Este nombre ya se encuentra en uso.',
+            'name.regex' => 'Formato de nombre inválido.',
             'mimes' => 'El logo debe estar en formato jpg o png.',
             'units.required' => 'Debe elegir al menos una unidad asociada.'
         ];

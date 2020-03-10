@@ -24,7 +24,7 @@ class UnitStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:units,name',
+            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:units,name',
             'country' => 'required'
         ];
     }
@@ -32,6 +32,7 @@ class UnitStoreRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => 'El campo nombre para la unidad es obligatorio.',
+            'name.regex' => 'Formato de nombre inválido.',
             'name.unique' => 'Este nombre de unidad ya se encuentra en uso.',
             'country.required' => 'El campo país para la unidad es obligatorio.'
         ];

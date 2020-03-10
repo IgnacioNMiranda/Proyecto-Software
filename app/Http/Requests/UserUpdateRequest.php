@@ -31,7 +31,6 @@ class UserUpdateRequest extends FormRequest
     }
 
     public function messages(){
-
         return [
             'email.required' => 'El campo rut es obligatorio.',
             'password.unique' => 'Este rut ya se encuentra en uso.',

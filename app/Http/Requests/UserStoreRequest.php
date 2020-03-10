@@ -24,14 +24,13 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users,email,',
-            'password' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|regex:^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
             'userType' => 'required'
         ];
     }
 
     public function messages(){
-
         return [
             'email.required' => 'El campo rut es obligatorio.',
             'password.unique' => 'Este rut ya se encuentra en uso.',

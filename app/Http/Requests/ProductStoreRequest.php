@@ -24,13 +24,13 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:Product,name,' . $this->product,
-            'description' => 'required',
-            'researcher_id' => 'required|array',
+            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:products,name',
+            'description' => 'nullable',
+            'researchers' => 'required|array',
             'date' => 'required',
-            'slug' => 'required|unique:products,slug' . $this->product,
             'investigation_group_id' => 'required',
-        ];
+            'project_id'=> 'nullable',
+        ];    
     }
 
     public function messages(){
@@ -38,8 +38,8 @@ class ProductStoreRequest extends FormRequest
         return [
             'name.required' => 'El campo nombre es obligatorio.',
             'name.unique' => 'Este nombre ya se encuentra en uso.',
-            'description.required' => 'El campo descripcion es obligatorio.',
-            'researcher_id.required' => 'Debe elegir al menos un investigador registrado.',
+            'name.regex' => 'Formato de nombre inválido.',
+            'researchers.required' => 'Debe elegir al menos un investigador registrado.',
             'date.required' => 'El campo fecha es obligatorio.',
             'investigation_group_id' => 'el campo grupo de investigacion es obligatorio.',
         ];
