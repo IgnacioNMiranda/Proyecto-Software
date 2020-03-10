@@ -121,6 +121,9 @@ class InvestigationGroupController extends Controller
 
         $invGroup->fill($request->all())->save();
 
+        $invGroup->slug = Str::slug($invGroup->name);
+        $invGroup->save();
+
         //Seccion de almacenamiento de logo
         if($request->file('logo')){
             $path = Storage::disk('public')->put('image', $request->file('logo'));
@@ -141,8 +144,8 @@ class InvestigationGroupController extends Controller
      */
     public function destroy($id)
     {
-        InvestigationGroup::find($id)->delete();
+        $invGroup = InvestigationGroup::find($id)->delete();
 
-        return back();
+        return back()->with('info',$invGroup->name,' fue eliminado correctamente');
     }
 }

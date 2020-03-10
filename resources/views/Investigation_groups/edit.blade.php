@@ -10,8 +10,9 @@
                 </div>
 
                 <div class="panel-body">
-                    <form action=" {{ route('investigationGroups.store')}}" method="POST">
-                        {{ csrf_field() }}
+                    <form action=" {{ route('investigationGroups.update', [$invGroup->id]) }}">
+                        {{ method_field('PUT')}}
+                        @csrf
                         <div class="form-group">
                             <label for="name">Nombre del grupo</label>
                             <input type="text" class="form-control" id="name" name="name">
