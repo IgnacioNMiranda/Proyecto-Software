@@ -23,8 +23,9 @@ class ResearchStoreRequest extends FormRequest
      */
     public function rules()
     {
+        dd($this);
         return [
-            'rut' => 'required|unique:researchers,rut,',
+            'rut' => 'required|unique:researchers,rut',
             'name' => 'required',
             'state' => 'required',
             'country' => 'required',

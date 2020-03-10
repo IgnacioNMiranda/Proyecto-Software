@@ -106,6 +106,8 @@
               <a class="dropdown-item" href="#">Editar Investigador</a>
             </div>
           </li>
+
+          
           @endauth
 
 
@@ -113,6 +115,7 @@
 
         @auth
         <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
+        <a href="{{ route('researchers.edit', Auth::user()->id()) }}" class="text-white navbar-text pr-3 h6"> Editar Perfil</a>
         @endauth
 
         @if (Route::has('login'))

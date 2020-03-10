@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@php
+dd($user);
+@endphp
 @section('content')
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
