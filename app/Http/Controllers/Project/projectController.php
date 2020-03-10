@@ -97,7 +97,7 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $researchers = Researcher::orderBy('name','ASC')->get();
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.edit',compact('project','researchers','investation_groups'));
+        return view('admin-invest.projects.edit',compact('project','researchers','investigation_groups'));
     }
 
     /**
@@ -113,10 +113,8 @@ class ProjectController extends Controller
         //validado en archivo externo
         $project = Project::find($id);
         $project->fill($request->all())->save();
-        $project = Project::create($request->all());
 
         $project->researchers()->sync($request->get('researchers'));
-
 
         return redirect()->route('projects.edit',$project->id)
             ->with('info','Proyecto actualizado con exito');
