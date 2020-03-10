@@ -21,6 +21,11 @@ class PageController extends Controller
         return view('welcome',compact('products'));
     }
     
+    public function showInvestigationGroup($slug){
+        $invGroup = InvestigationGroup::where('slug',$slug)->first();
+
+        return view('Investigation_groups.showDetail', compact('invGroup'));
+    }
 
 
 }

@@ -25,6 +25,7 @@ class ResearchUpdateRequest extends FormRequest
     {
         return [
             'rut' => 'required|unique:researchers,rut,'. $this->researcher,
+            //Regex alfabetico que toma nombre y apellido
             'name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
             'state' => 'required',
             'country' => 'required',
@@ -41,7 +42,7 @@ class ResearchUpdateRequest extends FormRequest
             'name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
-            'unit_id.required' => 'Debe elegir al menos una unidad asociada.'
+            'unit_id.required' => 'Debe elegir una unidad asociada.'
         ];
     }
 }

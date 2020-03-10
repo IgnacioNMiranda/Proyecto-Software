@@ -24,17 +24,20 @@ class ProjectUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'nullable|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/',
-            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:projects,name,' . $this->project,
+            //Regex alfanumerico de máximo 30 caracteres
+            'code' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/',
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:projects,name,' . $this->project,
             'state' => 'required',
             'startDate' => 'required',
             'endDate' => 'required',
             'investigation_group_id' => 'required',
+            'researchers' => 'required|array',
         ];
     }
 
     public function messages(){
         return [
+            'code.regex' => 'Formato de código inválido',
             'name.required' => 'El campo nombre es obligatorio.',
             'name.unique' => 'Este nombre ya se encuentra en uso.',
             'name.regex' => 'Formato de nombre inválido.',
@@ -43,6 +46,7 @@ class ProjectUpdateRequest extends FormRequest
             'units.required' => 'Debe elegir al menos una unidad asociada.',
             'investigation_group_id.required' => 'El campo de Grupo de investigacion es obligatorio.',
             'endDate.required' => 'El campo fecha de finalización es obligatorio.',
+            'researchers.required' => 'Es necesario por lo menos 1 investigador',
         ];
     }
 }

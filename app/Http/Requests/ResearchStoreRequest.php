@@ -23,9 +23,9 @@ class ResearchStoreRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this);
         return [
             'rut' => 'required|unique:researchers,rut', //validar rut
+            //Regex alfabetico que toma nombre y apellido
             'name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
             'state' => 'required',
             'country' => 'required',

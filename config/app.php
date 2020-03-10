@@ -176,6 +176,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+        / Aplication Services Providers 
+        Intervention\Image\ImageServiceProvider::class,
+        */
+
     ],
 
     /*
@@ -229,6 +234,16 @@ return [
         'Form' => 'Collective\Html\Formfacade',
         'Html' => 'Collective\Html\HtmlFacade',
 
+        
+        /*
+        / Aliases
+        'Image' => Intervention\Image\Facades\Image::class,
+        */
     ],
 
+    
+    
+
+    
+    
 ];

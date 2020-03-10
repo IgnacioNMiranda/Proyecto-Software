@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Str;
 
+//use Image;
+
 class InvestigationGroupController extends Controller
 {
     public function __construct(){
@@ -28,7 +30,7 @@ class InvestigationGroupController extends Controller
      */
     public function index()
     {
-        //
+        return('hola');
     }
 
     /**
@@ -65,16 +67,17 @@ class InvestigationGroupController extends Controller
             return redirect()->route('InvestigationGroups.edit')->with('error','Rut mal ingresado');
         }
         */
-
         //Seccion de almacenamiento de logo
         if($request->file('logo')){
-            $path = Storage::disk('public')->put('image', $request->file('logo'));
+            // ruta de las imagenes guardadas
+            $path = Storage::disk('public')->put('images', $request->file('logo'));
             $invGroup->fill(['logo' => asset($path)])->save();
         }
+        
         //Asignacion n-n con unidades, attach para crear la relacion
         $invGroup->units()->attach($request->get('units'));
 
-        return redirect()->route('investigationGroups.edit',$invGroup->id)->with('info','Grupo de investigación creado con exito!');
+        return redirect()->route('investigationGroups.create')->with('info','Grupo de investigación creado con exito!');
     }
 
     /**
@@ -87,7 +90,7 @@ class InvestigationGroupController extends Controller
     {
         $invGroup = InvestigationGroup::find($id);
 
-        return view('Investigation_groups.show',compact('invGroup'));
+        return view('Investigation_groups.showDetail',compact('invGroup'));
     }
 
     /**
@@ -133,7 +136,7 @@ class InvestigationGroupController extends Controller
         //Asignacion n-n con unidades, sync para actualizar la relacion invGroup con units
         $invGroup->units()->sync($request->get('units'));
 
-        return redirect()->route('investigationGroups.edit', $invGroup->id)->with('info','Grupo de investigación actualizado con exito!');
+        return redirect()->route('investigationGroups.index')->with('info','Grupo de investigación actualizado con exito!');
     }
 
     /**

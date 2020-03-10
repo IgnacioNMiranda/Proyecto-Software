@@ -25,6 +25,7 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'email' => 'required|unique:users,email,'. $this->user,
+            //Contraseña de al menos 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial y longitud >= 8
             'password' => 'required',
             'userType' => 'required'
         ];

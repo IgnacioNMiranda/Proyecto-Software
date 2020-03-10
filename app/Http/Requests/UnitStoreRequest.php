@@ -24,7 +24,8 @@ class UnitStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:units,name',
+            //Regex alfanumerico de máximo 30 caracteres
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:units,name',
             'country' => 'required'
         ];
     }

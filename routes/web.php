@@ -28,6 +28,7 @@ Route::resource('projects','Project\ProjectController');
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
+Route::get('investigationGroup/{slug}', 'Web\PageController@showInvestigationGroup')->name('investigationGroup');
 
 //Research
 Route::resource('researchers', "Researcher\ResearcherController");

@@ -24,8 +24,10 @@ class ProductUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:products,name,' . $this->product,
-            'description' => 'nullable',
+            //Regex alfanumerico de máximo 30 caracteres
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:products,name,' . $this->product,
+            //Regex alfanumerico de máximo 500 caracteres
+            'description' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,500}$/',
             'researchers' => 'required|array',
             'date' => 'required',
             'investigation_group_id' => 'required',
@@ -39,6 +41,7 @@ class ProductUpdateRequest extends FormRequest
             'name.required' => 'El campo nombre es obligatorio.',
             'name.unique' => 'Este nombre ya se encuentra en uso.',
             'name.regex' => 'Formato de nombre inválido.',
+            'description.regex' => 'Formato de descripción inválido.',
             'researchers.required' => 'Debe elegir al menos un investigador registrado.',
             'date.required' => 'El campo fecha es obligatorio.',
             'investigation_group_id' => 'el campo grupo de investigacion es obligatorio.',

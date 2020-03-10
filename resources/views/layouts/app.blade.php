@@ -21,11 +21,7 @@
 
   <!-- Bootstrap select styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-
-  <!-- Bootstrap datetime-picker -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
-
+  
 </head>
 
 <body>
@@ -110,20 +106,17 @@
               <a class="dropdown-item" href="#">Editar Investigador</a>
             </div>
           </li>
-
-          
           @endauth
 
 
         </ul>
 
         @auth
-        <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
-        <a href="{{ route('researchers.edit', Auth::user()->id()) }}" class="text-white navbar-text pr-3 h6"> Editar Perfil</a>
+          <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
+          <a href="{{ route('researchers.edit', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a> 
         @endauth
 
         @if (Route::has('login'))
-
         @auth
         <a class="text-white navbar-text pl-4 border-left" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -136,7 +129,6 @@
         @else
         <a href="{{ route('login') }}" class="text-white">Login <span class="sr-only">(current)</span></a>
         @endauth
-
         @endif
 
       </div>
@@ -214,11 +206,6 @@
   <!--Bootstrap Select JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
-
-  <!-- Bootstrap datetime-picker JS -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js">
-  </script>
 
 </body>
 

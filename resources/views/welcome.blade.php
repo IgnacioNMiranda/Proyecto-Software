@@ -12,11 +12,12 @@
 
         @foreach ($invGroups as $invGroup)
         <div class="col-sm-12 col-md-4 col-lg-3">
-            <a href="{{ url('#') }}">
+            <a href="{{ route('investigationGroup', $invGroup->slug) }}">
                 @if ($invGroup->logo)
-                    <img class="img-fluid d-flex mx-auto" src="{{ asset($invGroup->logo) }}" alt="LogoGrupoInvestigacion">
+                <img class="img-fluid d-flex mx-auto" src="{{ asset($invGroup->logo) }}" width="300" height="300"
+                    alt="LogoGrupoInvestigacion">
                 @else
-                    <img class="img-fluid d-flex mx-auto" src="{{ asset('systemImages/signos_interrogacion.png') }}"
+                <img class="img-fluid d-flex mx-auto" src="{{ asset('systemImages/signos_interrogacion.png') }}"
                     width="300" height="300" alt="LogoGrupoInvestigacion">
                 @endif
                 <h3 class="text-dark d-flex d-inline align-self-stretch">{{ $invGroup->name }}</h3>

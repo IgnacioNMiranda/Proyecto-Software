@@ -24,8 +24,9 @@ class ProjectStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'nullable',
-            'name' => 'required',
+            //Regex alfanumerico de máximo 30 caracteres
+            'code' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/',
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:projects,name',
             'state' => 'required',
             'startDate' => 'required',
             'endDate' => 'required',
@@ -36,6 +37,7 @@ class ProjectStoreRequest extends FormRequest
 
     public function messages(){
         return [
+            'code.regex' => 'Formato de código inválido',
             'name.required' => 'El campo nombre es obligatorio.',
             'name.unique' => 'Este nombre ya se encuentra en uso.',
             'name.regex' => 'Formato de nombre inválido.',
@@ -45,7 +47,6 @@ class ProjectStoreRequest extends FormRequest
             'investigation_group_id.required' => 'El campo de Grupo de investigacion es obligatorio.',
             'endDate.required' => 'El campo fecha de finalización es obligatorio.',
             'researchers.required' => 'Es necesario por lo menos 1 investigador',
-
         ];
     }
 }

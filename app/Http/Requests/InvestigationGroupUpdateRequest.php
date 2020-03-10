@@ -24,7 +24,8 @@ class InvestigationGroupUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|regex:/(^[a-zA-Z]+[a-zA-Z\s_]*$)/|unique:investigation_groups,name,' . $this->invGroup,
+            //Regex alfanumerico de máximo 30 caracteres
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:investigation_groups,name,' . $this->invGroup,
             'logo' => 'mimes:png,jpeg,jpg',
             'units' => 'required|array'
         ];
