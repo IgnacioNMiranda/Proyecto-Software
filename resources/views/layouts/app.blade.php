@@ -113,7 +113,9 @@
 
         @auth
           <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
-          <a href="{{ route('researchers.edit', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a> 
+          @if (Auth::user()->userType == "Investigador")
+            <a href="{{ route('researchers.edit', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a> 
+          @endif
         @endauth
 
         @if (Route::has('login'))

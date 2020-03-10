@@ -56,6 +56,7 @@ class UnitController extends Controller
         $unit = Unit::create($request->all());
 
         $unit->slug = Str::slug($unit->name);
+        $unit->save();
 
         return redirect()->route('investigationGroups.create')->with('info','Nueva unidad creada con exito!');
     }
@@ -91,7 +92,12 @@ class UnitController extends Controller
      */
     public function update(UnitUpdateRequest $request, $id)
     {
-        //
+        //validado en archivo externo
+        $unit = Unit::find($id);
+        $unit->fill($request->all())->save();
+
+        return redirect()->route('units.edit',$unit->id)
+            ->with('info','Unidad actualizado con exito');
     }
 
     /**

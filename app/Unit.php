@@ -15,6 +15,6 @@ class Unit extends Model
     }
 
     public function investigation_groups(){
-        return $this->belongsToMany(investigationGroup::class);
+        return $this->belongsToMany(investigationGroup::class)->withTimestamps();
     }
 }

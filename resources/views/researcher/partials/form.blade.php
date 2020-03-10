@@ -34,7 +34,7 @@
                     </div>
                         
                     <div class = "form-group">
-                        {{ Form::label('units','Unidad') }}
+                        {{ Form::label('units','Unidad asociada') }}
                         {{ Form::select('unit_id', $units ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar unidad']) }}
                     </div>    
 

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Str;
 
-//use Image;
+use Image;
 
 class InvestigationGroupController extends Controller
 {
@@ -67,10 +67,26 @@ class InvestigationGroupController extends Controller
             return redirect()->route('InvestigationGroups.edit')->with('error','Rut mal ingresado');
         }
         */
+
         //Seccion de almacenamiento de logo
         if($request->file('logo')){
-            // ruta de las imagenes guardadas
+
+            //Se obtiene la imagen del request, la cual fue enviada en un form
+            $originalLogo = $request->file('logo');
+
+            // Crear instancia del logo
+            $logo = Image::make($originalLogo);
+
+            //Se redimensiona a 300x300
+            $logo->resize(300,300);
+            
+            // Guardar logo en carpeta public/images
             $path = Storage::disk('public')->put('images', $request->file('logo'));
+
+            // save( [ruta], [calidad])
+            $logo->save($path, 100);
+            
+            // ruta de las imagenes guardadas
             $invGroup->fill(['logo' => asset($path)])->save();
         }
         
@@ -129,7 +145,23 @@ class InvestigationGroupController extends Controller
 
         //Seccion de almacenamiento de logo
         if($request->file('logo')){
-            $path = Storage::disk('public')->put('image', $request->file('logo'));
+            
+            //Se obtiene la imagen del request, la cual fue enviada en un form
+            $originalLogo = $request->file('logo');
+
+            // Crear instancia del logo
+            $logo = Image::make($originalLogo);
+
+            //Se redimensiona a 300x300
+            $logo->resize(300,300);
+            
+            // Guardar logo en carpeta public/images
+            $path = Storage::disk('public')->put('images', $request->file('logo'));
+
+            // save( [ruta], [calidad])
+            $logo->save($path, 100);
+            
+            // ruta de las imagenes guardadas
             $invGroup->fill(['logo' => asset($path)])->save();
         }
 

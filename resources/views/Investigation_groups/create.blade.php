@@ -33,7 +33,7 @@
                             <input type="file" id="logo" name="logo">
                         </div>
                         
-                        <div class="form-group mt-4 d-flex justify-content-center">
+                        <div class="form-group mt-4 text-center">
                             <button type="submit" class="btn btn-secondary mb-4" name="invGroup">
                                 {{ __('Guardar') }}
                             </button>

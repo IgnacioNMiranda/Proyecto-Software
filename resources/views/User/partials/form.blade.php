@@ -5,11 +5,11 @@
                 <div class="panel-body">
                     <div class = "form-group">
                         {{ Form::label('userType','Tipo de Usuario')}}
-                        {{ Form::select("userType",["Investigador" => "Investigador", "Administrador" => "Administrador"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar tipo']) }}
+                        {{ Form::select("userType",["Administrador" => "Administrador", "Investigador" => "Investigador"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar tipo']) }}
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('email', 'Correo electronico') }}
+                        {{ Form::label('email', 'Correo electrónico') }}
                         {{ Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) }}
                     </div>
 
@@ -18,8 +18,8 @@
                         {{ Form::password('password', null, ['class' => 'form-control', 'id' => 'password']) }}
                     </div>
 
-                    <div class = "form-group mt-4">
-                        {{ Form::submit('Guardar', ['class' => 'btn btn-sm btn-primary']) }}
+                    <div class = "form-group mt-4 text-center">
+                        {{ Form::submit('Guardar', ['class' => 'btn btn-secondary mb-4']) }}
                     </div>
 
                 </div>

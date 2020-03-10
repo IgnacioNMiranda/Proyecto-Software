@@ -26,10 +26,10 @@
                             $countries = countries();
                             @endphp
                             @foreach($countries as $clave=>$valor)
-                            @php
-                            $country = country($clave);
-                            @endphp
-                            <option value = {{ $country->getName() }}> {{ $country->getName() }} </option>
+                                @php
+                                $country = country($clave);
+                                @endphp
+                                <option value = {{ $country->getName() }}> {{ $country->getName() }} </option>
                             @endforeach
                         </select>
                     </div>

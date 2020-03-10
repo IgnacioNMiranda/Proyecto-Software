@@ -11,7 +11,7 @@
 
                 <div class="panel-body">
                     {!! Form::model($product, ['route' => ['products.update', $product->id],
-                        'method'=> 'PUT',  'files' => true])!!}
+                        'method'=> 'PUT'])!!}
                         @include('admin-invest.products.partials.form')
                     {!! Form::close() !!}
 

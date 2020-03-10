@@ -46,7 +46,7 @@ class productController extends Controller
     public function create()
     {
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('name','ASC')->get();
+        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
         
         return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups'));
@@ -94,7 +94,7 @@ class productController extends Controller
     {
         $product = Product::find($id);
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('name','ASC')->get();
+        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
         return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups'));
     }

@@ -178,8 +178,9 @@ return [
 
         /*
         / Aplication Services Providers 
-        Intervention\Image\ImageServiceProvider::class,
         */
+        Intervention\Image\ImageServiceProvider::class,
+        
 
     ],
 
@@ -237,8 +238,9 @@ return [
         
         /*
         / Aliases
-        'Image' => Intervention\Image\Facades\Image::class,
         */
+        'Image' => Intervention\Image\Facades\Image::class,
+        
     ],
 
     

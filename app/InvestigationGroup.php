@@ -11,10 +11,10 @@ class InvestigationGroup extends Model
     ];
 
     public function units(){
-        return $this->belongsToMany(Unit::class);
+        return $this->belongsToMany(Unit::class)->withTimestamps();
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withTimestamps();
     }
 }

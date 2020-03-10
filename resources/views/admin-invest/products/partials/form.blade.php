@@ -8,25 +8,25 @@
                         {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
                     </div>
                     <div class = "form-group">
-                        {{ Form::label('investigation_group_id', "Nombre del Grupo de investigacion") }}
+                        {{ Form::label('investigation_group_id', "Grupo de investigación asociado") }}
                         {{ Form::select('investigation_group_id', $invGroups, null, 
-                                ['class' => 'form-control', 'placeholder' => 'Seleccione Grupo de investigacion', 'id' => 'investigation_group_id']) }}
+                                ['class' => 'form-control', 'placeholder' => 'Seleccione Grupo de investigación', 'id' => 'investigation_group_id']) }}
                     </div>
                     
                     <div class="form-group">
-                        {{ Form::label('description', 'Descripcion del Producto') }}
+                        {{ Form::label('description', 'Descripción del Producto') }}
                         {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
                     </div>
                     <div class="form-group">
                             <label for="researchers">Investigador(es) Asociado(s)</label>
                             <select id="researchers" name="researchers[]" class="selectpicker" multiple data-live-search="true" title="Seleccione Investigador(es) asociado(s)">
                                 @foreach ($researchers as $researcher)
-                                    <option value="{{ $researcher->id }}"> {{ $researcher->name }}</option>
+                                    <option value="{{ $researcher->id }}"> {{ $researcher->researcher_name }}</option>
                                 @endforeach
                             </select>
                     </div>
                     <div class = "form-group">
-                        {{ Form::label('date', 'Fecha de Creacion') }}
+                        {{ Form::label('date', 'Fecha de Creación') }}
                         {{ Form::date('date', \Carbon\Carbon::now(), ['readonly'])}}
                     </div>
                     <div class="form-group">

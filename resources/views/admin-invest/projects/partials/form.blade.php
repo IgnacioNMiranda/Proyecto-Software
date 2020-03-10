@@ -4,7 +4,7 @@
       <div class="panel panel default">
         <div class="panel-body">
           <div class="form-group">
-            {{ Form::label('investigation_group_id', "Nombre del Grupo de investigación") }}
+            {{ Form::label('investigation_group_id', "Grupo de investigación asociado") }}
             {{ Form::select('investigation_group_id', $investigation_groups, null, 
                       ['class' => 'form-control','placeholder' => 'Seleccione grupo de investigación', 'id' => 'investigation_group_id']) }}
           </div>
@@ -21,7 +21,7 @@
 
           <div class="form-group">
             {{ Form::label('state','Estado') }}
-            {{ Form::select('state', array('Postulado' => 'Postulado','En Ejecucion' => 'En Ejecucion','Finalizado' => 'Finalizado','Cancelado' =>'Cancelado') ,null,
+            {{ Form::select('state', array('Postulado' => 'Postulado','En Ejecucion' => 'En Ejecución','Finalizado' => 'Finalizado','Cancelado' =>'Cancelado') ,null,
               ['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }} 
           </div>
 
@@ -31,7 +31,7 @@
             <select id="researchers" name="researchers[]" class="selectpicker" multiple data-live-search="true"
               title="Seleccione Investigador(es) Asociado(s)">
               @foreach ($researchers as $researcher)
-              <option value="{{ $researcher->id }}"> {{ $researcher->name }}</option>
+              <option value="{{ $researcher->id }}"> {{ $researcher->researcher_name }}</option>
               @endforeach
             </select>
           </div>
@@ -42,12 +42,12 @@
           </div>
 
           <div class="form-group">
-            {{ Form::label('endDate', 'Fecha de Término') }}
+            {{ Form::label('endDate', 'Fecha de Término ') }}
             <input type="date" name="endDate" id="endDate" min ="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
           </div>
 
           <div class="form-group mt-4 d-flex justify-content-center">
-            {{ Form::submit('Crear Proyecto', ['class' => 'btn btn-secondary']) }}
+            {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
           </div>
           
         </div>
