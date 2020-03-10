@@ -35,8 +35,8 @@ class ProjectController extends Controller
     //Muestra la lista de proyectos
     public function index()
     {
-        //$projects = Project::orderBy('id','DESC')->paginate();
-        //return view('#.projects.index',compact('projects'));
+        $projects = Project::orderBy('id','DESC')->paginate();
+        return view('admin-invest.projects.index',compact('projects'));
     }
 
     /**
@@ -68,7 +68,7 @@ class ProjectController extends Controller
 
         $project->researchers()->attach($request->get('researchers'));
 
-        return redirect()->route('projects.edit',$project->id)
+        return redirect()->route('projects.create',$project->id)
             ->with('info','Proyecto creado con exito');
     }
 
