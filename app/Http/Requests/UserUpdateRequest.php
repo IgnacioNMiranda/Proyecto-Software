@@ -4,9 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\RFCValidation;
-
 class UserUpdateRequest extends FormRequest
 {
     /**
