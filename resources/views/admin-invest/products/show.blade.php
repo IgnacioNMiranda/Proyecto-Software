@@ -4,8 +4,8 @@
 <div class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
-            <div class = "panel panel default">
-                <div class = "panel-heading h4" >
+            <div class = "card border-secondary">
+                <div class = "card-header h4" >
                     Ver Producto
                 </div>
 

@@ -5,7 +5,7 @@
     <div class = "row justify-content-center">
         <div class ="col-md-12 justify-content-center">
             <div class ="card border-secondary">
-                <div class ="card-header h2">
+                <div class ="card-header h2 bg-tertiary">
                     Lista de Productos
                     <a href="{{ route('products.create') }}" class="btn btn-sm btn-success">Crear Producto</a>
                 </div>
