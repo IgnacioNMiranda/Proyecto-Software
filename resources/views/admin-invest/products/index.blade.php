@@ -6,7 +6,7 @@
         <div class ="col-md-12 justify-content-center">
             <div class ="card border-secondary">
                 <div class ="card-header h2 bg-tertiary">
-                    Lista de Productos
+                    Listado de Productos
                     <a href="{{ route('products.create') }}" class="btn btn-sm btn-success">Crear Producto</a>
                 </div>
 
@@ -27,11 +27,6 @@
                                 <td>{{ $product->id}}</td>
                                 <td>{{ $product->name}}</td>
                                 <td>{{$product->description}}</td>
-                                <td width="10px">
-                                    <a href=" {{route('products.show', $product->id) }}" class="btn btn-sm btn-secondary">
-                                        Ver
-                                    </a>
-                                </td>
                                 <td width="10px">
                                     <a href=" {{route('products.edit', $product->id) }}" class="btn btn-sm btn-secondary">
                                         Editar

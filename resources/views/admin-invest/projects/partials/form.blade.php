@@ -1,7 +1,7 @@
 <section class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8 border shadow pt-4">
-      <div class="panel panel default">
+    <div class="col-md-9 border shadow pt-4">
+      <div class="card">
         <div class="card-body">
           <div class="form-group">
             {{ Form::label('investigation_group_id', "Grupo de investigación asociado") }}
@@ -54,5 +54,3 @@
     </div>
   </div>
 </section>
-<div class="m-5 pb-5"></div>
-

@@ -1,8 +1,8 @@
 <div class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
-            <div class = "panel panel default">
-                <div class="panel-body">
+            <div class = "card">
+                <div class="card-body">
                     <div class="form-group">
                         {{ Form::label('name', 'Nombre') }}
                         {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
