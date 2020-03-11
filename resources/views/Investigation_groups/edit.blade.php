@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="container p-4">
+<section class="container mt-4 p-4">
     <div class="row justify-content-center">
-        <div class = "col-md-8 justify-content-center border shadow">   
-            <div class="panel panel-default">
-                <div class = "panel-heading h2 d-flex justify-content-center mb-4 mt-2" >
+        <div class = "col-md-8 justify-content-center">   
+            <div class="card border-secondary shadow">
+                <div class = "card-header h2 d-flex justify-content-center mb-4 bg-tertiary" >
                     Editar Grupo de investigación 
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <form action=" {{ route('investigationGroups.update', [$invGroup->id]) }}">
                         {{ method_field('PUT')}}
                         @csrf

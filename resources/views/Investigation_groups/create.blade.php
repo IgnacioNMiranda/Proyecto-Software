@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="container p-4">
+<section class="container mt-4 p-4">
     <div class="row justify-content-center">
-        <div class = "col-md-8 justify-content-center border shadow">   
-            <div class="panel panel-default">
-                <div class = "panel-heading h2 d-flex justify-content-center mb-4 mt-2" >
-                    Crear Grupo de investigación 
+        <div class = "col-md-8 justify-content-center">   
+            <div class="card border-secondary shadow">
+                <div class = "card-header h2 d-flex justify-content-center mb-4 bg-tertiary" >
+                    Crear Grupo de investigación
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <form action=" {{ route('investigationGroups.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
