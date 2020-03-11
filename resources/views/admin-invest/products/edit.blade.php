@@ -9,7 +9,7 @@
                     Editar Producto
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     {!! Form::model($product, ['route' => ['products.update', $product->id],
                         'method'=> 'PUT'])!!}
                         @include('admin-invest.products.partials.form')

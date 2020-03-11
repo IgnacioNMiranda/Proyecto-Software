@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-6 p-6">
+<div class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class="col-md-15 justify-content-center">
             <div class="card border-secondary">
-
-                <div class ="card-header h2">
-                    Lista de Proyectos
-                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-success">Crear Proyecto</a>
+                <div class="card-header h2 bg-tertiary">
+                    Listado Proyectos
+                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-success">Crear nuevo proyecto</a>
                 </div>
-
                 <div class="card-body">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -37,12 +35,7 @@
                                 <td> {{ $project->endDate }} </td>
                                 <td> {{ $project->investigation_group_id }} </td>
                                 <td width="10px">
-                                    <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-secondary">
-                                        Ver
-                                    </a>
-                                </td>
-                                <td width="10px">
-                                    <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-sm btn-secondary">
+                                    <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-sm btn-default">
                                         Editar
                                     </a>
                                 </td>
@@ -53,10 +46,8 @@
                     {{ $projects->render() }}
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
-
-
-<div class="m-5 pb-5"></div>
 @endsection
