@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8 border shadow pt-4">
       <div class="panel panel default">
-        <div class="panel-body">
+        <div class="card-body">
           <div class="form-group">
             {{ Form::label('investigation_group_id', "Grupo de investigación asociado") }}
             {{ Form::select('investigation_group_id', $investigation_groups, null, 
