@@ -81,8 +81,8 @@ class ProjectController extends Controller
     //Se ve el detalle del registro en la Bd
     public function show($id)
     {
-        $projects = Project::find($id);
-        return view('admin-invest.projects.show',compact('projects'));
+        $project = Project::find($id);
+        return view('admin-invest.projects.show',compact('project'));
     }
 
     /**
