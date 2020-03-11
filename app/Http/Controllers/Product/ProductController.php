@@ -33,7 +33,6 @@ class productController extends Controller
     public function index()
     {
         $products = Product::orderBy('id','DESC')
-        ->where('user_id',auth()->user()->id)
         ->paginate();
         return view('admin-invest.products.index',compact('products'));
     }
@@ -48,7 +47,7 @@ class productController extends Controller
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
         $researchers = Researcher::orderBy('researcher_name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        
+
         return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups'));
     }
 
@@ -60,7 +59,7 @@ class productController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        //validar campos obligatorios 
+        //validar campos obligatorios
         $product =Product::create($request->all());
         $product->slug = Str::slug($product->name);
         $product->save();
@@ -108,7 +107,7 @@ class productController extends Controller
      */
     public function update(ProductUpdateRequest $request, $id)
     {
-        //validar campos obligatorios 
+        //validar campos obligatorios
         $product = Product::find($id);
         $product -> fill($request->all())->save();
 
@@ -117,7 +116,7 @@ class productController extends Controller
 
         return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto actualizado con éxito');
-    
+
     }
 
     /**

@@ -21,7 +21,7 @@
 
   <!-- Bootstrap select styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-  
+
 </head>
 
 <body>
@@ -91,7 +91,10 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
             </div>
+
           </li>
 
           <li class="nav-item dropdown">
@@ -126,7 +129,7 @@
         @auth
           <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
           @if (Auth::user()->userType == "Investigador")
-            <a href="{{ route('researchers.edit', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a> 
+            <a href="{{ route('researchers.edit', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a>
           @endif
         @endauth
 
@@ -188,15 +191,15 @@
       <div class="container-fluid text-center text-md-left">
         <h4 class="text-white mb-3">Informacion adicional</h4>
         <div class="row">
-    
+
           <div class="col-1">
             <a class="text-white d-flex" href="#">Quiénes somos</a>
           </div>
-    
+
           <div class="col-2">
             <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
           </div>
-    
+
         </div>
       </div>
     </footer>
