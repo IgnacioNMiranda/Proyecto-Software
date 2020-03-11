@@ -37,12 +37,12 @@
 
           <div class="form-group">
             {{ Form::label('startDate', 'Fecha de Creación') }}
-            <input type="date" name="startDate" id="startDate" readonly value="<?php echo date("Y-m-d");?>">
+            <input type="date" name="startDate" id="startDate" value="<?php echo date("Y-m-d");?>">
           </div>
 
           <div class="form-group">
             {{ Form::label('endDate', 'Fecha de Término ') }}
-            <input type="date" name="endDate" id="endDate" min ="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
+            <input type="date" name="endDate" id="endDate"  value="<?php echo date("Y-m-d");?>">
           </div>
 
           <div class="form-group mt-4 d-flex justify-content-center">
@@ -54,3 +54,10 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.getElementById("startDate").onchange = function () {
+    var input = document.getElementById("endDate");
+    input.setAttribute("min", this.value);
+}
+</script>

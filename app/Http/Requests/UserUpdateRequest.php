@@ -36,7 +36,7 @@ class UserUpdateRequest extends FormRequest
             'email.unique' => 'Ya existe un usuario con este correo.',
             'email.required' => 'El campo email es obligatorio.',
             'password.required' => 'El campo contraseña es obligatorio.',
-            'password.regex' => 'La contraseña debe poseer al menos 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial y debe tener una longitud superior a 8 caracteres',
+            'password.regex' => 'La contraseña debe poseer al menos 1 mayúscula, 1 minúscula, 1 número, 1 carácter especial y debe tener una longitud superior a 8 caracteres.',
             'userType.required' => 'Debe seleccionar un tipo de usuario.',
         ];
     }

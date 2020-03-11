@@ -11,8 +11,23 @@
             <img src="{{ asset('systemImages/signos_interrogacion.png') }}"
                 class="img-fluid thickBorder rounded shadow mb-4" alt="{{ $invGroup->name }}" width="300" height="300">
             @endif
-            <h4>{{ $invGroup->name }}</h4>
+
+            <div class="row justify-content-center">
+                <div class="col-5">
+                    <h4>{{ $invGroup->name }}</h4>
+                </div>
+                @auth
+                    @if (Auth::user()->userType == "Administrador")
+                        <div class="col-4">
+                            <a href="{{ route('investigationGroups.edit', $invGroup->id) }}" class="btn btn-tertiary border-secondary">
+                                Editar✏️
+                            </a>
+                    </div>
+                    @endif
+                @endauth
+            </div>
         </div>
+
         <div class="col-4">
             <h4 class="font-weight-bold">Unidad(es) asociada(s)</h4>
             <ul>

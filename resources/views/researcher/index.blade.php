@@ -11,7 +11,7 @@ use App\Unit;
             <div class="card border-secondary">
                 <div class = "card-header h2 bg-tertiary">
                     Listado Investigadores
-                    <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success">Crear nuevo investigador</a>
+                    <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success float-right">Crear nuevo investigador</a>
                 </div>
 
                 <div class="card-body">

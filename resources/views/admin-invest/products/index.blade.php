@@ -7,7 +7,7 @@
             <div class ="card border-secondary">
                 <div class ="card-header h2 bg-tertiary">
                     Listado de Productos
-                    <a href="{{ route('products.create') }}" class="btn btn-sm btn-success">Crear Producto</a>
+                    <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">Crear Producto</a>
                 </div>
 
                 <div class="card-body">

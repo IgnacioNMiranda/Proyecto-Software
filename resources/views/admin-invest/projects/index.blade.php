@@ -7,7 +7,7 @@
             <div class="card border-secondary">
                 <div class="card-header h2 bg-tertiary">
                     Listado Proyectos
-                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-success">Crear nuevo proyecto</a>
+                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-success  float-right">Crear nuevo proyecto</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-hover">

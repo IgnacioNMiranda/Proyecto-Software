@@ -62,12 +62,6 @@ class InvestigationGroupController extends Controller
         $invGroup->slug = Str::slug($invGroup->name);
         $invGroup->save();
 
-        /*if(checkRut($invGroup->rut == false)){
-            destroy($invGroup->id);
-            return redirect()->route('InvestigationGroups.edit')->with('error','Rut mal ingresado');
-        }
-        */
-
         //Seccion de almacenamiento de logo
         if($request->file('logo')){
 
@@ -88,6 +82,9 @@ class InvestigationGroupController extends Controller
             
             // ruta de las imagenes guardadas
             $invGroup->fill(['logo' => asset($path)])->save();
+        }
+        else{
+            $invGroup->fill(['logo' => asset('systemImages/signos_interrogacion.png')])->save();
         }
         
         //Asignacion n-n con unidades, attach para crear la relacion
@@ -168,7 +165,7 @@ class InvestigationGroupController extends Controller
         //Asignacion n-n con unidades, sync para actualizar la relacion invGroup con units
         $invGroup->units()->sync($request->get('units'));
 
-        return redirect()->route('investigationGroups.index')->with('info','Grupo de investigación actualizado con exito!');
+        return back()->with('info','Grupo de investigación actualizado con exito!');
     }
 
     /**

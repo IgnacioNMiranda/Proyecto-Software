@@ -8,10 +8,9 @@
                 <div class = "card-header h2 d-flex justify-content-center mb-4 bg-tertiary" >
                     Editar Grupo de investigación 
                 </div>
-
                 <div class="card-body">
-                    <form action=" {{ route('investigationGroups.update', [$invGroup->id]) }}">
-                        {{ method_field('PUT')}}
+                    {!! Form::model($invGroup, ['route' => ['investigationGroups.update', $invGroup->id],
+                    'method' => 'PUT', 'files' => true]) !!}
                         @csrf
                         <div class="form-group">
                             <label for="name">Nombre del grupo</label>
@@ -39,7 +38,7 @@
                                 {{ __('Guardar') }}
                             </button>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
 
             </div>
