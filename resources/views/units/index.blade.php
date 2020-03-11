@@ -4,17 +4,17 @@
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class = "col-md-8 justify-content-center">   
-            <div class="panel panel-default">
-                <div class = "panel-heading h2 d-flex justify-content-center mb-4" >
+            <div class="card border-secondary">
+                <div class = "card-header h2" >
                     Listado de unidades
                     <a href="{{ route('units.create') }}" class="btn btn-sm btn-success">Crear nueva unidad</a>
                 </div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 5cm;">Nombre</th>
+                                <th style="width: 6cm;">Nombre</th>
                                 <th>País</th>
                                 <th colspan="2">&nbsp;</th>
                             </tr>
@@ -25,7 +25,7 @@
                                 <td> {{ $unit->name }} </td> 
                                 <td> {{ $unit->country }} </td> 
                                 <td width="10px">
-                                    <a href="{{ route('units.edit', $unit->id) }}" class="btn btn-sm btn-default btn-secondary">
+                                    <a href="{{ route('units.edit', $unit->id) }}" class="btn btn-sm btn-secondary">
                                         Editar
                                     </a>    
                                 </td>       

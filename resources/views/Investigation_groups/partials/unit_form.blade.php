@@ -9,7 +9,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('units.storeFromInvestigationGroup') }}" method="POST">
+            <form action="{{ route('units.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="modal-body">
 
