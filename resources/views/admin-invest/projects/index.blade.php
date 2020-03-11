@@ -17,11 +17,11 @@
                                 <th style="width: 5cm;">Codigo</th>
                                 <th style="width: 10cm;">Nombre</th>
                                 <th style="width: 3cm;">Estado</th>
-                                <th style="width: 3cm;">Fecha de Inicio</th>
+                                <th style="width: 3.5cm;">Fecha de Inicio</th>
                                 <th style="width: 3cm;">Fecha de Finalización</th>
                                 <th style="width: 1cm;">ID Grupo de Investigación</th>
                                 <th colspan="3">&nbsp;</th>
-    
+
                             </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,7 @@
                                 <td> {{ $project->investigation_group_id }} </td>
                                 <td width="10px">
                                     <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-sm btn-default">
-                                        editar
+                                        Editar
                                     </a>
                                 </td>
                             </tr>
