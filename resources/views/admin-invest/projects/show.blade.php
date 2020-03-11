@@ -4,16 +4,15 @@
 <div class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
-            <div class = "panel panel default">
-                <div class = "panel-heading h4" >
-                    Ver Producto
+            <div class = "card border-secondary">
+                <div class = "card-header h4" >
+                    Ver Proyecto 
                 </div>
 
-                <div class="panel-body">
-                    <p><strong>Nombre</strong> {{$project->name}}</p>
-                    <p><strong>Slug</strong> {{$product->slug}}</p>
+                <div class="card-body">
+                    <p><strong>Id</strong> {{$project->id}}</p>
+                    <p><strong>Nombre</strong> {{$project->id}}</p>
                 </div>
-
 
             </div>
         </div>
