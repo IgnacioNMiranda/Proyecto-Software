@@ -43,7 +43,7 @@ class ResearchUpdateRequest extends FormRequest
             'researcher_name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
-            'unit_id.required' => 'Debe elegir una unidad asociada.'
+            'unit_id.required' => 'Debe elegir al menos una unidad asociada.'
         ];
     }
 }
