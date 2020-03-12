@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         //No debe redirect al edit ya que un usuario no se puede editar
-        return redirect()->route('users.edit', $user->id)->with('info','Usuario creado con exito!');
+        return back()->with('info','Usuario creado con exito!');
     }
 
     /**
