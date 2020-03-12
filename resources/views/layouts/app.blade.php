@@ -125,11 +125,17 @@
 
 
         </ul>
+        
 
         @auth
           <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
           @if (Auth::user()->userType == "Investigador")
-            <a href="{{ route('researchers.edit', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a>
+            @if(Auth::user()->researcher_id == null)
+              <a href="{{ route('researchers_users.create', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a>
+            @else
+              <a href="{{ route('researchers_users.edit', Auth::user()->researcher_id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a>
+            @endif
+
           @endif
         @endauth
 

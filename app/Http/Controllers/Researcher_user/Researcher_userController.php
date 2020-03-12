@@ -1,29 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Researcher_user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-use App\User;
 use App\Researcher;
 use App\Unit;
+use App\User;
 
-use App\Http\Requests\ResearchStoreRequest;
-use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUpdateRequest;
-
-use Egulias\EmailValidator\EmailValidator;
-use Egulias\EmailValidator\Validation\RFCValidation;
-
-use Illuminate\Support\Facades\Hash;
-
-class UserController extends Controller
+class Researcher_userController extends Controller
 {
-    public function __construct(){
-
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
-
-        return view('user.index', ['users' => $users]);
+        //
     }
 
     /**
@@ -43,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('User.create');
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        return view('researcher_user.create', compact('units'));
     }
 
     /**
@@ -52,21 +39,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(Request $request)
     {
-        $validator = new EmailValidator();
-        $result = $validator->isValid($request->email, new RFCValidation());
-        if(!$result){
-            return redirect()->route('users.create')->withErrors(['Formato de email inválido.']);
-        }
-
-        $user = User::create($request->all());
-
-        //Permite que la clave del usuario se hashee y permite el logueo
-        $user->password = Hash::make($request->password);
-        $user->save();
-        //No debe redirect al edit ya que un usuario no se puede editar
-        return back()->with('info','Usuario creado con exito!');
+        $researcher = Researcher::create($request->all());
+        $currentUser = User::find(Auth::user()->id);
+        $currentUser->researcher_id = $researcher->id;
+        $currentUser->save();
+        return back()->with('info','Perfil editado con exito!');
     }
 
     /**
@@ -88,7 +67,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $researcher = Researcher::find($id);
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
 
+        return view('researcher_user.edit', compact('researcher','units'));
     }
 
     /**
@@ -98,8 +80,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ResearchStoreRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $researcher = Researcher::find($id);
+
+        $researcher->fill($request->all())->save();
+
+        return redirect()->route('researchers_users.edit', $researcher->id)->with('info','Perfil actualizado con exito!');
     }
 
     /**
