@@ -9,17 +9,19 @@
                 </button>
             </div>
 
-            <form action="{{ route('units.store') }}" method="POST">
-                {{ csrf_field() }}
+            {!! Form::open(['route' => ['units.store']]) !!}
+                @csrf
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        {{ Form::label('name', 'Nombre') }}
+                        {{ Form::label('name','*', array('class' => 'text-danger'))}}
+                        {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
                     </div>
 
                     <div class="form-group">
                         <label for="country">País</label>
+                        {{ Form::label('country','*', array('class' => 'text-danger'))}}
                         <select class="form-control" id="country" name="country">
                             <option disabled selected>Selecciona una opción</option>
                             @php
@@ -36,7 +38,7 @@
 
                     <button type="submit" class="btn btn-secondary" value="createNewUnit" name="unitButton">{{ __('Crear nueva unidad') }}</button>
                 </div>
-            </form>
+            {!! Form::close() !!}
 
         </div>
     </div>

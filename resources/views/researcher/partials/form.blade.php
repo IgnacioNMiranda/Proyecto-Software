@@ -4,12 +4,14 @@
             <div class = "card">
                 <div class="card-body">
                     <div class="form-group">
-                        {{ Form::label('rut', 'Rut') }}
-                        {{ Form::text('rut', null, ['class' => 'form-control', 'id' => 'rut']) }}
+                        {{ Form::label('passport', 'Número de pasaporte') }}
+                        {{ Form::label('passport','*', array('class' => 'text-danger'))}}
+                        {{ Form::text('passport', null, ['class' => 'form-control', 'id' => 'rut']) }}
                     </div>
 
                     <div class="form-group">
-                        {{ Form::label('researcher_name', 'Nombre') }}
+                        {{ Form::label('researcher_name', 'Nombre y apellido') }}
+                        {{ Form::label('researcher_name','*', array('class' => 'text-danger'))}}
                         {{ Form::text('researcher_name', null, ['class' => 'form-control']) }}
                     </div>
 
@@ -25,16 +27,19 @@
                                 @endphp
                             @endforeach
                             {{ Form::label('country','País') }}
+                            {{ Form::label('country','*', array('class' => 'text-danger'))}}
                             {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
                     </div>
                         
                     <div class = "form-group">
                         {{ Form::label('state','Estado')}}
+                        {{ Form::label('state','*', array('class' => 'text-danger'))}}
                         {{ Form::select("state",["Activo" => "Activo", "Inactivo" => "Inactivo"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
                     </div>
                         
                     <div class = "form-group">
                         {{ Form::label('units','Unidad asociada') }}
+                        {{ Form::label('units','*', array('class' => 'text-danger'))}}
                         {{ Form::select('unit_id', $units ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar unidad']) }}
                     </div>    
 

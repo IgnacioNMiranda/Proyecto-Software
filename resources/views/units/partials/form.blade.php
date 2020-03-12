@@ -5,6 +5,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         {{ Form::label('name', 'Nombre') }}
+                        {{ Form::label('name','*', array('class' => 'text-danger'))}}
                         {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
                     </div>
 
@@ -20,6 +21,7 @@
                                 @endphp
                             @endforeach
                             {{ Form::label('country','País') }}
+                            {{ Form::label('country','*', array('class' => 'text-danger'))}}
                             {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
                     </div> 
 

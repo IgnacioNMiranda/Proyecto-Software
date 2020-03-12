@@ -24,7 +24,7 @@ class ResearchStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'rut' => 'required|unique:researchers,rut,', //validar rut
+            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:researchers,passport',
             //Regex alfanumerico que toma nombre y apellido
             'researcher_name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
             'state' => 'required',
@@ -35,8 +35,9 @@ class ResearchStoreRequest extends FormRequest
 
     public function messages(){
         return [
-            'rut.required' => 'El campo rut es obligatorio.',
-            'rut.unique' => 'Este rut ya se encuentra en uso.',
+            'passport.required' => 'El número de pasaporte es obligatorio.',
+            'passport.unique' => 'Este pasaporte ya se encuentra en uso.',
+            'passport.regex' => "Formato de pasaporte invalido. Asegúrese que solo contiene letras y números.",
             'researcher_name.required' => 'Nombre requerido.',
             'researcher_name.regex' => 'Ingrese un nombre valido.',
             'state.required' => 'Debe seleccionar un estado.',

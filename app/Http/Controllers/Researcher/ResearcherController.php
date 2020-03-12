@@ -52,6 +52,8 @@ class ResearcherController extends Controller
     public function store(ResearchStoreRequest $request)
     {
         $researcher = Researcher::create($request->all());
+        $researcher->passport = $request->passport;
+        $researcher->save();
         return redirect()->route('researchers.index')->with('info','Investigador creado con exito!');
     }
 
@@ -95,6 +97,9 @@ class ResearcherController extends Controller
         $researcher = Researcher::find($id);
 
         $researcher->fill($request->all())->save();
+
+        $researcher->passport = $request->passport;
+        $researcher->save();
 
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }
