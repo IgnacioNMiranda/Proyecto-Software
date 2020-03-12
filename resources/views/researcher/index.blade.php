@@ -14,41 +14,59 @@ use App\Unit;
                     <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success float-right">Crear nuevo investigador</a>
                 </div>
 
-                <div class="card-body">
+                @php
+                $ActiveResearcher = 0;
+                @endphp
+                @foreach ($researchers as $researcher)
+                    
+                    @if ($researcher->state == "Activo")
+                        @php
+                            $ActiveResearcher += 1;
+                            break;
+                        @endphp
+                    @endif
+                @endforeach
 
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th style="width: 3.5cm;">Nombre</th>
-                                <th style="width: 3.5cm;">Pais</th>
-                                <th style="width: 3.5cm;">Unidad</th>
+                @if ($ActiveResearcher == 1)
+                    <div class="card-body">
 
-                                <th colspan="2">&nbsp;</th>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 3.5cm;">Nombre</th>
+                                    <th style="width: 3.5cm;">Pais</th>
+                                    <th style="width: 3.5cm;">Unidad</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($researchers as $researcher)
-                            <tr>
-                                <td> {{ $researcher->researcher_name }} </td>
-                                <td> {{ $researcher->country }} </td>
-                                <td>
-                                    @php
-                                    $unit = Unit::find($researcher->unit_id);
-                                    @endphp {{ $unit->name}} 
-                                </td>
+                                    <th colspan="2">&nbsp;</th>
 
-                                <td width="10px">
-                                    <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
-                                        Editar
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $researchers->render() }}
-                </div>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($researchers as $researcher)
+                                <tr>
+                                    <td> {{ $researcher->researcher_name }} </td>
+                                    <td> {{ $researcher->country }} </td>
+                                    <td>
+                                        @php
+                                        $unit = Unit::find($researcher->unit_id);
+                                        @endphp {{ $unit->name}} 
+                                    </td>
+
+                                    <td width="10px">
+                                        <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
+                                            Editar
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $researchers->render() }}
+                    </div>
+                @else
+                    <p class="display-4 text-center"> Aún no se registran investigadores </p> 
+                @endif
+
             </div>
         </div>
     </div>

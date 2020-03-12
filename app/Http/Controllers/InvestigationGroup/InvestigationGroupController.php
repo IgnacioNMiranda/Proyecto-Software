@@ -73,7 +73,7 @@ class InvestigationGroupController extends Controller
 
             //Se redimensiona a 300x300
             $logo->resize(300,300);
-            
+
             // Guardar logo en carpeta public/images
             $path = Storage::disk('public')->put('images', $request->file('logo'));
 
