@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ResearchStoreRequest;
 use App\Http\Requests\ResearchUpdateRequest;
 
+
+
 use App\Researcher;
 use App\Unit;
 
@@ -18,8 +20,9 @@ class ResearcherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $researchers = Researcher::orderBy('researcher_name','DESC')->paginate();
 
         return view('researcher.index', compact('researchers'));
@@ -89,7 +92,7 @@ class ResearcherController extends Controller
         $researcher = Researcher::find($id);
 
         $researcher->fill($request->all())->save();
-        
+
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }
 

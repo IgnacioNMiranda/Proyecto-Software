@@ -18,7 +18,7 @@ use App\Unit;
                 $ActiveResearcher = 0;
                 @endphp
                 @foreach ($researchers as $researcher)
-                    
+
                     @if ($researcher->state == "Activo")
                         @php
                             $ActiveResearcher += 1;
@@ -30,11 +30,24 @@ use App\Unit;
                 @if ($ActiveResearcher == 1)
                     <div class="card-body">
 
+
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th style="width: 3.5cm;">Nombre</th>
-                                    <th style="width: 3.5cm;">Pais</th>
+
+
+                                    <th> País
+
+                                            {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                                            <div class="form-group">
+                                            {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Pais']) !!}
+                                            </div>
+                                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                                            {!! Form::close()!!}
+                                    </th>
+
+
                                     <th style="width: 3.5cm;">Unidad</th>
 
                                     <th colspan="2">&nbsp;</th>
@@ -49,7 +62,7 @@ use App\Unit;
                                     <td>
                                         @php
                                         $unit = Unit::find($researcher->unit_id);
-                                        @endphp {{ $unit->name}} 
+                                        @endphp {{ $unit->name}}
                                     </td>
 
                                     <td width="10px">
@@ -64,7 +77,7 @@ use App\Unit;
                         {{ $researchers->render() }}
                     </div>
                 @else
-                    <p class="display-4 text-center"> Aún no se registran investigadores </p> 
+                    <p class="display-4 text-center"> Aún no se registran investigadores </p>
                 @endif
 
             </div>
