@@ -41,7 +41,7 @@ use App\Unit;
 
                                             {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                             <div class="form-group">
-                                            {!! Form::text('name',null,['class'=>'form-control','placeholder'=>'Pais']) !!}
+                                            {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!}
                                             </div>
                                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                                             {!! Form::close()!!}

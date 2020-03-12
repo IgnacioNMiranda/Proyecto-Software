@@ -21,4 +21,14 @@ class Researcher extends Model
     public function projects(){
         return $this->belongsToMany(Project::class)->withTimestamps();
     }
+
+    //Scope
+
+    public function scopeCountry($query, $country)
+    {
+        if($country)
+            return $query->where('country','LIKE',"%$country%");
+
+
+    }
 }

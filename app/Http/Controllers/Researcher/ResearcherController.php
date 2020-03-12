@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\ResearchStoreRequest;
 use App\Http\Requests\ResearchUpdateRequest;
-
+use Illuminate\Support\Facades\Input;
 
 
 use App\Researcher;
@@ -22,8 +22,11 @@ class ResearcherController extends Controller
      */
     public function index(Request $request)
     {
+        $country = $request->get('country');
 
-        $researchers = Researcher::orderBy('researcher_name','DESC')->paginate();
+        $researchers = Researcher::orderBy('researcher_name','DESC')
+        ->where('country','LIKE',"%$country%")
+        ->paginate();
 
         return view('researcher.index', compact('researchers'));
     }
