@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResearchUpdateRequest extends FormRequest
+class Research_userUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class ResearchUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:researchers,passport,'. $this->researcher,
+            //Preguntarle al mikel
+            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:researchers,passport,'. $this->user, 
             //Regex alfanumerico que toma nombre y apellido
-            'researcher_name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
+            'researcher_name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'state' => 'required',
             'country' => 'required',
             'unit_id' => 'required'
