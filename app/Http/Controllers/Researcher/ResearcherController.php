@@ -24,6 +24,9 @@ class ResearcherController extends Controller
     {
         $country = $request->get('country');
 
+
+
+
         $researchers = Researcher::orderBy('researcher_name','DESC')
         ->where('country','LIKE',"%$country%")
         ->paginate();
