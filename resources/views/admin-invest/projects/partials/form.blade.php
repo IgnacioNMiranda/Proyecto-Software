@@ -43,7 +43,7 @@
           <div class="form-group">
             {{ Form::label('startDate', 'Fecha de Creación') }}
             {{ Form::label('startDate','*', array('class' => 'text-danger'))}}
-            <input type="date" name="startDate" id="startDate" max="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
+            <input type="date" name="startDate" id="startDate" max = "<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
           </div>
 
           <div class="form-group">

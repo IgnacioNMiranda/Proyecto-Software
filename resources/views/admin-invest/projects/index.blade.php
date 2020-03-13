@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
-        <div class="col-md-10 justify-content-center">
+        <div class="col-md-12 justify-content-center">
             <div class="card border-secondary">
                 <div class="card-header h2 bg-tertiary">
                     Listado Proyectos
@@ -19,7 +19,7 @@
                                     <th style="width: 5cm;">Codigo</th>
                                     <th style="width: 10cm;">Nombre</th>
                                     <th style="width: 3cm;">Estado</th>
-                                    <th style="width: 3.5cm;">Fecha de Inicio</th>
+                                    <th style="width: 3.8cm;">Fecha de Inicio</th>
                                     <th style="width: 3cm;">Fecha de Finalización</th>
                                     <th style="width: 1cm;">ID Grupo de Investigación</th>
                                     <th colspan="3">&nbsp;</th>
