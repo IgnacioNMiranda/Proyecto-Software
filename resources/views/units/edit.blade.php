@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class = "col-md-8 justify-content-center">   
             <div class="card border-secondary">
-                <div class = "panel-heading h2 d-flex justify-content-center mb-4 bg-tertiary">
+                <div class = "card-header h2 d-flex justify-content-center mb-4 bg-tertiary">
                     Editar unidad
                 </div>
                 <div class="card-body">
