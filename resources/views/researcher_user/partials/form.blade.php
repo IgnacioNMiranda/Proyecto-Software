@@ -4,8 +4,8 @@
             <div class = "card">
                 <div class="card-body">
                     <div class="form-group">
-                        {{ Form::label('rut', 'Rut') }}
-                        {{ Form::text('rut', null, ['class' => 'form-control', 'id' => 'rut']) }}
+                        {{ Form::label('passport', 'Número de pasaporte') }}
+                        {{ Form::text('passport', null, ['class' => 'form-control', 'id' => 'rut']) }}
                     </div>
 
                     <div class="form-group">

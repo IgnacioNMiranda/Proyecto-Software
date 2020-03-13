@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\Research_userStoreRequest;
+use App\Http\Requests\Research_userUpdateRequest;
+
 use App\Researcher;
 use App\Unit;
 use App\User;
@@ -39,7 +42,7 @@ class Researcher_userController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Research_userStoreRequest $request)
     {
         $researcher = Researcher::create($request->all());
 
@@ -48,6 +51,8 @@ class Researcher_userController extends Controller
 
         $currentUser = User::find(Auth::user()->id);
         $currentUser->researcher_id = $researcher->id;
+        $researcher->passport = $request->passport;
+        $researcher->save();
         $currentUser->save();
         
         return back()->with('info','Perfil editado con exito!');
@@ -85,10 +90,11 @@ class Researcher_userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Research_userUpdateRequest $request, $id)
     {
         $researcher = Researcher::find($id);
-
+        $researcher->passport = $request->passport;
+        $researcher->save();
         $researcher->fill($request->all())->save();
 
         $researcher->passport = $request->passport;
