@@ -42,9 +42,14 @@ class Researcher_userController extends Controller
     public function store(Request $request)
     {
         $researcher = Researcher::create($request->all());
+
+        $researcher->passport = $request->passport;
+        $researcher->save();
+
         $currentUser = User::find(Auth::user()->id);
         $currentUser->researcher_id = $researcher->id;
         $currentUser->save();
+        
         return back()->with('info','Perfil editado con exito!');
     }
 
@@ -85,6 +90,9 @@ class Researcher_userController extends Controller
         $researcher = Researcher::find($id);
 
         $researcher->fill($request->all())->save();
+
+        $researcher->passport = $request->passport;
+        $researcher->save();
 
         return redirect()->route('researchers_users.edit', $researcher->id)->with('info','Perfil actualizado con exito!');
     }
