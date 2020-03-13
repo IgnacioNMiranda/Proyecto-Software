@@ -42,22 +42,14 @@
 
           <div class="form-group">
             {{ Form::label('startDate', 'Fecha de Creación') }}
-<<<<<<< Updated upstream
             {{ Form::label('startDate','*', array('class' => 'text-danger'))}}
-            <input type="date" name="startDate" id="startDate" max="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
-=======
             <input type="date" name="startDate" id="startDate" max = "<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
->>>>>>> Stashed changes
           </div>
 
           <div class="form-group">
             {{ Form::label('endDate', 'Fecha de Término ') }}
-<<<<<<< Updated upstream
             {{ Form::label('endDate','*', array('class' => 'text-danger'))}}
             <input type="date" name="endDate" id="endDate" min="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
-=======
-            <input type="date" name="endDate" id="endDate" min ="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">
->>>>>>> Stashed changes
           </div>
 
           <div class="form-group mt-4 d-flex justify-content-center">
