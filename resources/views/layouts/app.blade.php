@@ -44,7 +44,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav navbar-nav mr-auto">
+        <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link text-white font-weight-bold btn-lg" href="{{ url('/') }}">Inicio</a>
           </li>
@@ -101,7 +101,6 @@
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Investigadores
-              <!--Cuando este listo vista grupo se cambiara pa alla-->
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
@@ -126,33 +125,38 @@
 
         </ul>
         
-
-        @auth
-          <p class="navbar-text text-white pt-4 pr-4">Bienvenido, {{ Auth::user()->userType }}</p>
+        <ul class="navbar-nav ml-auto">
+          @auth
+          <li class="nav-item pr-4">
+            <span class="navbar-text text-white">Bienvenido, {{ Auth::user()->userType }}</span>
+          </li>
+          
           @if (Auth::user()->userType == "Investigador")
-            @if(Auth::user()->researcher_id == null)
-              <a href="{{ route('researchers_users.create', Auth::user()->id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a>
-            @else
-              <a href="{{ route('researchers_users.edit', Auth::user()->researcher_id) }}" class="text-white navbar-link pt-2 pr-3 h6"> Editar Perfil </a>
-            @endif
-
+            <li class="nav-item">
+                @if(Auth::user()->researcher_id == null)
+                  <a href="{{ route('researchers_users.create', Auth::user()->id) }}" class="navbar-text text-white pr-4 pl-4 font-weight-bold border-left"> Editar Perfil </a>
+                @else
+                  <a href="{{ route('researchers_users.edit', Auth::user()->researcher_id) }}" class="navbar-text text-white pr-4 pl-4 font-weight-bold border-left"> Editar Perfil </a>
+                @endif
+            </li>
           @endif
-        @endauth
+          @endauth
 
-        @if (Route::has('login'))
-        @auth
-        <a class="text-white navbar-text pl-4 border-left" href="{{ route('logout') }}" onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-          {{ __('Logout') }}
+          @if (Route::has('login'))
+          @auth
+          <a class="text-white navbar-text pl-4 border-left" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+          @else
+          <a href="{{ route('login') }}" class="text-white">Login <span class="sr-only">(current)</span></a>
+          @endauth
+          @endif
+        </ul>
 
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
-        @else
-        <a href="{{ route('login') }}" class="text-white">Login <span class="sr-only">(current)</span></a>
-        @endauth
-        @endif
 
       </div>
     </nav>
