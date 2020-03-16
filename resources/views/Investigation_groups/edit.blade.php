@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+
+
 @section('content')
 <section class="container mt-4 p-4">
     <div class="row justify-content-center">
@@ -13,6 +15,9 @@
                     {!! Form::model($invGroup, ['route' => ['investigationGroups.update', $invGroup->id],
                     'method' => 'PUT', 'files' => true]) !!}
                         @csrf
+
+                        {{ Form::hidden('id',$invGroup->id)}}
+                        
                         <div class="form-group">
                             {{ Form::label('name', 'Nombre del grupo') }}
                             {{ Form::label('name','*', array('class' => 'text-danger'))}}
@@ -20,13 +25,10 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="units">Unidad(es) asociada(s)</label>
+                            {{ Form::label('units','Unidad(es) asociada(s)')}}
                             {{ Form::label('units','*', array('class' => 'text-danger'))}}
-                            <select id="units" name="units[]" class="selectpicker" multiple data-live-search="true" title="Seleccione unidad(es) asociada(s)">
-                                @foreach ($units as $unit)
-                                    <option value="{{ $unit->id }}"> {{ $unit->name }}</option>
-                                @endforeach
-                            </select>
+                            {{Form::select('units[]',$units,null, ['class'=>'form-control', 'multiple' => true])}}
+
                         </div>
 
                         <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#unit_form">Crear nueva unidad</a>

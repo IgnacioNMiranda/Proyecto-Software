@@ -116,7 +116,7 @@ class InvestigationGroupController extends Controller
     {
         $invGroup = InvestigationGroup::find($id);
 
-        $units = Unit::orderBy('name','ASC')->get();
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
 
         $countries = countries();
 

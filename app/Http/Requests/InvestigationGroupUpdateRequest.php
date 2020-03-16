@@ -25,7 +25,7 @@ class InvestigationGroupUpdateRequest extends FormRequest
     {
         return [
             //Regex alfanumerico de máximo 30 caracteres
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:investigation_groups,name,' . $this->invGroup,
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:investigation_groups,name,' . $this->id,
             'logo' => 'mimes:png,jpeg,jpg',
             'units' => 'required|array'
         ];
