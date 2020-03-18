@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< Updated upstream
     "content-hash": "3fc562f6e7b93fef1e6e956e55d0d4f8",
+=======
+    "content-hash": "0a5782fe1200480921703c6ad87cf516",
+>>>>>>> Stashed changes
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1730,25 +1734,25 @@
         },
         {
             "name": "rinvex/countries",
-            "version": "v6.1.1",
+            "version": "v7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rinvex/countries.git",
-                "reference": "3391e454402f1e3f103cba6d037afa343435315f"
+                "reference": "a5239f012b8310c57397aa70159e8ab3c38344a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rinvex/countries/zipball/3391e454402f1e3f103cba6d037afa343435315f",
-                "reference": "3391e454402f1e3f103cba6d037afa343435315f",
+                "url": "https://api.github.com/repos/rinvex/countries/zipball/a5239f012b8310c57397aa70159e8ab3c38344a6",
+                "reference": "a5239f012b8310c57397aa70159e8ab3c38344a6",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2.0"
+                "php": "^7.4.0"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.26.0",
-                "laravel/helpers": "^1.1.0",
-                "phpunit/phpunit": "^8.3.0"
+                "codedungeon/phpunit-result-printer": "^0.27.0",
+                "laravel/helpers": "^1.2.0",
+                "phpunit/phpunit": "^9.0.0"
             },
             "type": "library",
             "extra": {
@@ -1804,7 +1808,7 @@
                 "rinvex",
                 "svg"
             ],
-            "time": "2019-09-23T21:43:00+00:00"
+            "time": "2020-03-15T14:04:27+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

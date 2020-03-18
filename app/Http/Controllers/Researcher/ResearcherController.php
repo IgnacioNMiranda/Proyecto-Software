@@ -57,7 +57,7 @@ class ResearcherController extends Controller
         $researcher = Researcher::create($request->all());
         $researcher->passport = $request->passport;
         $researcher->save();
-        return redirect()->route('researchers.index')->with('info','Investigador creado con exito!');
+        return back()->with('info','Investigador creado con exito!');
     }
 
     /**

@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Product;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-use App\Http\Controllers\Controller;
+
 use App\Product;
 use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
+use App\Unit;
+
 use Illuminate\Support\Str;
+
 
 class productController extends Controller
 {
@@ -44,11 +49,13 @@ class productController extends Controller
      */
     public function create()
     {
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
         $researchers = Researcher::orderBy('researcher_name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
 
-        return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups'));
+        return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups','units'));
     }
 
     /**
@@ -95,7 +102,8 @@ class productController extends Controller
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
         $researchers = Researcher::orderBy('researcher_name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
-        return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups'));
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups','units'));
     }
 
     /**
