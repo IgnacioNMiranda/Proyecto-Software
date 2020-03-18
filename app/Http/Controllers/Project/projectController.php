@@ -50,9 +50,10 @@ class ProjectController extends Controller
     //Crea un proyecto 
     public function create()
     {
-        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
+        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.create',compact('researchers','investigation_groups'));
+        return view('admin-invest.projects.create',compact('researcers_group','researchers','investigation_groups'));
     }
 
     /**

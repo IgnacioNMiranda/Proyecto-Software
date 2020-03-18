@@ -13,8 +13,8 @@
                     <p><strong>Codigo:</strong> {{$project->code}}</p>
                     <p><strong>Nombre:</strong> {{$project->name}}</p>
                     <p><strong>Estado:</strong> {{$project->state}}</p>
-                    <p><strong>Fecha de Inicio:</strong> {{$project->startDate}}</p>
-                    <p><strong>Fecha de Finalización:</strong> {{$project->endDate}}</p>
+                    <p><strong>Fecha de Inicio:</strong> {{ date('d-m-Y', strtotime($project->startDate)) }}</p>
+                    <p><strong>Fecha de Finalización:</strong> {{ date('d-m-Y', strtotime($project->endDate)) }}</p>
                     <p><strong>Id el Grupo de Investigación:</strong> {{$project->investigation_group_id}}</p>
                     <div class="form-group mt-4 d-flex justify-content-center">
                         <td width="10px">
