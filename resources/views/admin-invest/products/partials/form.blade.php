@@ -1,4 +1,4 @@
-<div class = "container">
+<section class = "container">
     <div class = "row justify-content-center">
         <div class = "col-md-8 border shadow pt-4">
             <div class = "card">
@@ -28,6 +28,9 @@
                                 @endforeach
                             </select>
                     </div>
+                    
+                    <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
+
                     <div class = "form-group">
                         {{ Form::label('date', 'Fecha de Creación') }}
                         {{ Form::label('date','*', array('class' => 'text-danger'))}}
@@ -39,8 +42,10 @@
                             ['class' => 'form-control', 'placeholder' => 'Seleccione Proyecto asociado', 'id' => 'project_id']) }}
                     </div>
 
-                    <div class="form-group mt-4 d-flex justify-content-center">
-                        {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
+                    <div class="form-group mt-4 text-center">
+                        <button type="submit" class="btn btn-secondary mb-4" name="product">
+                            {{ __('Guardar') }}
+                        </button>
                     </div>
 
 
@@ -48,4 +53,5 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+@include("admin-invest\products\partials\\researcher_form")

@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
 
         App\User::create([
             'email' => 'fmp009@alumnos.ucn.cl',
-            'password' => bcrypt('pichiconcaca2'),
+            'password' => bcrypt('1'),
             'userType' => 'Administrador'
         ]);
 
