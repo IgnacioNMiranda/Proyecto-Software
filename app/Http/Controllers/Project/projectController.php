@@ -15,6 +15,7 @@ use App\InvestigationGroup;
 use Illuminate\Support\Str;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -38,8 +39,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::orderBy('id','DESC')->paginate();
-        $dates = Carbon::parse();
-        return view('admin-invest.projects.index',compact('projects','dates'));
+        return view('admin-invest.projects.index',compact('projects'));
     }
 
     /**
@@ -50,6 +50,13 @@ class ProjectController extends Controller
     //Crea un proyecto 
     public function create()
     {
+
+        // $joins = DB::table('investigation_group_researcher')
+            // ->join('researchers', 'investigation_group_researcher.researcher_id', '=', 'researchers.id')
+            // ->join('investigation_groups', 'investigation_group_researcher.investigation_group_id', '=', 'investigation_groups.id')
+            // ->select('researchers.*','investigation_groups.*')
+            // ->pluck('researchers.researcher_name','investigation_groups.id');
+
         $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
         $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');

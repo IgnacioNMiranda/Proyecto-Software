@@ -34,7 +34,7 @@
             {{ Form::label('researchers_group','*', array('class' => 'text-danger'))}}
             {{Form::select('researchers_group[]',$researchers,null, ['class'=>'form-control', 'multiple' => true])}}
           </div>
-          
+
           <div class="form-group">
             {{ Form::label('researchers','Investigador(es) asociado(s)')}}
             {{Form::select('researchers[]',$researchers,null, ['class'=>'form-control', 'multiple' => true])}}
