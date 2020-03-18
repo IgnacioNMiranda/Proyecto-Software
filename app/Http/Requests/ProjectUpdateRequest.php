@@ -24,9 +24,9 @@ class ProjectUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //Regex alfanumerico de máximo 30 caracteres
-            'code' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/',
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:projects,name,' . $this->project,
+            //Regex alfanumerico de máximo 50 caracteres
+            'code' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/',
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:projects,name,' . $this->project,
             'state' => 'required',
             'startDate' => 'required',
             'endDate' => 'required',
@@ -43,7 +43,6 @@ class ProjectUpdateRequest extends FormRequest
             'name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'El campo estado es obligatorio.',
             'startDate' => 'El campo fecha de inicio es obligatorio.',
-            'units.required' => 'Debe elegir al menos una unidad asociada.',
             'investigation_group_id.required' => 'El campo de Grupo de investigacion es obligatorio.',
             'endDate.required' => 'El campo fecha de finalización es obligatorio.',
             'researchers.required' => 'Es necesario por lo menos 1 investigador',

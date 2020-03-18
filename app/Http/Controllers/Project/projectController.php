@@ -119,6 +119,9 @@ class ProjectController extends Controller
         $project = Project::find($id);
         $project->fill($request->all())->save();
 
+        $project->slug = Str::slug($project->name);
+        $project->save();
+
         $project->researchers()->sync($request->get('researchers'));
 
         return redirect()->route('projects.edit',$project->id)
