@@ -38,11 +38,10 @@
                         {{ Form::select('project_id', $projects, null, 
                             ['class' => 'form-control', 'placeholder' => 'Seleccione Proyecto asociado', 'id' => 'project_id']) }}
                     </div>
-
+                    
                     <div class="form-group mt-4 d-flex justify-content-center">
                         {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
                     </div>
-
 
                 </div>
             </div>

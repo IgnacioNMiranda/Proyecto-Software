@@ -25,8 +25,8 @@ class InvestigationGroupStoreRequest extends FormRequest
     {
         //Las reglas son definidas sobre los atributos de laravel Form.
         return [
-            //Regex alfanumerico de máximo 30 caracteres
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:investigation_groups,name',
+            //Regex alfanumerico de máximo 50 caracteres
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:investigation_groups,name',
             'logo' => 'mimes:png,jpeg,jpg',
             'units' => 'required|array'
         ];

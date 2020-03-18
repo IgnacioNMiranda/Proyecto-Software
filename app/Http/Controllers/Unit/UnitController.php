@@ -102,6 +102,9 @@ class UnitController extends Controller
         $unit = Unit::find($id);
         $unit->fill($request->all())->save();
 
+        $unit->slug = Str::slug($unit->name);
+        $unit->save();
+
         return redirect()->route('units.edit',$unit->id)
             ->with('info','Unidad actualizado con exito');
     }

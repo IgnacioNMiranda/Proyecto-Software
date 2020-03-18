@@ -25,7 +25,7 @@ class Research_userUpdateRequest extends FormRequest
     {
         return [
             //Preguntarle al mikel
-            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:researchers,passport,'. $this->user, 
+            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:researchers,passport,'. $this->user, 
             //Regex alfanumerico que toma nombre y apellido
             'researcher_name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'state' => 'required',

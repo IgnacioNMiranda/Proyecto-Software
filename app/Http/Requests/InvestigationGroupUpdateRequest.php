@@ -24,8 +24,8 @@ class InvestigationGroupUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //Regex alfanumerico de máximo 30 caracteres
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:investigation_groups,name,' . $this->id,
+            //Regex alfanumerico de máximo 50 caracteres
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:investigation_groups,name,' . $this->id,
             'logo' => 'mimes:png,jpeg,jpg',
             'units' => 'required|array'
         ];
@@ -37,6 +37,7 @@ class InvestigationGroupUpdateRequest extends FormRequest
         return [
             'name.required' => 'Debe ingresar un nombre valido',
             'name.unique' => 'Este nombre ya se encuentra en uso',
+            'name.regex' => 'Formato de nombre inválido.',
             'mimes' => 'El logo debe estar en formato jpg o png',
             'units.required' => 'Debe elegir al menos una unidad asociada.'
         ];
