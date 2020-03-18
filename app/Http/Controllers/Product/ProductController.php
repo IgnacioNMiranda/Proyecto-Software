@@ -102,7 +102,8 @@ class productController extends Controller
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
         $researchers = Researcher::orderBy('researcher_name','ASC')->get();
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
-        return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups'));
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups','units'));
     }
 
     /**
