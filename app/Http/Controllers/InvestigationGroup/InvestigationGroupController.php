@@ -40,7 +40,7 @@ class InvestigationGroupController extends Controller
      */
     public function create()
     {
-        $units = Unit::orderBy('name','ASC')->get();
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
 
         $countries = countries();
 

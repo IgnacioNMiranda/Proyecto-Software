@@ -24,8 +24,8 @@ class UnitUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //Regex alfanumerico de máximo 30 caracteres
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,30}$/|unique:units,name,' . $this->unit,
+            //Regex alfanumerico de máximo 50 caracteres
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:units,name,' . $this->unit,
             'country' => 'required'
         ];
     }

@@ -118,6 +118,9 @@ class productController extends Controller
         $product = Product::find($id);
         $product -> fill($request->all())->save();
 
+        $product->slug = Str::slug($product->name);
+        $product->save();
+
         //Asignacion n-n con researcher, sync para actualizar la relacion products con researchers
         $product->researchers()->sync($request->get('researchers'));
 
