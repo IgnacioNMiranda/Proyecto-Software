@@ -9,7 +9,7 @@
             {{ Form::select('investigation_group_id', $investigation_groups, null, 
                       ['class' => 'form-control','placeholder' => 'Seleccione grupo de investigación', 'id' => 'investigation_group_id']) }}
           </div>
-
+          
           <div class="form-group">
             {{ Form::label('code', 'Código') }}
             {{ Form::label('code','*', array('class' => 'text-danger'))}}

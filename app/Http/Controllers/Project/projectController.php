@@ -14,6 +14,8 @@ use App\InvestigationGroup;
 
 use Illuminate\Support\Str;
 
+use Carbon\Carbon;
+
 class ProjectController extends Controller
 {
 
@@ -36,7 +38,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::orderBy('id','DESC')->paginate();
-        return view('admin-invest.projects.index',compact('projects'));
+        $dates = Carbon::parse();
+        return view('admin-invest.projects.index',compact('projects','dates'));
     }
 
     /**
@@ -65,6 +68,8 @@ class ProjectController extends Controller
         $project = Project::create($request->all());
         $project->slug = Str::slug($project->name);
         $project->save();
+
+
 
         $project->researchers()->attach($request->get('researchers'));
 

@@ -33,9 +33,8 @@
                                     {{-- <td> {{ $project->code }} </td> --}}
                                     <td> {{ $project->name }} </td>
                                     <td> {{ $project->state }} </td>
-                                    <td> {{ $project->startDate }} </td>
-                                    <td> {{ $project->endDate }} </td>
-                                    {{-- <td> {{ $project->investigation_group_id }} </td> --}}
+                                    <td>{{ date('d-m-Y', strtotime($project->startDate)) }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($project->endDate)) }}</td>                                    {{-- <td> {{ $project->investigation_group_id }} </td> --}}
                                     <td width="10px">
                                         <a href="{{ route('projects.show', $project->id) }}" class="btn btn-sm btn-secondary">
                                             Ver
@@ -62,3 +61,12 @@
     </div>
 </div>
 @endsection
+
+{{-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> --}}
+{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
+{{-- <script> --}}
+    {{-- $(function() { --}}
+        {{-- $("#expiracion").datapicker(); --}}
+        {{-- format: 'dd-mm-yy' --}}
+   {{-- }); --}}
+{{-- </script> --}}
