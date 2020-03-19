@@ -34,14 +34,33 @@
                                         </a>
                                     </td>
                                     <td width="10px">
-                                        {!! Form::open(['route' => ['products.destroy', $product->id], 'method' => 'DELETE']) !!}
-                                            <button class="btn btn-sm btn-danger">
+                                        <a href='#' onclick="ConfirmDelete($product->id)">Eliminar</a>
+
+                                        {!! Form::open(['route' => ['products.destroy', $product->id], 'method' => 'DELETE'])!!}
+                                            <button class="btn btn-sm btn-danger" >
                                                 Eliminar
                                             </button>
                                         {!! Form::close() !!}
+                                                
+
+
+
                                     </td>
                                 </tr>
                                 @endforeach
+                                <script type="text/javascript">
+                                function ConfirmDelete(id)){
+                                    var respuesta = confirm("¿Estas seguro que deseas Eliminar al usuario?");
+                                    if(respuesta == true){
+                                        ['route' => ['products.destroy', $product->id], 'method' => 'DELETE'];
+                                    }else{
+                                        return false;
+                                    }
+                                }
+                                </script>
+
+
+
                             </tbody>
                         </table>
                         {{ $products->render()}}
