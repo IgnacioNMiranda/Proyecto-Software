@@ -202,11 +202,11 @@
         <h4 class="text-white mb-3">Informacion adicional</h4>
         <div class="row">
 
-          <div class="col-1">
+          <div class="col-12 col-md-1 mb-3 mb-md-0">
             <a class="text-white d-flex" href="#">Quiénes somos</a>
           </div>
 
-          <div class="col-2">
+          <div class="col-12 col-md-2 mb-3 mb-md-0">
             <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
           </div>
 

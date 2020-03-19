@@ -3,7 +3,7 @@
 @section('content')
 <div class="container justify-content-center">
     <div class="row justify-content-center">
-        <div class="col-5 text-center">
+        <div class="col-12 col-md-5 text-center">
             @if ($invGroup->logo)
             <img class="img-fluid thickBorder rounded shadow mb-4" src="{{ asset($invGroup->logo) }}"
                 alt="{{ $invGroup->name }}">
@@ -13,12 +13,12 @@
             @endif
 
             <div class="row justify-content-center">
-                <div class="col-5">
+                <div class="col-12 col-lg-5">
                     <h4>{{ $invGroup->name }}</h4>
                 </div>
                 @auth
                     @if (Auth::user()->userType == "Administrador")
-                        <div class="col-4">
+                        <div class="col-12 col-lg-4">
                             <a href="{{ route('investigationGroups.edit', $invGroup->id) }}" class="btn btn-tertiary border-secondary">
                                 Editar✏️
                             </a>
@@ -28,8 +28,8 @@
             </div>
         </div>
 
-        <div class="col-4">
-            <h4 class="font-weight-bold">Unidad(es) asociada(s)</h4>
+        <div class="col-12 col-md-4 text-center text-md-0">
+            <h4 class="font-weight-bold mt-4 mt-md-0 ">Unidad(es) asociada(s)</h4>
             <ul>
                 @foreach ($invGroup->units as $unit)
                 <li class="h6">
@@ -41,7 +41,7 @@
     </div>
 
     <div class="row justify-content-around text-center verticalTopOffset">
-        <div class="col-4">
+        <div class="col-12 col-md-4 mb-4">
             <!-- exists() comprueba si existen products relacionados con invGroup -->
             @if ($invGroup->products()->exists())
                 <a href="#" class="btn btn-lg btn-secondary"> Productos </a>
@@ -49,7 +49,7 @@
                 <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_products_modal"> Productos </a>
             @endif
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4 mb-4">
             <!-- exists() comprueba si existen projects relacionados con invGroup -->
             @if ($invGroup->projects()->exists())
                 <a href="#" class="btn btn-lg btn-secondary"> Proyectos </a>
@@ -57,7 +57,7 @@
                 <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_projects_modal"> Proyectos </a>
             @endif
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4 mb-4">
             <!-- exists() comprueba si existen researchers relacionados con invGroup -->
             @if ($invGroup->researchers()->exists())
                 <a href="#" class="btn btn-lg btn-secondary"> Investigadores </a>

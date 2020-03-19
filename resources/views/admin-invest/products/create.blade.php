@@ -33,13 +33,13 @@
                                 ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
                     </div>
 
+                    <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
+
                     <div class="form-group">
                         {{ Form::label('description', 'Descripción del Producto') }}
                         {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
                     </div>
  
-                    <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
-
                     <div class = "form-group">
                         {{ Form::label('date', 'Fecha de Creación') }}
                         {{ Form::label('date','*', array('class' => 'text-danger'))}}
