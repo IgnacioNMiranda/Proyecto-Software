@@ -14,6 +14,7 @@ use App\Researcher;
 use App\InvestigationGroup;
 use App\Unit;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
 
@@ -28,7 +29,6 @@ class productController extends Controller
         $this->middleware('auth');
 
     }
-
 
     /**
      * Display a listing of the resource.
@@ -50,9 +50,9 @@ class productController extends Controller
     public function create()
     {
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-        
+
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
 
         return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups','units'));
@@ -66,6 +66,7 @@ class productController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
+    
         //validar campos obligatorios
         $product =Product::create($request->all());
         $product->slug = Str::slug($product->name);
@@ -100,7 +101,7 @@ class productController extends Controller
     {
         $product = Product::find($id);
         $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
         return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups','units'));

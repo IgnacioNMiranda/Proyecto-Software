@@ -32,14 +32,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="researchers">Investigador(es) Asociado(s)</label>
+                            <label for="researchers">Otros Investigador(es) Asociado(s)</label>
                             {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
-                            <select id="researchers" name="researchers[]" class="selectpicker" multiple data-live-search="true"
-                                title="Seleccione Investigador(es) asociado(s)">
-                                @foreach ($researchers as $researcher)
-                                <option value="{{ $researcher->id }}"> {{ $researcher->researcher_name }}</option>
-                                @endforeach
-                            </select>
+                            {{ Form::select('researchers[]', $researchers, null,
+                                    ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
                         </div>
                         
                         <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
