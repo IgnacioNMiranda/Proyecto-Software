@@ -30,17 +30,22 @@
                             {{ Form::label('country','*', array('class' => 'text-danger'))}}
                             {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
                     </div>
-                        
+
                     <div class = "form-group">
                         {{ Form::label('state','Estado')}}
                         {{ Form::label('state','*', array('class' => 'text-danger'))}}
                         {{ Form::select("state",["Activo" => "Activo", "Inactivo" => "Inactivo"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
                     </div>
-                        
+   
                     <div class = "form-group">
                         {{ Form::label('units','Unidad asociada') }}
                         {{ Form::label('units','*', array('class' => 'text-danger'))}}
                         {{ Form::select('unit_id', $units ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar unidad']) }}
+                    </div>    
+
+                    <div class = "form-group">
+                        {{ Form::label('investigation_groups.investigation_group_id','Grupo de investigación asociado') }}
+                        {{ Form::select('investigation_groups[investigation_group_id]', $invGroups, null, ['class' => 'form-control', 'placeholder'=>'Seleccionar grupo', 'id' => 'investigation_group_id']) }}
                     </div>    
 
                     <div class = "form-group mt-4 d-flex justify-content-center">

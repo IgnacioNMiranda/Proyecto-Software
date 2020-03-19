@@ -29,7 +29,8 @@ class ResearchUpdateRequest extends FormRequest
             'researcher_name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
             'state' => 'required',
             'country' => 'required',
-            'unit_id' => 'required'
+            'unit_id' => 'required',
+            'investigation_group_id' => 'nullable',
         ];
     }
 

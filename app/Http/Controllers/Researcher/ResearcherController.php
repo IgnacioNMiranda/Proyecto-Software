@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 
 use App\Researcher;
 use App\Unit;
+use App\InvestigationGroup;
 
 class ResearcherController extends Controller
 {
@@ -23,9 +24,6 @@ class ResearcherController extends Controller
     public function index(Request $request)
     {
         $country = $request->get('country');
-
-
-
 
         $researchers = Researcher::orderBy('researcher_name','DESC')
         ->where('country','LIKE',"%$country%")
@@ -42,8 +40,9 @@ class ResearcherController extends Controller
     public function create()
     {
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
 
-        return view('researcher.create', compact('units'));
+        return view('researcher.create', compact('units','invGroups'));
     }
 
     /**
@@ -57,6 +56,11 @@ class ResearcherController extends Controller
         $researcher = Researcher::create($request->all());
         $researcher->passport = $request->passport;
         $researcher->save();
+
+        if($request->investigation_group_id){
+            $researcher->investigation_groups()->attach($request->get('investigation_group_id'));
+        }
+
         return back()->with('info','Investigador creado con exito!');
     }
 
@@ -83,8 +87,9 @@ class ResearcherController extends Controller
     {
         $researcher = Researcher::find($id);
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
 
-        return view('researcher.edit', compact('researcher','units'));
+        return view('researcher.edit', compact('researcher','units','invGroups'));
     }
 
     /**
@@ -103,6 +108,10 @@ class ResearcherController extends Controller
 
         $researcher->passport = $request->passport;
         $researcher->save();
+
+        if($request->investigation_group_id){
+            $researcher->investigation_groups()->sync($request->get('investigation_group_id'));
+        }
 
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }

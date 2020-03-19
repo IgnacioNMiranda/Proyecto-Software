@@ -57,7 +57,7 @@
                     {{ $projects->render() }}
                 </div>
                 @else
-                <p class="display-4 text-center"> Aún no se registran proyectos </p>
+                <p class="display-4 text-center"> No se encontraron coincidencias </p>
                 @endif
 
             </div>

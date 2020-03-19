@@ -42,16 +42,34 @@
 
     <div class="row justify-content-around text-center verticalTopOffset">
         <div class="col-4">
-            <a href="#" class="btn btn-lg btn-secondary"> Productos </a>
+            <!-- exists() comprueba si existen products relacionados con invGroup -->
+            @if ($invGroup->products()->exists())
+                <a href="#" class="btn btn-lg btn-secondary"> Productos </a>
+            @else
+                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_products_modal"> Productos </a>
+            @endif
         </div>
         <div class="col-4">
-            <a href="#" class="btn btn-lg btn-secondary"> Proyectos </a>
+            <!-- exists() comprueba si existen projects relacionados con invGroup -->
+            @if ($invGroup->projects()->exists())
+                <a href="#" class="btn btn-lg btn-secondary"> Proyectos </a>
+            @else
+                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_projects_modal"> Proyectos </a>
+            @endif
         </div>
         <div class="col-4">
-            <a href="#" class="btn btn-lg btn-secondary"> Investigadores </a>
+            <!-- exists() comprueba si existen researchers relacionados con invGroup -->
+            @if ($invGroup->researchers()->exists())
+                <a href="#" class="btn btn-lg btn-secondary"> Investigadores </a>
+            @else
+                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_researchers_modal"> Investigadores </a>
+            @endif
         </div>
     </div>
 
 </div>
 
+@include("\investigation_groups\partials\\no_products_modal")
+@include("\investigation_groups\partials\\no_projects_modal")
+@include("\investigation_groups\partials\\no_researchers_modal")
 @endsection

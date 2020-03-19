@@ -14,8 +14,6 @@ use App\InvestigationGroup;
 
 use Illuminate\Support\Str;
 
-use Carbon\Carbon;
-
 class ProjectController extends Controller
 {
 
@@ -25,9 +23,7 @@ class ProjectController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
     }
-
 
     /**
      * Display a listing of the resource.
@@ -38,8 +34,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::orderBy('id','DESC')->paginate();
-        $dates = Carbon::parse();
-        return view('admin-invest.projects.index',compact('projects','dates'));
+        return view('admin-invest.projects.index',compact('projects'));
     }
 
     /**
@@ -50,8 +45,8 @@ class ProjectController extends Controller
     //Crea un proyecto 
     public function create()
     {
-        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
+        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
         return view('admin-invest.projects.create',compact('researchers_group','researchers','investigation_groups'));
     }
@@ -101,9 +96,10 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
+        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.edit',compact('project','researchers','investigation_groups'));
+        return view('admin-invest.projects.edit',compact('project','researchers_group','researchers','investigation_groups'));
     }
 
     /**

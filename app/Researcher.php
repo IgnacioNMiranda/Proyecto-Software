@@ -22,6 +22,10 @@ class Researcher extends Model
         return $this->belongsToMany(Project::class)->withTimestamps();
     }
 
+    public function unit(){
+        return $this->belongsTo(Unit::class);
+    }
+
     //Scope
 
     public function scopeCountry($query, $country)
@@ -31,8 +35,4 @@ class Researcher extends Model
 
 
     }
-
-
-
-
 }
