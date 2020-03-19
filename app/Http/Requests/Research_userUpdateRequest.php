@@ -24,13 +24,13 @@ class Research_userUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //Preguntarle al mikel
-            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:researchers,passport,'. $this->user, 
+            'passport' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:researchers,passport,'. $this->researcher_id, 
             //Regex alfanumerico que toma nombre y apellido
             'researcher_name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'state' => 'required',
             'country' => 'required',
-            'unit_id' => 'required'
+            'unit_id' => 'required',
+            'investigation_groups' => 'required|array',
         ];
     }
 
@@ -44,7 +44,8 @@ class Research_userUpdateRequest extends FormRequest
             'researcher_name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
-            'unit_id.required' => 'Debe elegir al menos una unidad asociada.'
+            'unit_id.required' => 'Debe elegir al menos una unidad asociada.',
+            'investigation_groups.required' => 'Debe elegir al menos un grupo de investigacion asociado.'
         ];
     }
 }

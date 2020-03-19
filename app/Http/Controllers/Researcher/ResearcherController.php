@@ -60,10 +60,9 @@ class ResearcherController extends Controller
         $researcher = Researcher::create($request->all());
         $researcher->passport = $request->passport;
         $researcher->save();
-
-        if($request->investigation_group_id){
-            $researcher->investigation_groups()->attach($request->get('investigation_group_id'));
-        }
+        
+        $researcher->investigation_groups()->attach($request->get('investigation_groups'));
+        
 
         return back()->with('info','Investigador creado con exito!');
     }
@@ -113,9 +112,8 @@ class ResearcherController extends Controller
         $researcher->passport = $request->passport;
         $researcher->save();
 
-        if($request->investigation_group_id){
-            $researcher->investigation_groups()->sync($request->get('investigation_group_id'));
-        }
+        $researcher->investigation_groups()->sync($request->get('investigation_groups'));
+        
 
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }

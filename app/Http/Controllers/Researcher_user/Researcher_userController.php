@@ -12,6 +12,7 @@ use App\Http\Requests\Research_userUpdateRequest;
 use App\Researcher;
 use App\Unit;
 use App\User;
+use App\InvestigationGroup;
 
 class Researcher_userController extends Controller
 {
@@ -33,7 +34,8 @@ class Researcher_userController extends Controller
     public function create()
     {
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-        return view('researcher_user.create', compact('units'));
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+        return view('researcher_user.create', compact('units','invGroups'));
     }
 
     /**
@@ -49,13 +51,13 @@ class Researcher_userController extends Controller
         $researcher->passport = $request->passport;
         $researcher->save();
 
+        $researcher->investigation_groups()->attach($request->get('investigation_groups'));
+
         $currentUser = User::find(Auth::user()->id);
         $currentUser->researcher_id = $researcher->id;
-        $researcher->passport = $request->passport;
-        $researcher->save();
         $currentUser->save();
         
-        return back()->with('info','Perfil editado con exito!');
+        return redirect()->route('researchers_users.edit', $researcher->id)->with('info','Perfil editado con exito!');
     }
 
     /**
@@ -79,8 +81,9 @@ class Researcher_userController extends Controller
     {
         $researcher = Researcher::find($id);
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
 
-        return view('researcher_user.edit', compact('researcher','units'));
+        return view('researcher_user.edit', compact('researcher','units','invGroups'));
     }
 
     /**
@@ -93,12 +96,12 @@ class Researcher_userController extends Controller
     public function update(Research_userUpdateRequest $request, $id)
     {
         $researcher = Researcher::find($id);
-        $researcher->passport = $request->passport;
-        $researcher->save();
         $researcher->fill($request->all())->save();
 
         $researcher->passport = $request->passport;
         $researcher->save();
+
+        $researcher->investigation_groups()->sync($request->get('investigation_groups'));
 
         return redirect()->route('researchers_users.edit', $researcher->id)->with('info','Perfil actualizado con exito!');
     }

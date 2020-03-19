@@ -30,7 +30,7 @@ class ResearchUpdateRequest extends FormRequest
             'state' => 'required',
             'country' => 'required',
             'unit_id' => 'required',
-            'investigation_group_id' => 'nullable',
+            'investigation_groups' => 'required|array',
         ];
     }
 
@@ -44,7 +44,8 @@ class ResearchUpdateRequest extends FormRequest
             'researcher_name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
-            'unit_id.required' => 'Debe elegir al menos una unidad asociada.'
+            'unit_id.required' => 'Debe elegir al menos una unidad asociada.',
+            'investigation_groups.required' => 'Debe elegir al menos un grupo de investigacion asociado.'
         ];
     }
 }
