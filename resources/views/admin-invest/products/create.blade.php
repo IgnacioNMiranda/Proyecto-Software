@@ -26,19 +26,18 @@
                                 ['class' => 'form-control', 'placeholder' => 'Seleccione Grupo de investigación', 'id' => 'investigation_group_id']) }}
                     </div>
      
+                    <div class="form-group">
+                        <label for="researchers">Investigador(es) Asociado(s)</label>
+                        {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
+                        {{ Form::select('researchers[]', $researchers, null,
+                                ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
+                    </div>
 
                     <div class="form-group">
                         {{ Form::label('description', 'Descripción del Producto') }}
                         {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
                     </div>
-                   
-                    <div class="form-group">
-                        <label for="researchers">Otros Investigador(es) Asociado(s)</label>
-                        {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
-                        {{ Form::select('researchers[]', $researchers, null,
-                                ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
-                    </div>
-                    
+ 
                     <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
 
                     <div class = "form-group">
@@ -67,3 +66,9 @@
 @include("admin-invest\products\partials\\researcher_form")
 
 @endsection
+
+{!! Html::script('js/dropdown.js') !!}
+
+
+
+

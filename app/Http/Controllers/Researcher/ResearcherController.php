@@ -8,13 +8,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ResearchStoreRequest;
 use App\Http\Requests\ResearchUpdateRequest;
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\DB;
 
 use App\Researcher;
 use App\Unit;
 
+
 class ResearcherController extends Controller
 {
+    public static function researchers($id){
+        return Researcher::where('id','=',$id)->get();
+    }
     /**
      * Display a listing of the resource.
      *
