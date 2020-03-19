@@ -25,19 +25,19 @@
           <div class="form-group">
             {{ Form::label('state','Estado') }}
             {{ Form::label('state','*', array('class' => 'text-danger'))}}
-            {{ Form::select('state', array('Postulado' => 'Postulado','En Ejecucion' => 'En Ejecución','Finalizado' => 'Finalizado','Cancelado' =>'Cancelado') 
+            {{ Form::select('state', array('Postulado' => 'Postulado','En Ejecucion' => 'En Ejecucion','Finalizado' => 'Finalizado','Cancelado' =>'Cancelado') 
                 ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
           </div>
 
           <div class="form-group">
-            {{ Form::label('researchers_group','Investigador(es) asociado(s) del grupo de investigación')}}
-            {{ Form::label('researchers_group','*', array('class' => 'text-danger'))}}
-            {{Form::select('researchers_group[]',$researchers,null, ['class'=>'form-control', 'multiple' => true])}}
+            {{ Form::label('researchers','Investigador(es) asociado(s) del grupo de investigación')}}
+            {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
+            {{Form::select('researchers[]',$researchers,null, ['class'=>'form-control', 'multiple' => true, 'id' => 'researchers_id'])}}
           </div>
-          
+
           <div class="form-group">
             {{ Form::label('researchers','Investigador(es) asociado(s)')}}
-            {{Form::select('researchers[]',$researchers,null, ['class'=>'form-control', 'multiple' => true])}}
+            {{Form::select('researchers[]',$researchers,null, ['class'=>'form-control', 'multiple' => true,'id' => 'researchers_id'])}}
           </div>
 
           <div class="form-group">
@@ -63,3 +63,4 @@
     </div>
   </div>
 </section>
+

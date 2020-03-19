@@ -37,6 +37,14 @@ class ProjectController extends Controller
         return view('admin-invest.projects.index',compact('projects'));
     }
 
+
+    public function getResearchers(Request $request,$id){
+        if($request->ajax()){
+            $researchers = Researcher::researchers($id);
+            return response()->json($researchers);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

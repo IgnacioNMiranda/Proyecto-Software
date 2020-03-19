@@ -25,21 +25,20 @@
                         {{ Form::text('researcher_name', null, ['class' => 'form-control']) }}
                     </div>
 
-                    <div class="form-group">
-                        <label for="country">País</label>
-                        {{ Form::label('country','*', array('class' => 'text-danger'))}}
-                        <select class="form-control" id="country" name="country">
-                            <option disabled selected>Selecciona una opción</option>
+                    <div class = "form-group">
                             @php
                             $countries = countries();
+                            $paises = array();
                             @endphp
-                            @foreach($countries as $clave=>$valor)
+                            @foreach ($countries as $clave=>$valor)
                                 @php
-                                $country = country($clave);
+                                $country = country($clave);    
+                                $paises[$country->getName()] = $country->getName();
                                 @endphp
-                                <option value = {{ $country->getName() }}> {{ $country->getName() }} </option>
                             @endforeach
-                        </select>
+                            {{ Form::label('country','País') }}
+                            {{ Form::label('country','*', array('class' => 'text-danger'))}}
+                            {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
                     </div>
                         
                     <div class = "form-group">
@@ -47,14 +46,18 @@
                         {{ Form::label('state','*', array('class' => 'text-danger'))}}
                         {{ Form::select("state",["Activo" => "Activo", "Inactivo" => "Inactivo"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
                     </div>
-
+                        
                     <div class = "form-group">
                         {{ Form::label('units','Unidad asociada') }}
                         {{ Form::label('units','*', array('class' => 'text-danger'))}}
                         {{ Form::select('unit_id', $units ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar unidad']) }}
-                    </div> 
+                    </div>    
 
-                    <button type="submit" class="btn btn-secondary" value="createNewResearcher" name="researcherButton">{{ __('Crear nuevo Investigador') }}</button>
+                    <div class = "form-group mt-4 d-flex justify-content-center">
+                        {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
+                    </div>
+
+                    
                 </div>
             {!! Form::close() !!}
 
