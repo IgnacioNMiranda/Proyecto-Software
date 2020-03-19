@@ -42,6 +42,14 @@ class ProjectController extends Controller
         return view('admin-invest.projects.index',compact('projects','dates'));
     }
 
+
+    public function getResearchers(Request $request,$id){
+        if($request->ajax()){
+            $researchers = Researcher::researchers($id);
+            return response()->json($researchers);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -51,7 +59,7 @@ class ProjectController extends Controller
     public function create()
     {
         $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name');
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
         return view('admin-invest.projects.create',compact('researchers_group','researchers','investigation_groups'));
     }
@@ -101,7 +109,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $researchers = Researcher::orderBy('researcher_name','ASC')->get();
+        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
         return view('admin-invest.projects.edit',compact('project','researchers','investigation_groups'));
     }
