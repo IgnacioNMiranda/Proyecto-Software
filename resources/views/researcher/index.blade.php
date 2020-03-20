@@ -28,18 +28,29 @@ use App\Unit;
                 @endforeach
 
                 <div class="card-body">
-
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
-                                {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar
-                                navbar-light bg-light','role' => 'search'])!!}
+                                @php
+                                $countries = countries();
+                                $paises = array();
+                                @endphp
+                                @foreach ($countries as $clave=>$valor)
+                                @php
+                                $country = country($clave);
+                                $paises[$country->getName()] = $country->getName();
+                                @endphp
+                                @endforeach
+                                {!! Form::open(['route' => 'researchers.store','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
-                                    {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!}
+                                {{-- {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!} --}}
+                                 {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
+
                                 </div>
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                                 {!! Form::close()!!}
+
                             </div>
 
                             <div class="col-md-4">

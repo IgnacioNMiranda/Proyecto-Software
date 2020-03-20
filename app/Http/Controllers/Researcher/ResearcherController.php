@@ -30,7 +30,7 @@ class ResearcherController extends Controller
         $country = $request->get('country');
 
         $researchers = Researcher::orderBy('researcher_name','DESC')
-        ->where('country','LIKE',"%$country%")
+        ->where('country','like','%'.$country.'%')
         ->paginate();
 
         return view('researcher.index', compact('researchers'));
@@ -60,9 +60,9 @@ class ResearcherController extends Controller
         $researcher = Researcher::create($request->all());
         $researcher->passport = $request->passport;
         $researcher->save();
-        
+
         $researcher->investigation_groups()->attach($request->get('investigation_groups'));
-        
+
 
         return back()->with('info','Investigador creado con exito!');
     }
@@ -113,7 +113,7 @@ class ResearcherController extends Controller
         $researcher->save();
 
         $researcher->investigation_groups()->sync($request->get('investigation_groups'));
-        
+
 
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }
