@@ -41,4 +41,6 @@ Route::resource('units',"Unit\UnitController");
 //Researcher_user
 Route::resource('researchers_users', 'Researcher_user\Researcher_userController');
 
+//Researcher_Group
+Route::resource('researchers_groups','Researcher_Group\Researcher_GroupController');
 
