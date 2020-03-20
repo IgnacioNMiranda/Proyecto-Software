@@ -30,7 +30,7 @@ Route::post('getResearchers', 'projectController@getResearchersForIDInvestigatio
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
-Route::get('/researchersGroup/{id}','InvestigationGroup\InvestigationGroupController@getResearchers')->name('getResearchers');
+Route::get('/researchersGroup','InvestigationGroup\InvestigationGroupController@getResearchers')->name('researchersGroup');
 Route::get('investigationGroup/{slug}', 'Web\PageController@showInvestigationGroup')->name('investigationGroup');
 
 //Research

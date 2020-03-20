@@ -66,26 +66,17 @@
 @include("admin-invest\products\partials\\researcher_form")
 
 <script>
-    jQuery(document).ready(function(){
-        jQuery('select[name="investigation_group_id"]').on('change', function(){
-            var investigation_group_id = jQuery(this).val();
-            if(investigation_group_id){
-                jQuery.ajax({
-                    url : '/researchersGroup/' + investigation_group_id,
-                    type : 'GET',
-                    dataType : 'json',
-                    success:function(data)
-                    {
-                        console.log(data);
-                        jQuery('select[name="researchers"]').empty();
-                        jQuery.each(data, function(key, value){
-                            $('select[name="researchers"]').append('<option value="'+ key + '">' + value + '</option>');
-                        });
-                    }
+    $(document).ready(function(){
+        $('#investigation_group_id').on('change', function(){
+            var investigation_group_id = $(this).val();
+            if($.trim(investigation_group_id) != ''){
+                $.get('researchersGroup', {id:investigation_group_id}, function(researchers){
+                    $("#researchers").empty();
+                    $("#researchers").append("<option value=''> Seleccione investigador(es)</option>");
+                    $.each(researchers, function(index, value){
+                        $("#researchers").append("<option value='" + index + "'>" + value + "</option>");
+                    })
                 });
-            }
-            else{
-                $('select[name="researchers"'),empty();
             }
         });
     });

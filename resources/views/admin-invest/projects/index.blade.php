@@ -15,17 +15,14 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                {!! Form::open(['route' => 'projects.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                            <div class="col-md-4 offset-md-8">
+                                {{!! Form::open(['route' => 'projects.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}}
                                 <div form-group>
-                                    {!!Form::select('state',config('options.states'),null,['class' =>
-                                    'form-control'])!!}
+                                    {{ Form::select('state', config('options.states'),null, ['class' => 'form-control']) }}
                                 </div>
                                 {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button> --}}
                                 <button type="submit" class="btn btn-secondary">Buscar</button>
-                                {!! Form::close()!!}
+                                {{!! Form::close() !!}}
                             </div>
                         </div>
                     </div>
@@ -40,7 +37,6 @@
                                 <th style="width: 3cm;">Fecha de Finalización</th>
                                 {{-- <th style="width: 1cm;">ID Grupo de Investigación</th> --}}
                                 <th colspan="3">&nbsp;</th>
-
                             </tr>
                         </thead>
                         <tbody>
