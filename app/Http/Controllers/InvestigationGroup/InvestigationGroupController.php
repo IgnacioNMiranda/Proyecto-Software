@@ -13,14 +13,19 @@ use App\Unit;
 use App\Researcher;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Str;
+
 
 use Image;
 
 class InvestigationGroupController extends Controller
 {
     public function getResearchers(Request $request, $id){
+        
+
+
         if($request->ajax()){
             $researchers = Researcher::researchers($id);
             return response()->json($researchers);

@@ -17,9 +17,6 @@ use App\InvestigationGroup;
 
 class ResearcherController extends Controller
 {
-    public static function researchers($id){
-        return Researcher::where('id','=',$id)->get();
-    }
     /**
      * Display a listing of the resource.
      *

@@ -23,7 +23,7 @@
                     <div class = "form-group">
                     {{ Form::label('investigation_group_id', "Grupo de investigación asociado") }}
                     {{ Form::label('investigation_group_id','*', array('class' => 'text-danger'))}}
-                    {{ Form::select('investigation_group_id', $invGroups, null,
+                    {{ Form::select('investigation_group_id', $invGroups, null, 
                                 ['class' => 'form-control', 'placeholder' => 'Seleccione Grupo de investigación', 'id' => 'investigation_group_id']) }}
                     </div>
      
@@ -63,26 +63,31 @@
         </div>
     </div>
 </body>
+
+<script>
+    $(function(){
+        $('#investigation_group_id').on('change', onSelectInvestigationGroupChange);
+    });
+
+    function onSelectInvestigationGroupChange(){
+        var investigation_group_id = $(this).val();
+        if(!investigation_group_id)
+            $('#researchers').html('<option value="">Seleccione Ingestigador(es)</option>');
+        //AJAX
+        $.get('/investigationGroups/'+investigation_group_id+'/researchers', function(data){
+            var html_select = '<option value="">Seleccione Investigador(es)</option>';
+            for(var i = 0; i<data.length; i++)
+                html_select += '<option value="'+data[i].id+'">'+data[i].researcher_name+'</option>';
+            $('#researchers').html(html_select);
+
+        });
+    }
+</script>
+
+
+
 </section>
 @include("admin-invest\products\partials\\researcher_form")
 
 @endsection
-
-
-@section('scripts')
-<script>
-$("#investigation_group_id").change(function(event){
-    $.get("researchers/"+event.target.value+"",function(response, investigation_group_id){
-        $("#researchers").empty();
-        for(i=0;i<response.length; i++){
-            $("#researchers").append("<option value = '"+response[i].id+"'> "+response[i].researcher_name+"</option>");
-        }
-    })
-});
-</script>
-@endsection
-
-
-
-
 
