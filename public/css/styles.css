@@ -25,15 +25,33 @@ footer {
 }
 
 .btn-primary{
-    background-color:#23415B!important;
+    background-color:#23415B!important;    
 }
 
 .btn-secondary{
     background-color: #4E7CA8!important;
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+.btn-secondary:hover,
+.btn-secondary:focus{
+    background-color: rgb(28, 111, 189) !important;
+}
+.btn-secondary:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.6) !important;
 }
 
 .btn-tertiary{
     background-color: #E0EBF6;
+}
+.btn-tertiary:hover,
+.btn-tertiary:focus{
+    background-color: rgb(150, 196, 236) !important;
+}
+.btn-tertiary:focus{
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.3) !important;
+}
+.btn-tertiary:active{
+    background-color: rgb(118, 178, 231) !important;
 }
 
 .thickBorder{
@@ -42,4 +60,5 @@ footer {
 
 .verticalTopOffset{
     margin-top: 50px;
+    margin-bottom: 50px;
 }

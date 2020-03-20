@@ -15,6 +15,14 @@ class InvestigationGroup extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->hasMany(Product::class);
+    }
+
+    public function researchers(){
+        return $this->belongsToMany(Researcher::class)->withTimestamps();
+    }
+
+    public function projects(){
+        return $this->hasMany(Project::class);
     }
 }

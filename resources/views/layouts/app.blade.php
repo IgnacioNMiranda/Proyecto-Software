@@ -22,6 +22,11 @@
   <!-- Bootstrap select styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
+  <!-- Dynamic Select JQuery-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+
 </head>
 
 <body>
@@ -202,11 +207,11 @@
         <h4 class="text-white mb-3">Informacion adicional</h4>
         <div class="row">
 
-          <div class="col-1">
+          <div class="col-12 col-md-1 mb-3 mb-md-0">
             <a class="text-white d-flex" href="#">Quiénes somos</a>
           </div>
 
-          <div class="col-2">
+          <div class="col-12 col-md-2 mb-3 mb-md-0">
             <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
           </div>
 
@@ -233,6 +238,8 @@
   <!--Bootstrap Select JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+
+  
 
 </body>
 

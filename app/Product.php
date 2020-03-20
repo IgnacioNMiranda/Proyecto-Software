@@ -15,13 +15,10 @@ class Product extends Model
     }
     
     public function projects(){
-        return $this->belongsToMany(Project::class)->withTimestamps();
+        return $this->belongsTo(Project::class);
     }
 
     public function invGroups(){
-        return $this->belongsToMany(InvestigationGroup::class)->withTimestamps();
+        return $this->belongsTo(InvestigationGroup::class);
     }
-
-
-    
 }

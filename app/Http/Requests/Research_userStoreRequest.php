@@ -29,7 +29,8 @@ class Research_userStoreRequest extends FormRequest
             'researcher_name' => 'required|regex:/(^[a-zA-Z]+[ ][a-zA-Z\s]+$)/',
             'state' => 'required',
             'country' => 'required',
-            'unit_id' => 'required'
+            'unit_id' => 'required',
+            'investigation_groups' => 'required|array',
         ];
     }
 
@@ -42,7 +43,8 @@ class Research_userStoreRequest extends FormRequest
             'researcher_name.regex' => 'Ingrese un nombre valido.',
             'state.required' => 'Debe seleccionar un estado.',
             'country.required' => 'Debe seleccionar un país.',
-            'unit_id.required' => 'Debe elegir una unidad asociada.'
+            'unit_id.required' => 'Debe elegir una unidad asociada.',
+            'investigation_groups.required' => 'Debe elegir al menos un grupo de investigacion asociado.'
         ];
     }
 }

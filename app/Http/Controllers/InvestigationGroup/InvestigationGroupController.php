@@ -10,6 +10,7 @@ use App\Http\Requests\InvestigationGroupUpdateRequest;
 
 use App\InvestigationGroup;
 use App\Unit;
+use App\Researcher;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -19,6 +20,15 @@ use Image;
 
 class InvestigationGroupController extends Controller
 {
+    public function getResearchers(Request $request, $id){
+        if($request->ajax()){
+            $researchers = Researcher::researchers($id);
+            return response()->json($researchers);
+        }
+    }
+
+
+
     public function __construct(){
         $this->middleware('auth');
     }

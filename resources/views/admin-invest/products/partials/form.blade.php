@@ -16,6 +16,7 @@
     {{ Form::label('description', 'Descripción del Producto') }}
     {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
 </div>
+
 <div class="form-group">
     <label for="researchers">Otros Investigador(es) Asociado(s)</label>
     {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
@@ -33,7 +34,7 @@
 <div class="form-group">
     {{ Form::label('project_id', "Nombre del Proyecto asociado") }}
     {{ Form::select('project_id', $projects, null, 
-                            ['class' => 'form-control', 'placeholder' => 'Seleccione Proyecto asociado', 'id' => 'project_id']) }}
+    ['class' => 'form-control', 'placeholder' => 'Seleccione Proyecto asociado', 'id' => 'project_id']) }}
 </div>
 
 <div class="form-group mt-4 text-center">

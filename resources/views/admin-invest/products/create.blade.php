@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
@@ -26,21 +27,20 @@
                                 ['class' => 'form-control', 'placeholder' => 'Seleccione Grupo de investigación', 'id' => 'investigation_group_id']) }}
                     </div>
      
+                    <div class="form-group">
+                        <label for="researchers">Investigador(es) Asociado(s)</label>
+                        {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
+                        {{ Form::select('researchers[]', $researchers, null,
+                                ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
+                    </div>
+
+                    <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
 
                     <div class="form-group">
                         {{ Form::label('description', 'Descripción del Producto') }}
                         {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
                     </div>
-                   
-                    <div class="form-group">
-                        <label for="researchers">Otros Investigador(es) Asociado(s)</label>
-                        {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
-                        {{ Form::select('researchers[]', $researchers, null,
-                                ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
-                    </div>
-                    
-                    <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
-
+ 
                     <div class = "form-group">
                         {{ Form::label('date', 'Fecha de Creación') }}
                         {{ Form::label('date','*', array('class' => 'text-danger'))}}
@@ -67,3 +67,22 @@
 @include("admin-invest\products\partials\\researcher_form")
 
 @endsection
+
+
+@section('scripts')
+<script>
+$("#investigation_group_id").change(function(event){
+    $.get("researchers/"+event.target.value+"",function(response, investigation_group_id){
+        $("#researchers").empty();
+        for(i=0;i<response.length; i++){
+            $("#researchers").append("<option value = '"+response[i].id+"'> "+response[i].researcher_name+"</option>");
+        }
+    })
+});
+</script>
+@endsection
+
+
+
+
+
