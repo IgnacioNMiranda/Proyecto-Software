@@ -13,7 +13,22 @@
 
                 @if ($projects->items() != null)
                 <div class="card-body">
-                
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                {!! Form::open(['route' => 'projects.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                                <div form-group>
+                                    {!!Form::select('states',config('options.states'),null,['class' =>
+                                    'form-control'])!!}
+                                </div>
+                                {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button> --}}
+                                <button type="submit" class="btn btn-secondary">Buscar</button>
+                                {!! Form::close()!!}
+                            </div>
+                        </div>
+                    </div>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>

@@ -31,9 +31,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     //Muestra la lista de proyectos
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::orderBy('id','DESC')->paginate();
+        $projects = Project::state($request->get('state'))->orderBy('id','DESC')->paginate();
         return view('admin-invest.projects.index',compact('projects'));
     }
 
@@ -43,6 +43,13 @@ class ProjectController extends Controller
             $researchers = Researcher::researchers($id);
             return response()->json($researchers);
         }
+    }
+
+    public function getResearchersForIDInvesigationGroup(Request $request,$id)
+    {
+        print_r($request);
+        $researchers = App\investigation_group_researcher::where('investigation_group_id', '=', $id);
+        echo($researchers);
     }
 
     /**
@@ -72,8 +79,6 @@ class ProjectController extends Controller
         $project = Project::create($request->all());
         $project->slug = Str::slug($project->name);
         $project->save();
-
-
 
         $project->researchers()->attach($request->get('researchers'));
 
