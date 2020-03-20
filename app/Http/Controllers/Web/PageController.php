@@ -27,5 +27,4 @@ class PageController extends Controller
         return view('Investigation_groups.showDetail', compact('invGroup'));
     }
 
-
 }

@@ -21,11 +21,9 @@ use Image;
 class InvestigationGroupController extends Controller
 {
 
-    public function getResearchers(Request $request, $id){
-        if($request->ajax()){
-            $researchers = InvestigationGroup::find($id)->researchers;
-            return response()->json($researchers);
-        }
+    public function getResearchers($id){
+        $researchers = InvestigationGroup::find($id)->researchers;
+        return json_encode($researchers);
     }
 
     public function __construct(){
