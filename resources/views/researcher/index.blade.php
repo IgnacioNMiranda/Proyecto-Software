@@ -7,18 +7,18 @@ use App\Unit;
 
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
-        <div class = "col-md-12 justify-content-center">
+        <div class="col-md-12 justify-content-center">
             <div class="card border-secondary">
-                <div class = "card-header h2 bg-tertiary">
+                <div class="card-header h2 bg-tertiary">
                     Listado Investigadores
-                    <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success float-right">Crear nuevo investigador</a>
+                    <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success float-right">Crear nuevo
+                        investigador</a>
                 </div>
 
                 @php
-                $ActiveResearcher = 0;
+                    $ActiveResearcher = 0;
                 @endphp
                 @foreach ($researchers as $researcher)
-
                     @if ($researcher->state == "Activo")
                         @php
                             $ActiveResearcher += 1;
@@ -27,41 +27,34 @@ use App\Unit;
                     @endif
                 @endforeach
 
-                @if ($ActiveResearcher == 1)
-                    <div class="card-body">
+                <div class="card-body">
 
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4">
-                                    {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
-                                    <div class="form-group">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar
+                                navbar-light bg-light','role' => 'search'])!!}
+                                <div class="form-group">
                                     {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!}
-                                    </div>
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                                    {!! Form::close()!!}
                                 </div>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                                {!! Form::close()!!}
+                            </div>
 
-                                <div class="col-md-4">
-                                    {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
-                                    <div class="form-group">
+                            <div class="col-md-4">
+                                {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar
+                                navbar-light bg-light','role' => 'search'])!!}
+                                <div class="form-group">
                                     {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
-                                    </div>
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                                    {!! Form::close()!!}
-
                                 </div>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                                {!! Form::close()!!}
+
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
+                    </div>
+                    @if ($ActiveResearcher == 1)
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -69,7 +62,6 @@ use App\Unit;
                                     <th style="width: 3.5cm;"> País</th>
                                     <th>Unidad</th>
                                     <th colspan="2">&nbsp;</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,7 +76,8 @@ use App\Unit;
                                     </td>
 
                                     <td width="10px">
-                                        <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
+                                        <a href="{{ route('researchers.edit', $researcher->id) }}"
+                                            class="btn btn-sm btn-secondary">
                                             Editar
                                         </a>
                                     </td>
@@ -93,11 +86,11 @@ use App\Unit;
                             </tbody>
                         </table>
                         {{ $researchers->render() }}
-                    </div>
-                @else
-                    <p class="display-4 text-center"> No se encontraron coincidencias </p>
-                @endif
+                    @else
+                        <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
+                    @endif
 
+                </div>
             </div>
         </div>
     </div>

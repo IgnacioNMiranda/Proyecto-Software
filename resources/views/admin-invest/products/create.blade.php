@@ -29,9 +29,8 @@
      
                     <div class="form-group">
                         <label for="researchers">Investigador(es) Asociado(s)</label>
-                        {{ Form::label('researchers','*', array('class' => 'text-danger'))}}
-                        {{ Form::select('researchers[]', $researchers, null,
-                                ['class' => 'form-control', 'multiple' => true, 'id' => 'researchers_id']) }}
+                        {{ Form::label('researchers[]','*', array('class' => 'text-danger'))}}
+                        {{ Form::select('researchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, ['id' => 'researchers', 'multiple' => 'multiple']) }}
                     </div>
 
                     <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
@@ -66,23 +65,21 @@
 </section>
 @include("admin-invest\products\partials\\researcher_form")
 
-@endsection
-
-
-@section('scripts')
 <script>
-$("#investigation_group_id").change(function(event){
-    $.get("researchers/"+event.target.value+"",function(response, investigation_group_id){
-        $("#researchers").empty();
-        for(i=0;i<response.length; i++){
-            $("#researchers").append("<option value = '"+response[i].id+"'> "+response[i].researcher_name+"</option>");
-        }
-    })
-});
+    $(document).ready(function(){
+        $('#investigation_group_id').on('change', function(){
+            var investigation_group_id = $(this).val();
+            if($.trim(investigation_group_id) != ''){
+                $.get('researchersGroup',{id:investigation_group_id}, function(researchers){
+                    $("#researchers").empty();
+                    $("#researchers").append("<option value=''> Seleccione investigador(es)</option>");
+                    $.each(researchers, function(index, value){
+                        $("#researchers").append("<option value='" + index + "'>" + value + "</option>");
+                    })
+                });
+            }
+        });
+    });
 </script>
+
 @endsection
-
-
-
-
-
