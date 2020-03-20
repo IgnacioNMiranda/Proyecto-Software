@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< Updated upstream
     "content-hash": "3fc562f6e7b93fef1e6e956e55d0d4f8",
-=======
-    "content-hash": "0a5782fe1200480921703c6ad87cf516",
->>>>>>> Stashed changes
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -894,16 +890,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.65",
+            "version": "1.0.66",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8"
+                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
-                "reference": "8f17b3ba67097aafb8318cd5c553b1acf7c891c8",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/021569195e15f8209b1c4bebb78bd66aa4f08c21",
+                "reference": "021569195e15f8209b1c4bebb78bd66aa4f08c21",
                 "shasum": ""
             },
             "require": {
@@ -974,7 +970,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2020-03-08T18:53:20+00:00"
+            "time": "2020-03-17T18:58:12+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1734,25 +1730,25 @@
         },
         {
             "name": "rinvex/countries",
-            "version": "v7.0.0",
+            "version": "v6.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rinvex/countries.git",
-                "reference": "a5239f012b8310c57397aa70159e8ab3c38344a6"
+                "reference": "0dd9da817c1faa33429fe56b8ba059fdabe6e0fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rinvex/countries/zipball/a5239f012b8310c57397aa70159e8ab3c38344a6",
-                "reference": "a5239f012b8310c57397aa70159e8ab3c38344a6",
+                "url": "https://api.github.com/repos/rinvex/countries/zipball/0dd9da817c1faa33429fe56b8ba059fdabe6e0fe",
+                "reference": "0dd9da817c1faa33429fe56b8ba059fdabe6e0fe",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4.0"
+                "php": "^7.2.0"
             },
             "require-dev": {
-                "codedungeon/phpunit-result-printer": "^0.27.0",
-                "laravel/helpers": "^1.2.0",
-                "phpunit/phpunit": "^9.0.0"
+                "codedungeon/phpunit-result-printer": "^0.26.0",
+                "laravel/helpers": "^1.1.0",
+                "phpunit/phpunit": "^8.3.0"
             },
             "type": "library",
             "extra": {
@@ -1808,7 +1804,7 @@
                 "rinvex",
                 "svg"
             ],
-            "time": "2020-03-15T14:04:27+00:00"
+            "time": "2020-03-13T18:04:45+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
