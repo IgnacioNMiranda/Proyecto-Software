@@ -15,12 +15,8 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
-<<<<<<< Updated upstream
         "nesbot/carbon": "^2.31",
         "rinvex/countries": "^6.1"
-=======
-        "rinvex/countries": "^7.0"
->>>>>>> Stashed changes
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
