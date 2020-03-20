@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @php
 use App\Unit;
+use App\Researcher;
 @endphp
 
 
@@ -33,12 +34,25 @@ use App\Unit;
                                     $unit = Unit::find($researcher->unit_id);    
                                     @endphp
                                     {{ $unit->name }}
-                                </td> 
+                                </td>
+                                @if ($currentUser->userType == "Administrador")
                                 <td width="10px">
                                     <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
                                         Editar
                                     </a>
-                                </td>     
+                                </td> 
+                                @elseif(Researcher::find($currentUser->researcher_id) != null)
+                                    @php
+                                        $currentRes = Researcher::find($currentUser->researcher_id);
+                                    @endphp
+                                    @if (in_array($currentRes,$researchers))
+                                    <td width="10px">
+                                        <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
+                                            Editar
+                                        </a>
+                                    </td>   
+                                    @endif
+                                @endif    
                             </tr>    
                             @endforeach
                         </tbody>

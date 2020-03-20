@@ -27,20 +27,27 @@ Route::resource('users','Admin\UserController');
 Route::resource('projects','Project\ProjectController');
 
 //Investigation group
+Route::get('researchersGroup/{id}','InvestigationGroup\InvestigationGroupController@getResearchers')->name('getResearchers');
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
 Route::get('investigationGroup/{slug}', 'Web\PageController@showInvestigationGroup')->name('investigationGroup');
 
 //Research
 Route::resource('researchers', "Researcher\ResearcherController");
+<<<<<<< HEAD
+
+=======
 Route::get('researchers/{id}','InvestigationGroup\InvestigationGroupController@getResearchers');
-Route::get('/investigationGroups/{id}/researchers', 'Researcher\ResearcherController@byInvestigationGroup');
+>>>>>>> development
 
 //Unit
 Route::resource('units',"Unit\UnitController");
 
 //Researcher_user
 Route::resource('researchers_users', 'Researcher_user\Researcher_userController');
+<<<<<<< HEAD
+=======
 
 //Researcher_Group
 Route::resource('researchers_groups','Researcher_Group\Researcher_GroupController');
 
+>>>>>>> development
