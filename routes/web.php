@@ -25,6 +25,8 @@ Route::resource('users','Admin\UserController');
 
 //Project
 Route::resource('projects','Project\ProjectController');
+Route::post('getResearchers', 'projectController@getResearchersForIDInvestigationGroup');
+
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
