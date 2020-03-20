@@ -35,21 +35,14 @@ Route::get('investigationGroup/{slug}', 'Web\PageController@showInvestigationGro
 
 //Research
 Route::resource('researchers', "Researcher\ResearcherController");
-<<<<<<< HEAD
-
-=======
 Route::get('researchers/{id}','InvestigationGroup\InvestigationGroupController@getResearchers');
->>>>>>> development
 
 //Unit
 Route::resource('units',"Unit\UnitController");
 
 //Researcher_user
 Route::resource('researchers_users', 'Researcher_user\Researcher_userController');
-<<<<<<< HEAD
-=======
 
 //Researcher_Group
 Route::resource('researchers_groups','Researcher_Group\Researcher_GroupController');
 
->>>>>>> development

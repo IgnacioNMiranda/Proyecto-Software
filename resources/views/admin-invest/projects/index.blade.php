@@ -20,7 +20,7 @@
                             <div class="col-md-4">
                                 {!! Form::open(['route' => 'projects.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                 <div form-group>
-                                    {!!Form::select('states',config('options.states'),null,['class' =>
+                                    {!!Form::select('state',config('options.states'),null,['class' =>
                                     'form-control'])!!}
                                 </div>
                                 {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button> --}}

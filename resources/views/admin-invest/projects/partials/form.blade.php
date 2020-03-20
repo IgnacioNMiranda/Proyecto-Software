@@ -42,6 +42,10 @@
     value="<?php echo date("Y-m-d");?>">
 </div>
 
+{{-- <div class ="form-group"> --}}
+  {{-- {{ Form::date('deadline', new \DateTime(), ['class' => 'form-danger']) }} --}}
+{{-- </div> --}}
+
 <div class="form-group">
   {{ Form::label('endDate', 'Fecha de Término ') }}
   {{ Form::label('endDate','*', array('class' => 'text-danger'))}}
@@ -51,6 +55,13 @@
 <div class="form-group mt-4 d-flex justify-content-center">
   {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
 </div>
+
+{{-- <script> --}}
+  // $('#datetimepicker').datetimepicker({
+    // format: 'yyyy-mm-dd'
+// });
+{{-- </script> --}}
+
 
 {{-- Cuando se llama algo de JQuery se pone el simbolo # adelante (por id) --}}
 {{-- Tambien se pueden llamar las clases para los estilos pero anteponiendo un . --}}

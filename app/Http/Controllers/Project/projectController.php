@@ -96,7 +96,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        return view('admin-invest.projects.show',compact('project'));
+        $id = Project::find($id)->researchers()->pluck('researcher_name');
+        return view('admin-invest.projects.show',compact('project','id'));
     }
 
     /**
