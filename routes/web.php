@@ -43,3 +43,5 @@ Route::resource('researchers_users', 'Researcher_user\Researcher_userController'
 //Researcher_Group
 Route::resource('researchers_groups','Researcher_Group\Researcher_GroupController');
 
+//Product_Group
+Route::resource('products_groups','Product_Group\Product_GroupController');
