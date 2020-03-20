@@ -52,7 +52,7 @@
         <div class="col-12 col-md-4 mb-4">
             <!-- exists() comprueba si existen projects relacionados con invGroup -->
             @if ($invGroup->projects()->exists())
-                <a href="#" class="btn btn-lg btn-secondary"> Proyectos </a>
+                <a href="{{ route('projects_groups.show', $invGroup->id)}}" class="btn btn-lg btn-secondary"> Proyectos </a>
             @else
                 <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_projects_modal"> Proyectos </a>
             @endif
