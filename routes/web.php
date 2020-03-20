@@ -25,6 +25,8 @@ Route::resource('users','Admin\UserController');
 
 //Project
 Route::resource('projects','Project\ProjectController');
+Route::post('getResearchers', 'projectController@getResearchersForIDInvestigationGroup');
+
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
@@ -42,3 +44,9 @@ Route::resource('researchers_users', 'Researcher_user\Researcher_userController'
 
 //Researcher_Group
 Route::resource('researchers_groups','Researcher_Group\Researcher_GroupController');
+
+//Product_Group
+Route::resource('products_groups','Product_Group\Product_GroupController');
+
+//Proyect_Group
+Route::resource('projects_groups','Project_Group\Project_GroupController');
