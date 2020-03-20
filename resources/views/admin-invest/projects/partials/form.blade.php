@@ -57,9 +57,9 @@
 </div>
 
 {{-- <script> --}}
-  // $('#datetimepicker').datetimepicker({
-    // format: 'yyyy-mm-dd'
-// });
+  {{-- // $('#datetimepicker').datetimepicker({ --}}
+    {{-- // format: 'yyyy-mm-dd' --}}
+{{-- // }); --}}
 {{-- </script> --}}
 
 
