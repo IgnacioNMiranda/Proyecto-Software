@@ -32,7 +32,7 @@ class Researcher extends Model
     {
 
         if($country)
-            return $query->where('country','LIKE','%'.$country.'%');
+            return $query->where('country','LIKE',"%$country%");
 
 
     }

@@ -57,7 +57,7 @@ use App\Unit;
                                 {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar
                                 navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
-                                    {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
+                                {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
                                 </div>
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                                 {!! Form::close()!!}
@@ -100,6 +100,7 @@ use App\Unit;
                     @else
                         <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
                     @endif
+
 
                 </div>
             </div>

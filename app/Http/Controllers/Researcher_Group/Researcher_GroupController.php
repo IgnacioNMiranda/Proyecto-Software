@@ -18,9 +18,26 @@ class Researcher_GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,$id)
     {
-        //
+
+        $currentUser = User::find(Auth::user()->id);
+        $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
+        $researchers = array();
+        foreach ($ids as $clave => $valor) {
+            $researcher = Researcher::find($valor);
+            $researchers[$researcher->id] = $researcher;
+
+        }
+        $country = $request->get('country');
+
+        $researchers_groups= Researcher::orderBy('researcher_name','DESC')
+        ->country($country)
+        ->paginate();
+
+        return view('researcher_group.index', compact('researchers','currentUser'));
+
+
     }
 
     /**
@@ -58,8 +75,9 @@ class Researcher_GroupController extends Controller
         foreach ($ids as $clave => $valor) {
             $researcher = Researcher::find($valor);
             $researchers[$researcher->id] = $researcher;
-            
+
         }
+
         return view('researcher_group.show', compact('researchers','currentUser'));
     }
 
