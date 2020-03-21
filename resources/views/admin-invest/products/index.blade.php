@@ -35,7 +35,7 @@
                                     </td>
                                     <td width="10px">
                                         {!! Form::open(['route' => ['products.destroy', $product->id], 'method' => 'DELETE'])!!}
-                                            <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar?')"> 
+                                            <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar este producto?')"> 
                                                 Eliminar
                                             </button>
                                         {!! Form::close() !!}
@@ -47,7 +47,7 @@
                         {{ $products->render()}}
                     </div>
                 @else
-                    <p class="display-4 text-center"> No se encontraron coincidencias </p>       
+                    <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>       
                 @endif
 
             </div>

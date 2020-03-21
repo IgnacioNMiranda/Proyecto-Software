@@ -23,14 +23,21 @@ use Image;
 class InvestigationGroupController extends Controller
 {
 
-    public function getResearchers(Request $request, $id){
-        
+    public function getResearchers(Request $request){
+        $researchers = InvestigationGroup::find($request->id)->researchers;
+        return response()->json($researchers);
+    }
 
+    public function getNotResearchers(Request $request){
+        $notResearchers = Researcher::whereDoesntHave('investigation_groups', function ($query) use ($request) {
+            $query->where('investigation_group_researcher.investigation_group_id', '=', $request->id);
+        })->select('researchers.id', 'researchers.researcher_name')->get();
+        return response()->json($notResearchers);
+    }
 
-        if($request->ajax()){
-            $researchers = InvestigationGroup::find($id)->researchers;
-            return response()->json($researchers);
-        }
+    public function getProjects(Request $request){
+        $projects = InvestigationGroup::find($request->id)->projects;
+        return response()->json($projects);
     }
 
     public function __construct(){

@@ -50,12 +50,9 @@ class productController extends Controller
     public function create()
     {
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-
-        $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
 
-        return view('admin-invest.products.create', compact('projects', 'researchers', 'invGroups','units'));
+        return view('admin-invest.products.create', compact('invGroups','units'));
     }
 
     /**
@@ -66,14 +63,16 @@ class productController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-    
         //validar campos obligatorios
-        $product =Product::create($request->all());
+        $product = Product::create($request->all());
         $product->slug = Str::slug($product->name);
         $product->save();
 
+        //Merge de arreglos de investigadores
+        $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+
         //Asignacion n-n con researchers, attach para crear la relacion
-        $product->researchers()->attach($request->get('researchers'));
+        $product->researchers()->attach($productResearchers);
 
         return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto creado con éxito');
@@ -100,11 +99,9 @@ class productController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $projects = Project::orderBy('name','ASC')->pluck('name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name', 'id');
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.products.edit', compact('product','projects','researchers','invGroups','units'));
+        return view('admin-invest.products.edit', compact('product','invGroups','units'));
     }
 
     /**
@@ -123,12 +120,14 @@ class productController extends Controller
         $product->slug = Str::slug($product->name);
         $product->save();
 
+        //Merge de arreglos de investigadores
+        $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+
         //Asignacion n-n con researcher, sync para actualizar la relacion products con researchers
-        $product->researchers()->sync($request->get('researchers'));
+        $product->researchers()->sync($productResearchers);
 
         return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto actualizado con éxito');
-
     }
 
     /**

@@ -13,8 +13,7 @@
                     <p><strong>Nombre</strong> {{$product->name}}</p>
                     <p><strong>Slug</strong> {{$product->slug}}</p>
                 </div>
-
-
+                
             </div>
         </div>
     </div>
