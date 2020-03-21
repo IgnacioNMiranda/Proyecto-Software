@@ -1,43 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Researcher_Group;
+namespace App\Http\Controllers\Product_Group;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\Controller;
-
-use App\Researcher;
+use App\Product;
 use App\InvestigationGroup;
 use App\User;
+use App\Researcher;
 
-class Researcher_GroupController extends Controller
+class Product_GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id)
+    public function index()
     {
-
-        $currentUser = User::find(Auth::user()->id);
-        $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
-        $researchers = array();
-        foreach ($ids as $clave => $valor) {
-            $researcher = Researcher::find($valor);
-            $researchers[$researcher->id] = $researcher;
-
-        }
-        $country = $request->get('country');
-
-        $researchers_groups= Researcher::orderBy('researcher_name','DESC')
-        ->country($country)
-        ->paginate();
-
-        return view('researcher_group.index', compact('researchers','currentUser'));
-
-
+        //
     }
 
     /**
@@ -70,15 +53,15 @@ class Researcher_GroupController extends Controller
     public function show($id)
     {
         $currentUser = User::find(Auth::user()->id);
+        $products = Product::orderBy('name','ASC')->get();
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
             $researcher = Researcher::find($valor);
             $researchers[$researcher->id] = $researcher;
-
+            
         }
-
-        return view('researcher_group.show', compact('researchers','currentUser'));
+        return view('product_group.show', compact('products','currentUser','researchers','id'));
     }
 
     /**

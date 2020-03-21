@@ -31,9 +31,9 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     //Muestra la lista de proyectos
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::orderBy('id','DESC')->paginate();
+        $projects = Project::state($request->get('state'))->orderBy('id','DESC')->paginate();
         return view('admin-invest.projects.index',compact('projects'));
     }
 
@@ -45,12 +45,19 @@ class ProjectController extends Controller
         }
     }
 
+    public function getResearchersForIDInvesigationGroup(Request $request,$id)
+    {
+        print_r($request);
+        $researchers = App\investigation_group_researcher::where('investigation_group_id', '=', $id);
+        echo($researchers);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    //Crea un proyecto 
+    //Crea un proyecto
     public function create()
     {
         $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
@@ -73,8 +80,6 @@ class ProjectController extends Controller
         $project->slug = Str::slug($project->name);
         $project->save();
 
-
-
         $project->researchers()->attach($request->get('researchers'));
 
         return redirect()->route('projects.create',$project->id)
@@ -91,7 +96,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        return view('admin-invest.projects.show',compact('project'));
+        $id = Project::find($id)->researchers()->pluck('researcher_name');
+        return view('admin-invest.projects.show',compact('project','id'));
     }
 
     /**
