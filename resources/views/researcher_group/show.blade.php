@@ -74,22 +74,24 @@ use App\Researcher;
                                     @endphp
                                     {{ $unit->name }}
                                 </td>
-                                @if ($currentUser->userType == "Administrador")
-                                <td width="10px">
-                                    <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
-                                        Editar
-                                    </a>
-                                </td>
-                                @elseif(Researcher::find($currentUser->researcher_id) != null)
-                                    @php
-                                        $currentRes = Researcher::find($currentUser->researcher_id);
-                                    @endphp
-                                    @if (in_array($currentRes,$researchers))
+                                @if ($currentUser != null)
+                                    @if ($currentUser->userType == "Administrador")
                                     <td width="10px">
                                         <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
                                             Editar
                                         </a>
                                     </td>
+                                    @elseif(Researcher::find($currentUser->researcher_id) != null)
+                                        @php
+                                            $currentRes = Researcher::find($currentUser->researcher_id);
+                                        @endphp
+                                        @if (in_array($currentRes,$researchers))
+                                        <td width="10px">
+                                            <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
+                                                Editar
+                                            </a>
+                                        </td>
+                                        @endif
                                     @endif
                                 @endif
                             </tr>
