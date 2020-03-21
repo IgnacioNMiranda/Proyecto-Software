@@ -13,6 +13,7 @@ use App\User;
 
 class Researcher_GroupController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +70,9 @@ class Researcher_GroupController extends Controller
      */
     public function show($id)
     {
-        $currentUser = User::find(Auth::user()->id);
+        if(Auth::user() != null){
+            $currentUser = User::find(Auth::user()->id);
+        }else{ $currentUser = null; }
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
@@ -77,7 +80,6 @@ class Researcher_GroupController extends Controller
             $researchers[$researcher->id] = $researcher;
 
         }
-
         return view('researcher_group.show', compact('researchers','currentUser'));
     }
 

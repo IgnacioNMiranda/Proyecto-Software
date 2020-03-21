@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+@php
+    use App\Researcher;
+@endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -133,7 +136,14 @@
         <ul class="navbar-nav ml-auto">
           @auth
           <li class="nav-item pr-4">
+            @if (Auth::user()->researcher_id == null)
             <span class="navbar-text text-white">Bienvenido, {{ Auth::user()->userType }}</span>
+            @else
+                @php
+                $researcher = Researcher::find(Auth::user()->researcher_id);
+                @endphp
+                <span class="navbar-text text-white">Bienvenido, {{ $researcher->researcher_name }}</span>
+            @endif
           </li>
           
           @if (Auth::user()->userType == "Investigador")
