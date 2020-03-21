@@ -29,6 +29,7 @@ class ProductUpdateRequest extends FormRequest
             //Regex alfanumerico de máximo 500 caracteres
             'description' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,500}$/',
             'researchers' => 'required|array',
+            'notResearchers' => 'nullable|array',
             'date' => 'required',
             'investigation_group_id' => 'required',
             'project_id'=> 'nullable',
@@ -39,12 +40,12 @@ class ProductUpdateRequest extends FormRequest
 
         return [
             'name.required' => 'El campo nombre es obligatorio.',
-            'name.unique' => 'Este nombre ya se encuentra en uso.',
             'name.regex' => 'Formato de nombre inválido.',
+            'name.unique' => 'Este nombre ya se encuentra en uso.',
             'description.regex' => 'Formato de descripción inválido.',
-            'researchers.required' => 'Debe elegir al menos un investigador registrado.',
+            'researchers.required' => 'Debe elegir al menos un investigador perteneciente al grupo de investigación',
             'date.required' => 'El campo fecha es obligatorio.',
-            'investigation_group_id' => 'el campo grupo de investigacion es obligatorio.',
+            'investigation_group_id.required' => 'el campo grupo de investigacion es obligatorio.',
         ];
     }
 }

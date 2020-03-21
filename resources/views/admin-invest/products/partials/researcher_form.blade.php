@@ -53,6 +53,15 @@
                         {{ Form::select('unit_id', $units ,null,['class' => 'form-control', 'placeholder'=>'Seleccionar unidad']) }}
                     </div>    
 
+                    @php
+                    $researcherInvGroup = isset($researcher) ? $researcher->investigation_groups()->pluck('investigation_group_id') : null;
+                    @endphp
+                    <div class="form-group">
+                        {{ Form::label('investigation_groups[]','Grupo(s) de investigación asociado(s)') }}
+                        {{ Form::label('investigation_groups[]','*', array('class' => 'text-danger'))}}
+                        {{ Form::select('investigation_groups[]', $invGroups, $researcherInvGroup, ['class' => 'form-control', 'id' => 'investigation_groups', 'multiple' => 'multiple']) }}
+                    </div>
+
                     <div class = "form-group mt-4 d-flex justify-content-center">
                         {{ Form::submit('Guardar', ['class' => 'btn btn-secondary']) }}
                     </div>

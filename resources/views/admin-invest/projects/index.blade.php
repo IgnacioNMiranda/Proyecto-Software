@@ -16,13 +16,13 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 offset-md-8">
-                                {{!! Form::open(['route' => 'projects.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}}
+                                {!! Form::open(['route' => 'projects.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}
                                 <div form-group>
                                     {{ Form::select('state', config('options.states'),null, ['class' => 'form-control']) }}
                                 </div>
                                 {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button> --}}
                                 <button type="submit" class="btn btn-secondary">Buscar</button>
-                                {{!! Form::close() !!}}
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     {{ $projects->render() }}
                 </div>
                 @else
-                <p class="display-4 text-center"> No se encontraron coincidencias </p>
+                    <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
                 @endif
 
             </div>
