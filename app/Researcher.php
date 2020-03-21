@@ -30,6 +30,7 @@ class Researcher extends Model
 
     public function scopeCountry($query, $country)
     {
+
         if($country)
             return $query->where('country','LIKE',"%$country%");
 

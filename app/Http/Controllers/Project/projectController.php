@@ -57,7 +57,7 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //Crea un proyecto 
+    //Crea un proyecto
     public function create()
     {
         $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');

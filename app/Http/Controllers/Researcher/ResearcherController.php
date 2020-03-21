@@ -30,11 +30,78 @@ class ResearcherController extends Controller
         $country = $request->get('country');
 
         $researchers = Researcher::orderBy('researcher_name','DESC')
-        ->where('country','LIKE',"%$country%")
+        ->country($country)
         ->paginate();
 
         return view('researcher.index', compact('researchers'));
     }
+
+    public function search(Request $request)
+    {
+
+        if($request->ajax()){
+
+
+            $researchers = Researcher::where('country','LIKE','%'.$request->country."%")->get();
+
+
+        }
+
+
+        return view('researcher.index', compact('researchers'));
+    }
+
+
+    public function action(Request $request)
+    {
+     if($request->ajax())
+     {
+      $output = '';
+      $query = $request->get('query');
+      if($query != '')
+      {
+       $data = DB::table('researchers')
+         ->where('country', 'like', '%'.$query.'%')
+        //  ->orWhere('Country', 'like', '%'.$query.'%')
+         ->orderBy('researcher_name', 'desc')
+         ->get();
+
+      }
+      else
+      {
+       $data = DB::table('researchers')
+         ->orderBy('researcher_name', 'desc')
+         ->get();
+      }
+      $total_row = $data->count();
+      if($total_row > 0)
+      {
+       foreach($data as $row)
+       {
+        $output .= '
+        <tr>
+         <td>'.$row->country.'</td>
+         </tr>
+        ';
+       }
+      }
+      else
+      {
+       $output = '
+       <tr>
+        <td align="center" colspan="5">No Data Found</td>
+       </tr>
+       ';
+      }
+      $data = array(
+       'table_data'  => $output,
+       'total_data'  => $total_row
+      );
+
+      echo json_encode($data);
+     }
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -60,9 +127,9 @@ class ResearcherController extends Controller
         $researcher = Researcher::create($request->all());
         $researcher->passport = $request->passport;
         $researcher->save();
-        
+
         $researcher->investigation_groups()->attach($request->get('investigation_groups'));
-        
+
 
         return back()->with('info','Investigador creado con exito!');
     }
@@ -113,7 +180,7 @@ class ResearcherController extends Controller
         $researcher->save();
 
         $researcher->investigation_groups()->sync($request->get('investigation_groups'));
-        
+
 
         return redirect()->route('researchers.edit', $researcher->id)->with('info','Investigador actualizado con exito!');
     }
