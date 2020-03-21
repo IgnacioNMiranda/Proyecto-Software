@@ -120,12 +120,14 @@ class productController extends Controller
         $product->slug = Str::slug($product->name);
         $product->save();
 
+        //Merge de arreglos de investigadores
+        $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+
         //Asignacion n-n con researcher, sync para actualizar la relacion products con researchers
-        $product->researchers()->sync($request->get('researchers'));
+        $product->researchers()->sync($productResearchers);
 
         return redirect()->route('products.edit', $product->id)
             ->with('info', 'Producto actualizado con éxito');
-
     }
 
     /**
