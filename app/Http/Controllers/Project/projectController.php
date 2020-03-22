@@ -60,10 +60,8 @@ class ProjectController extends Controller
     //Crea un proyecto
     public function create()
     {
-        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.create',compact('researchers_group','researchers','investigation_groups'));
+        return view('admin-invest.projects.create',compact('investigation_groups'));
     }
 
     /**
@@ -75,7 +73,15 @@ class ProjectController extends Controller
     //Salva los datos del proyecto
     public function store(ProjectStoreRequest $request)
     {
-        //Validado en archivo externo
+        $todayDate = \Carbon\Carbon::now();
+        $todayDate = $todayDate->format('Y-m-d');
+        if($request->startDate > $todayDate){
+            return back()->withErrors(['La fecha de inicio debe ser menor o igual a la fecha actual.']);
+        }
+        else if($request->endDate < $request->startDate){
+            return back()->withErrors(['La fecha de término debe ser mayor o igual a la fecha de creación.']);
+        }
+
         $project = Project::create($request->all());
         $project->slug = Str::slug($project->name);
         $project->save();
@@ -96,8 +102,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        $id = Project::find($id)->researchers()->pluck('researcher_name');
-        return view('admin-invest.projects.show',compact('project','id'));
+        $projectResearchers = $project->researchers()->pluck('researcher_name');
+        return view('admin-invest.projects.show',compact('project','projectResearchers'));
     }
 
     /**
@@ -110,10 +116,8 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.edit',compact('project','researchers_group','researchers','investigation_groups'));
+        return view('admin-invest.projects.edit',compact('project','investigation_groups'));
     }
 
     /**
@@ -126,7 +130,15 @@ class ProjectController extends Controller
     //Se actualiza lo del formulario de edicion
     public function update(ProjectUpdateRequest $request, $id)
     {
-        //validado en archivo externo
+        $todayDate = \Carbon\Carbon::now();
+        $todayDate = $todayDate->format('Y-m-d');
+        if($request->startDate > $todayDate){
+            return back()->withErrors(['La fecha de inicio debe ser menor o igual a la fecha actual.']);
+        }
+        else if($request->endDate < $request->startDate){
+            return back()->withErrors(['La fecha de término debe ser mayor o igual a la fecha de creación.']);
+        }
+
         $project = Project::find($id);
         $project->fill($request->all())->save();
 
