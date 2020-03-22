@@ -52,7 +52,9 @@ class Product_GroupController extends Controller
      */
     public function show($id)
     {
-        $currentUser = User::find(Auth::user()->id);
+        if(Auth::user() != null){
+            $currentUser = User::find(Auth::user()->id);
+        }else{ $currentUser = null; }
         $products = Product::orderBy('name','ASC')->get();
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();

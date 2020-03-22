@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Researcher;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\ResearchStoreRequest;
 use App\Http\Requests\ResearchUpdateRequest;
@@ -17,6 +18,12 @@ use App\InvestigationGroup;
 
 class ResearcherController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('auth');
+        //$this->middleware('checkRole');
+    }
+
     public static function researchers($id){
         return Researcher::where('id','=',$id)->get();
     }
@@ -110,8 +117,18 @@ class ResearcherController extends Controller
      */
     public function create()
     {
+        if(Auth::user()->userType=="Administrador"){ $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id'); }
+        else{
+            $ids = Researcher::find(Auth::user()->researcher_id)->investigation_groups()->pluck('investigation_group_id');
+            $invGroups = array();
+            foreach ($ids as $clave => $valor) {
+                $invGroup = InvestigationGroup::find($valor);
+                $invGroups[$invGroup->id] = $invGroup->name;
+
+            }
+        }
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+    
 
         return view('researcher.create', compact('units','invGroups'));
     }
@@ -155,6 +172,16 @@ class ResearcherController extends Controller
      */
     public function edit($id)
     {
+        if(Auth::user()->userType=="Administrador"){ $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id'); }
+        else{
+            $ids = Researcher::find(Auth::user()->researcher_id)->investigation_groups()->pluck('investigation_group_id');
+            $invGroups = array();
+            foreach ($ids as $clave => $valor) {
+                $invGroup = InvestigationGroup::find($valor);
+                $invGroups[$invGroup->id] = $invGroup->name;
+
+            }
+        }
         $researcher = Researcher::find($id);
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
