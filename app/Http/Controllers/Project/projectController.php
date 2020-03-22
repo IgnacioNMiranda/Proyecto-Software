@@ -11,6 +11,7 @@ use App\Http\Requests\ProjectUpdateRequest;
 use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
+use App\Unit;
 
 use Illuminate\Support\Str;
 
@@ -37,21 +38,6 @@ class ProjectController extends Controller
         return view('admin-invest.projects.index',compact('projects'));
     }
 
-
-    public function getResearchers(Request $request,$id){
-        if($request->ajax()){
-            $researchers = Researcher::researchers($id);
-            return response()->json($researchers);
-        }
-    }
-
-    public function getResearchersForIDInvesigationGroup(Request $request,$id)
-    {
-        print_r($request);
-        $researchers = App\investigation_group_researcher::where('investigation_group_id', '=', $id);
-        echo($researchers);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -60,8 +46,9 @@ class ProjectController extends Controller
     //Crea un proyecto
     public function create()
     {
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.create',compact('investigation_groups'));
+        return view('admin-invest.projects.create',compact('units', 'investigation_groups'));
     }
 
     /**
@@ -117,7 +104,8 @@ class ProjectController extends Controller
     {
         $project = Project::find($id);
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.edit',compact('project','investigation_groups'));
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        return view('admin-invest.projects.edit',compact('project','investigation_groups', 'units'));
     }
 
     /**

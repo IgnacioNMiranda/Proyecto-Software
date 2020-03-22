@@ -20,6 +20,7 @@
         </div>
     </div>
 </section>
+@include("admin-invest\projects\partials\\researcher_form")
 @endsection
 
 @section('scripts')

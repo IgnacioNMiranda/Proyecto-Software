@@ -30,6 +30,8 @@
   {{Form::select('researchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, ['class'=> 'form-control', 'multiple' => 'multiple', 'id' => 'researchers'])}}
 </div>
 
+<a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
+
 <div class="form-group">
   {{ Form::label('startDate', 'Fecha de Creación') }}
   {{ Form::label('startDate','*', array('class' => 'text-danger'))}}
