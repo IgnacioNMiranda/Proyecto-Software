@@ -15,17 +15,7 @@ use App\Unit;
                         investigador</a>
                 </div>
 
-                @php
-                    $ActiveResearcher = 0;
-                @endphp
-                @foreach ($researchers as $researcher)
-                    @if ($researcher->state == "Activo")
-                        @php
-                            $ActiveResearcher += 1;
-                            break;
-                        @endphp
-                    @endif
-                @endforeach
+
 
                 <div class="card-body">
                     <div class="container">
@@ -65,7 +55,23 @@ use App\Unit;
                             </div>
                         </div>
                     </div>
-                    @if ($ActiveResearcher == 1)
+                {{-- @php
+                    $ActiveResearcher = 0;
+                @endphp
+                @foreach ($researchers as $researcher)
+                    @if ($researcher->state == "Activo")
+                        @php
+                            $ActiveResearcher += 1;
+                            break;
+                        @endphp
+                    @endif
+                @endforeach --}}
+
+
+
+
+
+                    {{-- @if ($ActiveResearcher == 1) --}}
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -97,9 +103,9 @@ use App\Unit;
                             </tbody>
                         </table>
                         {{ $researchers->render() }}
-                    @else
-                        <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
-                    @endif
+                    {{-- @else
+                        <p class="h1 text-center mt-4"> No se encontraron coincidencias </p> --}}
+                    {{-- @endif --}}
 
 
                 </div>
