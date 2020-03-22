@@ -36,6 +36,12 @@ use App\Researcher;
                                     <td> {{ $project->state }}</td>
                                     <td>{{ date('d-m-Y', strtotime($project->startDate)) }}</td>
                                     <td>{{ date('d-m-Y', strtotime($project->endDate)) }}</td>
+                                    <td width="10px">
+                                        <a href="{{ route('projects.show', $project->id) }}"
+                                            class="btn btn-sm btn-secondary">
+                                            Ver
+                                        </a>
+                                    </td>
                                     @if($currentUser != null)
                                         @if ($currentUser->userType == "Administrador")
                                         <td width="10px">
