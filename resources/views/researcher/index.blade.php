@@ -15,17 +15,7 @@ use App\Unit;
                         investigador</a>
                 </div>
 
-                @php
-                    $ActiveResearcher = 0;
-                @endphp
-                @foreach ($researchers as $researcher)
-                    @if ($researcher->state == "Activo")
-                        @php
-                            $ActiveResearcher += 1;
-                            break;
-                        @endphp
-                    @endif
-                @endforeach
+
 
                 <div class="card-body">
                     <div class="container">
@@ -45,7 +35,7 @@ use App\Unit;
                                 {!! Form::open(['route' => 'researchers.store','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
                                 {{-- {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!} --}}
-                                 {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
+                                 {{ Form::text('country',null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
 
                                 </div>
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -54,7 +44,7 @@ use App\Unit;
                             </div>
 
                             <div class="col-md-4">
-                                {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar
+                                {!! Form::open(['route' => 'researchers.store','method' =>'GET','class' =>'navbar
                                 navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
                                 {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
@@ -65,7 +55,23 @@ use App\Unit;
                             </div>
                         </div>
                     </div>
-                    @if ($ActiveResearcher == 1)
+                {{-- @php
+                    $ActiveResearcher = 0;
+                @endphp
+                @foreach ($researchers as $researcher)
+                    @if ($researcher->state == "Activo")
+                        @php
+                            $ActiveResearcher += 1;
+                            break;
+                        @endphp
+                    @endif
+                @endforeach --}}
+
+
+
+
+
+                    {{-- @if ($ActiveResearcher == 1) --}}
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -97,9 +103,9 @@ use App\Unit;
                             </tbody>
                         </table>
                         {{ $researchers->render() }}
-                    @else
-                        <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
-                    @endif
+                    {{-- @else
+                        <p class="h1 text-center mt-4"> No se encontraron coincidencias </p> --}}
+                    {{-- @endif --}}
 
 
                 </div>

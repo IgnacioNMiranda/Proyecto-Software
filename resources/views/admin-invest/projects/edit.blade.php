@@ -20,5 +20,41 @@
         </div>
     </div>
 </section>
+@include("admin-invest\projects\partials\\researcher_form")
+@endsection
 
+@section('scripts')
+<script>
+    $(document).ready(function () {
+
+        function loadResearchers(){
+            var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
+        
+            var option = " "; // Define las opciones
+        
+            $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
+                type: 'get',
+                url: '{!!URL::to('researchersGroup')!!}',
+                data: {'id': invGroup_id},
+                success: function (researchers) {
+                    for (var i = 0; i < researchers.length; i++) {
+                        option +=  "<option value='" + researchers[i].id + "'>" + researchers[i].researcher_name + "</option>";
+                    } 
+                
+                    $('#researchers').html(" ");
+                    $("#researchers").append('<option value="0" selected disabled>Seleccione investigador(es)</option>');
+                    $("#researchers").append(option); //Agrega las options al select #researchers
+                },
+                error: function () {
+                    option += '<option value="0" selected disabled>Seleccione proyecto asociado</option>';
+                    $('#project_id').html(" ");
+                    $("#project_id").append(option); //Agrega las options al select #researchers
+                }
+            });
+        }
+
+        loadResearchers(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
+        $(document).on('change', '#investigation_group_id', loadResearchers);
+        });
+</script>
 @endsection
