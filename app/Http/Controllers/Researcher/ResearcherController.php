@@ -36,9 +36,17 @@ class ResearcherController extends Controller
     {
         $country = $request->get('country');
 
+
+
+
         $researchers = Researcher::orderBy('researcher_name','DESC')
         ->country($country)
         ->paginate();
+
+
+
+
+
 
         return view('researcher.index', compact('researchers'));
     }
@@ -46,68 +54,9 @@ class ResearcherController extends Controller
     public function search(Request $request)
     {
 
-        if($request->ajax()){
 
-
-            $researchers = Researcher::where('country','LIKE','%'.$request->country."%")->get();
-
-
-        }
-
-
-        return view('researcher.index', compact('researchers'));
     }
 
-
-    public function action(Request $request)
-    {
-     if($request->ajax())
-     {
-      $output = '';
-      $query = $request->get('query');
-      if($query != '')
-      {
-       $data = DB::table('researchers')
-         ->where('country', 'like', '%'.$query.'%')
-        //  ->orWhere('Country', 'like', '%'.$query.'%')
-         ->orderBy('researcher_name', 'desc')
-         ->get();
-
-      }
-      else
-      {
-       $data = DB::table('researchers')
-         ->orderBy('researcher_name', 'desc')
-         ->get();
-      }
-      $total_row = $data->count();
-      if($total_row > 0)
-      {
-       foreach($data as $row)
-       {
-        $output .= '
-        <tr>
-         <td>'.$row->country.'</td>
-         </tr>
-        ';
-       }
-      }
-      else
-      {
-       $output = '
-       <tr>
-        <td align="center" colspan="5">No Data Found</td>
-       </tr>
-       ';
-      }
-      $data = array(
-       'table_data'  => $output,
-       'total_data'  => $total_row
-      );
-
-      echo json_encode($data);
-     }
-    }
 
 
     /**
@@ -128,7 +77,7 @@ class ResearcherController extends Controller
             }
         }
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-    
+
 
         return view('researcher.create', compact('units','invGroups'));
     }

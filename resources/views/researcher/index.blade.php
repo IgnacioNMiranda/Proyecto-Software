@@ -35,7 +35,7 @@ use App\Unit;
                                 {!! Form::open(['route' => 'researchers.store','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
                                 {{-- {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!} --}}
-                                 {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
+                                 {{ Form::text('country',null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
 
                                 </div>
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
@@ -44,7 +44,7 @@ use App\Unit;
                             </div>
 
                             <div class="col-md-4">
-                                {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar
+                                {!! Form::open(['route' => 'researchers.store','method' =>'GET','class' =>'navbar
                                 navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
                                 {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
