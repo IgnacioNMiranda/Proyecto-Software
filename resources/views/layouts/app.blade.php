@@ -67,10 +67,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Grupos de investigacion
+              Grupos de investigaci&oacute;n
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('investigationGroups.create') }}">Crear grupo de investigacion</a>
+              <a class="dropdown-item" href="{{ route('investigationGroups.create') }}">Crear grupo de investigaci&oacute;n</a>
             </div>
           </li>
           @endif
@@ -209,11 +209,11 @@
     <footer class="page-footer font-small bg-primary">
 
       <div class="container-fluid text-center text-md-left">
-        <h4 class="text-white mb-3">Informacion adicional</h4>
+        <h4 class="text-white mb-3">Informaci&oacute;n adicional</h4>
         <div class="row">
 
           <div class="col-12 col-md-1 mb-3 mb-md-0">
-            <a class="text-white d-flex" href="#">Quiénes somos</a>
+            <a class="text-white d-flex" href="#">Qui&eacute;nes somos</a>
           </div>
 
           <div class="col-12 col-md-2 mb-3 mb-md-0">
