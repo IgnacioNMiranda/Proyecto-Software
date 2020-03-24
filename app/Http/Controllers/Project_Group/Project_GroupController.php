@@ -50,12 +50,21 @@ class Project_GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         if(Auth::user() != null){
             $currentUser = User::find(Auth::user()->id);
         }else{ $currentUser = null; }
-        $projects = Project::orderBy('name','ASC')->get();
+
+        $projects = Project::state($request->get('state'))->orderBy('id','DESC')->get();
+        $invProjects = array();
+        foreach ($projects as $project) {
+            if($project->investigation_group_id == $id){
+                $invProjects[$project->id] = $project;
+            }
+        }
+
+        /* dd($projects); */
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
@@ -63,7 +72,7 @@ class Project_GroupController extends Controller
             $researchers[$researcher->id] = $researcher;
             
         }
-        return view('project_group.show', compact('projects','currentUser','researchers','id'));
+        return view('project_group.show', compact('invProjects','currentUser','researchers','id'));
     }
 
     /**
