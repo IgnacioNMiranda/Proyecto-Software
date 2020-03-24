@@ -25,8 +25,6 @@ Route::resource('users','Admin\UserController');
 
 //Project
 Route::resource('projects','Project\ProjectController');
-Route::post('getResearchers', 'projectController@getResearchersForIDInvestigationGroup');
-
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
@@ -34,7 +32,6 @@ Route::get('/researchersGroup','InvestigationGroup\InvestigationGroupController@
 Route::get('/notResearchersGroup','InvestigationGroup\InvestigationGroupController@getNotResearchers');
 Route::get('/projectsGroup','InvestigationGroup\InvestigationGroupController@getProjects');
 Route::get('investigationGroup/{slug}', 'Web\PageController@showInvestigationGroup')->name('investigationGroup');
-
 
 //Research
 Route::resource('researchers', "Researcher\ResearcherController");
