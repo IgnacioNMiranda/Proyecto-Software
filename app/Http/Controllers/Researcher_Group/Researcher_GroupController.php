@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Researcher;
 use App\InvestigationGroup;
 use App\User;
+use App\Unit;
 
 class Researcher_GroupController extends Controller
 {
@@ -21,24 +22,7 @@ class Researcher_GroupController extends Controller
      */
     public function index(Request $request,$id)
     {
-
-        $currentUser = User::find(Auth::user()->id);
-        $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
-        $researchers = array();
-        foreach ($ids as $clave => $valor) {
-            $researcher = Researcher::find($valor);
-            $researchers[$researcher->id] = $researcher;
-
-        }
-        $country = $request->get('country');
-
-        $researchers_groups= Researcher::orderBy('researcher_name','DESC')
-        ->country($country)
-        ->paginate();
-
-        return view('researcher_group.index', compact('researchers','currentUser'));
-
-
+        //
     }
 
     /**
@@ -68,19 +52,34 @@ class Researcher_GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         if(Auth::user() != null){
             $currentUser = User::find(Auth::user()->id);
         }else{ $currentUser = null; }
-        $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
+
+        //Aplicación de filtros
+        $country = $request->get('country');
+
+        if($request->get('unit') != null){
+            $unit_id = current(Unit::where('name', $request->get('unit'))->pluck('id')->all());
+            if(!$unit_id){
+                $unit_id = ' ';
+            }
+        }else{
+            $unit_id = $request->get('unit');
+        }
+        //
+
+        $ids = InvestigationGroup::find($id)->researchers()->orderBy('researcher_name','DESC')
+        ->country($country)->unit($unit_id)->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
             $researcher = Researcher::find($valor);
             $researchers[$researcher->id] = $researcher;
-
         }
-        return view('researcher_group.show', compact('researchers','currentUser'));
+
+        return view('researcher_group.show', compact('researchers','currentUser', 'id'));
     }
 
     /**

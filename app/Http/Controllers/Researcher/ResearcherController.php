@@ -24,9 +24,6 @@ class ResearcherController extends Controller
         //$this->middleware('checkRole');
     }
 
-    public static function researchers($id){
-        return Researcher::where('id','=',$id)->get();
-    }
     /**
      * Display a listing of the resource.
      *
