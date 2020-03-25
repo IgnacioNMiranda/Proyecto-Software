@@ -21,5 +21,8 @@ class PageController extends Controller
 
         return view('Investigation_groups.showDetail', compact('invGroup'));
     }
+    public function ShowAbout(){
+        return view('About_us');
+    }
 
 }

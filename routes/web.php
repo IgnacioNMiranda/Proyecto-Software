@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/home', 'Web\PageController@investigation_groups')->name('home');
 
+Route::get('about_us','Web\PageController@showAbout')->name('ShowAbout_us');
+
 //Product
 Route::resource('products', 'Product\productController');
 
