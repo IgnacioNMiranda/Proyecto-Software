@@ -16,6 +16,7 @@
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -213,7 +214,7 @@
         <div class="row">
 
           <div class="col-12 col-md-1 mb-3 mb-md-0">
-            <a class="text-white d-flex" href="#">Qui&eacute;nes somos</a>
+          <a class="text-white d-flex" href="{{ route('ShowAbout_us') }}">Qui&eacute;nes somos</a>
           </div>
 
           <div class="col-12 col-md-2 mb-3 mb-md-0">
