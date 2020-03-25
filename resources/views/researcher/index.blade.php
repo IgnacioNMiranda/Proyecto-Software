@@ -3,6 +3,7 @@
 @section('content')
 @php
 use App\Unit;
+use App\User;
 @endphp
 
 <div class="container mt-4 p-4">
@@ -69,16 +70,32 @@ use App\Unit;
                                         <td> {{ $researcher->country }} </td>
                                         <td>
                                             @php
-                                            $unit = Unit::find($researcher->unit_id);
-                                            @endphp {{ $unit->name}}
+                                                $unit = Unit::find($researcher->unit_id);
+                                            @endphp 
+                                            {{ $unit->name}}
                                         </td>
-    
+                                        
+                                        @auth
+                                        @if (Auth::user()->userType == "Administrador" && !$researcher->user)
+                                            <td width="10px">
+                                                <a href="{{ route('createResearcherAccount', $researcher->id) }}"
+                                                    class="btn btn-sm btn-secondary">
+                                                    Crear cuenta
+                                                </a>
+                                            </td>
+                                        @else
+                                            <td></td>
+                                        @endif
+                                        @endauth
+
                                         <td width="10px">
                                             <a href="{{ route('researchers.edit', $researcher->id) }}"
                                                 class="btn btn-sm btn-secondary">
                                                 Editar
                                             </a>
                                         </td>
+                                        
+                                        
                                     </tr>
                                     @endforeach
                                 </tbody>

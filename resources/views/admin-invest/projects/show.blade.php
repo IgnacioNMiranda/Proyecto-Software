@@ -20,15 +20,6 @@
                         {{ Form::label('id','Investigador(es) participante(s)')}}
                         {{Form::select('id[]',$projectResearchers,null, ['class'=>'form-control', 'multiple' => true,'id' => 'researchers_id2','name' => 'researchers_name2'])}}
                       </div>
-                    <div class="form-group mt-4 d-flex justify-content-center">
-                        <td width="10px">
-                            <a href="{{ route('projects.index', $project->id) }}" class="btn btn-sm btn-secondary">
-                                Volver
-                            </a>
-                        </td>
-                    </div>
-
-
                 </div>
 
             </div>

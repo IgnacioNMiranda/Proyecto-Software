@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     public function researcher(){
-        return $this->has(Researcher::class);
+        return $this->belongsTo(Researcher::class);
     }
 
 }

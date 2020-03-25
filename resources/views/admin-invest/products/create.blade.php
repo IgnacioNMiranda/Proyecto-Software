@@ -18,8 +18,6 @@
                         {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
                     </div>
 
-
-                    
                     <div class = "form-group">
                     {{ Form::label('investigation_group_id', "Grupo de investigación asociado") }}
                     {{ Form::label('investigation_group_id','*', array('class' => 'text-danger'))}}
@@ -31,13 +29,15 @@
                     <div class="form-group">
                         {{ Form::label('researchers[]','Investigador(es) Asociado(s) del grupo de investigación')}}
                         {{ Form::label('researchers[]','*', array('class' => 'text-danger'))}}
-                        {!! Form::select('researchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'researchers']) !!}
+                        {!! Form::select('researchers[]', ['placeholder' => 'Seleccione investigador(es)'], null,
+                        ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'researchers']) !!}
                     </div>
 
                     <!-- Posibles investigadores elegidos que son externos al grupo de investigación seleccionado-->
                     <div class="form-group">
                         {{ Form::label('notResearchers[]','Investigador(es) Asociado(s) externos al grupo de investigación')}}
-                        {!! Form::select('notResearchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'notResearchers']) !!}
+                        {!! Form::select('notResearchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, 
+                        ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'notResearchers']) !!}
                     </div>
 
                     <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
@@ -55,7 +55,8 @@
 
                     <div class="form-group">
                         {{ Form::label('project_id', "Nombre del Proyecto asociado") }}
-                        {{ Form::select('project_id', ['placeholder' => 'Seleccione proyecto asociado'], null, ['class' => 'form-control', 'id' => 'project_id']) }}
+                        {{ Form::select('project_id', ['placeholder' => 'Seleccione proyecto asociado'], null, 
+                        ['class' => 'form-control', 'id' => 'project_id', 'data-old' => old('project_id')]) }}
                     </div>
 
                     <div class="form-group mt-4 text-center">
@@ -87,8 +88,14 @@
                 url: '{!!URL::to('researchersGroup')!!}',
                 data: {'id': invGroup_id},
                 success: function (researchers) {
+
+                    var old = $('#researchers').data('old') != '' ? $('#researchers').data('old') : '';
+                    console.log($('#researchers').data('old'));
+                    console.log(old);
+
                     for (var i = 0; i < researchers.length; i++) {
-                        option +=  "<option value='" + researchers[i].id + "'>" + researchers[i].researcher_name + "</option>";
+                        possiblySelected = ($.inArray(researchers[i].id, old) != -1 ? 'selected' : '');
+                        option +=  "<option value='" + researchers[i].id + "' " + possiblySelected + ">" + researchers[i].researcher_name + "</option>";
                     }
 
                     $('#researchers').html(" ");
@@ -113,7 +120,6 @@
                 url: '{!!URL::to('notResearchersGroup')!!}',
                 data: {'id': invGroup_id},
                 success: function (notResearchers) {
-                    console.log(notResearchers);
                     for (var i = 0; i < notResearchers.length; i++) {
                         option +=  "<option value='" + notResearchers[i].id + "'>" + notResearchers[i].researcher_name + "</option>";
                     } 
@@ -152,8 +158,11 @@
                     url: '{!!URL::to('projectsGroup')!!}',
                     data: {'id': invGroup_id},
                     success: function (projects) {
+
+                        var old = $('#project_id').data('old') != '' ? $('#project_id').data('old') : '';
+
                         for (var i = 0; i < projects.length; i++) {
-                            option +=  "<option value='" + projects[i].id + "'>" + projects[i].name + "</option>";
+                            option +=  "<option value='" + projects[i].id + "' " + (old == projects[i].id ? 'selected' : '') + ">" + projects[i].name + "</option>";
                         } 
                     
                         $('#project_id').html(" ");
@@ -170,6 +179,6 @@
 
             loadProjects(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
             $(document).on('change', '#investigation_group_id', loadProjects);
-            });
+        });
 </script>
 @endsection

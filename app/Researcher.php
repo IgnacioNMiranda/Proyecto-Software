@@ -26,6 +26,10 @@ class Researcher extends Model
         return $this->belongsTo(Unit::class);
     }
 
+    public function user(){
+        return $this->hasOne(User::class);
+    }
+
     //Scopes
     public function scopeCountry($query, $country){
         if($country){

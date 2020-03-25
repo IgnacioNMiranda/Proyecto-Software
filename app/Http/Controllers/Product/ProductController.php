@@ -69,12 +69,16 @@ class productController extends Controller
         $product->save();
 
         //Merge de arreglos de investigadores
-        $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+        if($request->get('notResearchers') != null){
+            $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+        }else{
+            $productResearchers = $request->get('researchers');
+        }
 
         //Asignacion n-n con researchers, attach para crear la relacion
         $product->researchers()->attach($productResearchers);
 
-        return redirect()->route('products.edit', $product->id)
+        return redirect()->route('products.create')
             ->with('info', 'Producto creado con éxito');
     }
 
@@ -121,8 +125,12 @@ class productController extends Controller
         $product->save();
 
         //Merge de arreglos de investigadores
-        $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
-
+        if($request->get('notResearchers') != null){
+            $productResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+        }else{
+            $productResearchers = $request->get('researchers');
+        }
+        
         //Asignacion n-n con researcher, sync para actualizar la relacion products con researchers
         $product->researchers()->sync($productResearchers);
 

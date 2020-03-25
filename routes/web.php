@@ -15,12 +15,13 @@ Route::get('/', 'Web\PageController@investigation_groups')->name('welcome');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Web\PageController@investigation_groups')->name('home');
 
 //Product
 Route::resource('products', 'Product\productController');
 
 //Admin
+Route::get('/createResearcherAccount/{id}','Admin\UserController@createResearcherAccount')->name('createResearcherAccount');
 Route::resource('users','Admin\UserController');
 
 //Project

@@ -73,7 +73,17 @@ use App\Researcher;
                                     {{ $unit->name }}
                                 </td>
                                 @if ($currentUser != null)
-                                    @if ($currentUser->userType == "Administrador")
+                                    @if ($currentUser->userType == "Administrador")                                  
+                                        @if (!$researcher->user)
+                                            <td width="10px">
+                                                <a href="{{ route('createResearcherAccount', $researcher->id) }}"
+                                                    class="btn btn-sm btn-secondary">
+                                                    Crear cuenta
+                                                </a>
+                                            </td>
+                                        @else
+                                            <td></td>
+                                        @endif
                                     <td width="10px">
                                         <a href="{{ route('researchers.edit', $researcher->id) }}" class="btn btn-sm btn-secondary">
                                             Editar

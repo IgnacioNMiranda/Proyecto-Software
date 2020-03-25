@@ -54,7 +54,7 @@ class Researcher_userController extends Controller
         $researcher->investigation_groups()->attach($request->get('investigation_groups'));
 
         $currentUser = User::find(Auth::user()->id);
-        $currentUser->researcher_id = $researcher->id;
+        $currentUser->researcher()->associate($researcher);
         $currentUser->save();
         
         return redirect()->route('researchers_users.edit', $researcher->id)->with('info','Perfil editado con exito!');
