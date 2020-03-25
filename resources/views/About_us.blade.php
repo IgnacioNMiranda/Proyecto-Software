@@ -39,9 +39,9 @@
                 <div class="row ">
                     <div class="col-12 col-ml-4">
                         <h1 class="heading text-justify"> ¿Quiénes Somos?</h1>
-                        <p class="abajo text-justify "> Somos un equipo dedicado al desarrollo web con gran compromiso con nuestros clientes, 
-                            asegurando siempre resultados de la más alta  calidad.  Nuestro equipo esta conformado por
-                            estudiantes de la UCN  con grandes capacidades y virtudes.
+                        <p class="abajo text-justify "> Somos un equipo dedicado al desarrollo web con gran compromiso hacia nuestros clientes, 
+                            asegurando siempre resultados de la más alta calidad.  Nuestro equipo est&aacute; conformado por
+                            estudiantes de la UCN con grandes capacidades y virtudes.
                         </p>
                     </div>
                 </div>
