@@ -15,12 +15,13 @@ use App\Researcher;
 
                 <div class="card-body">
                     {!! Form::open(['route' => ['projects_groups.show', $id] ,'method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}
-                    <div class="form-group">
-                        {{ Form::label('state','Estado') }}
-                        {{ Form::select('state', config('options.states'),null, ['class' => 'form-control', 'placeholder' => 'Seleccione un estado']) }}
-                    </div>
-                    <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
+                        <div class="form-group">
+                            {{ Form::label('state','Estado') }}
+                            {{ Form::select('state', config('options.states'),null, ['class' => 'form-control', 'placeholder' => 'Seleccione un estado']) }}
+                        </div>
+                        <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
                     {!! Form::close() !!}
+                    
                     @if (!empty($invProjects))
                         <table class="table table-striped table-hover">
                             <thead>

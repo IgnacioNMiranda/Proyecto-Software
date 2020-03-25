@@ -15,11 +15,6 @@ class PageController extends Controller
 
         return view('welcome',compact('invGroups'));
     }
-
-    public function products(){
-        $products = Product::orderBy('id','name','DESC')->paginate(12);
-        return view('welcome',compact('products'));
-    }
     
     public function showInvestigationGroup($slug){
         $invGroup = InvestigationGroup::where('slug',$slug)->first();

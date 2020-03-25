@@ -24,9 +24,6 @@ class ResearcherController extends Controller
         //$this->middleware('checkRole');
     }
 
-    public static function researchers($id){
-        return Researcher::where('id','=',$id)->get();
-    }
     /**
      * Display a listing of the resource.
      *
@@ -35,29 +32,23 @@ class ResearcherController extends Controller
     public function index(Request $request)
     {
         $country = $request->get('country');
-
-
-
+        
+        if($request->get('unit') != null){
+            $unit_id = current(Unit::where('name', $request->get('unit'))->pluck('id')->all());
+            if(!$unit_id){
+                $unit_id = ' ';
+            }
+        }else{
+            $unit_id = $request->get('unit');
+        }
 
         $researchers = Researcher::orderBy('researcher_name','DESC')
         ->country($country)
+        ->unit($unit_id)
         ->paginate();
-
-
-
-
-
 
         return view('researcher.index', compact('researchers'));
     }
-
-    public function search(Request $request)
-    {
-
-
-    }
-
-
 
     /**
      * Show the form for creating a new resource.

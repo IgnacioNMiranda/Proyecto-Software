@@ -31,11 +31,15 @@
         <div class="col-12 col-md-4 text-center text-md-0">
             <h4 class="font-weight-bold mt-4 mt-md-0 ">Unidad(es) asociada(s)</h4>
             <ul>
-                @foreach ($invGroup->units as $unit)
-                <li class="h6">
-                    {{ $unit->name }}
-                </li>
-                @endforeach
+                @if ($invGroup->units->isNotEmpty())
+                    @foreach ($invGroup->units as $unit)
+                    <li class="h6">
+                        {{ $unit->name }}
+                    </li>
+                    @endforeach
+                @else
+                    <li class=h6> No existen unidades asociadas a este grupo.</li>
+                @endif
             </ul>
         </div>
     </div>

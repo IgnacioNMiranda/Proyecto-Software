@@ -8,52 +8,50 @@ use App\Researcher;
 @section('content')
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
-        <div class = "col-md-8 justify-content-center">
+        <div class = "col-md-12 justify-content-center">
             <div class="card border-secondary">
                 <div class = "card-header h2 bg-tertiary">
                     Listado de Investigadores Asociados
                 </div>
 
                 <div class="card-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                @php
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            @php
                                 $countries = countries();
                                 $paises = array();
-                                @endphp
-                                @foreach ($countries as $clave=>$valor)
+                            @endphp
+                            @foreach ($countries as $clave=>$valor)
                                 @php
-                                $country = country($clave);
-                                $paises[$country->getName()] = $country->getName();
+                                    $country = country($clave);
+                                    $paises[$country->getName()] = $country->getName();
                                 @endphp
-                                @endforeach
-                                {!! Form::open(['route' => 'researchers.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                            @endforeach
+
+                            {!! Form::open(['route' => ['researchers_groups.show', $id],'method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
-                                {{-- {!! Form::text('country',null,['class'=>'form-control','placeholder'=>'Pais']) !!} --}}
-                                 {{ Form::select("country",$paises,null,['class' => 'form-control','placeholder'=>'Seleccionar país']) }}
-
+                                    {{ Form::text('country',null,['class' => 'form-control','placeholder'=>'País']) }}
                                 </div>
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                                {!! Form::close()!!}
-
-                            </div>
-
-                            <div class="col-md-4">
-                                {!! Form::open(['route' => 'researchers_groups.index','method' =>'GET','class' =>'navbar
-                                navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
-                                {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
                                 </div>
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                                {!! Form::close()!!}
+                            {!! Form::close()!!}
+                        </div>
 
-                            </div>
+                        <div class="col-sm-12 col-md-4">
+                            {!! Form::open(['route' => ['researchers_groups.show', $id],'method' =>'GET','class' =>'navbar
+                            navbar-light bg-light','role' => 'search'])!!}
+                                <div class="form-group">
+                                    {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                </div>
+                            {!! Form::close()!!}
                         </div>
                     </div>
-
-
+                   
+                    @if (!empty($researchers))
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -98,6 +96,9 @@ use App\Researcher;
                             @endforeach
                         </tbody>
                     </table>
+                    @else
+                        <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
+                    @endif
                 </div>
             </div>
         </div>

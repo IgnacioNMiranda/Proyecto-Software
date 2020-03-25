@@ -64,7 +64,6 @@ class Project_GroupController extends Controller
             }
         }
 
-        /* dd($projects); */
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {

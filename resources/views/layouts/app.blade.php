@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 @php
+    use App\Project;
+    use App\Product;
     use App\Researcher;
+    use App\Unit;
+
+    $projects = Project::orderBy('id','DESC')->get();
+    $products = Product::orderBy('id','DESC')->get();
+    $researchers = Researcher::orderBy('id','DESC')->get();
+    $units = Unit::orderBy('id','DESC')->get();
 @endphp
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -84,7 +93,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
               <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('projects.index')}}">Lista de Proyectos</a>
+              @if ($projects->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('projects.index')}}">Lista de Proyectos</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_projects_layout_modal">Lista de Proyectos</a>
+              @endif
             </div>
           </li>
 
@@ -96,7 +109,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
+              @if ($products->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>  
+              @endif
+              
             </div>
 
           </li>
@@ -109,7 +127,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
+              @if ($researchers->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_researchers_layout_modal">Lista de Investigadores</a>
+              @endif
             </div>
           </li>
 
@@ -121,7 +143,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('units.create') }}">Crear Unidad</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('units.index') }}">Listado Unidades</a>
+              @if ($units->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('units.index') }}">Lista de Unidades</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_units_layout_modal">Lista de Unidades</a>
+              @endif
             </div>
           </li>
           @endauth
@@ -249,6 +275,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
   @yield('scripts')
+
+  @include("\layouts\partials\\no_projects_layout_modal")
+  @include("\layouts\partials\\no_products_layout_modal")
+  @include("\layouts\partials\\no_researchers_layout_modal")
+  @include("\layouts\partials\\no_units_layout_modal")
 </body>
 
 </html>
