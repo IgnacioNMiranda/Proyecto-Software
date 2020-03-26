@@ -15,18 +15,19 @@ Route::get('/', 'Web\PageController@investigation_groups')->name('welcome');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Web\PageController@investigation_groups')->name('home');
+
+Route::get('about_us','Web\PageController@showAbout')->name('ShowAbout_us');
 
 //Product
 Route::resource('products', 'Product\productController');
 
 //Admin
+Route::get('/createResearcherAccount/{id}','Admin\UserController@createResearcherAccount')->name('createResearcherAccount');
 Route::resource('users','Admin\UserController');
 
 //Project
 Route::resource('projects','Project\ProjectController');
-Route::post('getResearchers', 'projectController@getResearchersForIDInvestigationGroup');
-
 
 //Investigation group
 Route::resource('investigationGroups','InvestigationGroup\InvestigationGroupController');
@@ -34,7 +35,6 @@ Route::get('/researchersGroup','InvestigationGroup\InvestigationGroupController@
 Route::get('/notResearchersGroup','InvestigationGroup\InvestigationGroupController@getNotResearchers');
 Route::get('/projectsGroup','InvestigationGroup\InvestigationGroupController@getProjects');
 Route::get('investigationGroup/{slug}', 'Web\PageController@showInvestigationGroup')->name('investigationGroup');
-
 
 //Research
 Route::resource('researchers', "Researcher\ResearcherController");

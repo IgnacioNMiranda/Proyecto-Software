@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 @php
+    use App\Project;
+    use App\Product;
     use App\Researcher;
+    use App\Unit;
+
+    $projects = Project::orderBy('id','DESC')->get();
+    $products = Product::orderBy('id','DESC')->get();
+    $researchers = Researcher::orderBy('id','DESC')->get();
+    $units = Unit::orderBy('id','DESC')->get();
 @endphp
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -16,6 +25,7 @@
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -24,11 +34,6 @@
 
   <!-- Bootstrap select styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-
-  <!-- Dynamic Select JQuery-->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-  </script>
 
 </head>
 
@@ -72,10 +77,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Grupos de investigacion
+              Grupos de investigaci&oacute;n
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('investigationGroups.create') }}">Crear grupo de investigacion</a>
+              <a class="dropdown-item" href="{{ route('investigationGroups.create') }}">Crear grupo de investigaci&oacute;n</a>
             </div>
           </li>
           @endif
@@ -88,7 +93,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
               <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('projects.index')}}">Lista de Proyectos</a>
+              @if ($projects->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('projects.index')}}">Lista de Proyectos</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_projects_layout_modal">Lista de Proyectos</a>
+              @endif
             </div>
           </li>
 
@@ -100,7 +109,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
+              @if ($products->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>  
+              @endif
+              
             </div>
 
           </li>
@@ -113,7 +127,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
+              @if ($researchers->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_researchers_layout_modal">Lista de Investigadores</a>
+              @endif
             </div>
           </li>
 
@@ -125,7 +143,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('units.create') }}">Crear Unidad</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{{ route('units.index') }}">Listado Unidades</a>
+              @if ($units->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('units.index') }}">Lista de Unidades</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_units_layout_modal">Lista de Unidades</a>
+              @endif
             </div>
           </li>
           @endauth
@@ -214,11 +236,11 @@
     <footer class="page-footer font-small bg-primary">
 
       <div class="container-fluid text-center text-md-left">
-        <h4 class="text-white mb-3">Informacion adicional</h4>
+        <h4 class="text-white mb-3">Informaci&oacute;n adicional</h4>
         <div class="row">
 
           <div class="col-12 col-md-1 mb-3 mb-md-0">
-            <a class="text-white d-flex" href="#">Quiénes somos</a>
+          <a class="text-white d-flex" href="{{ route('ShowAbout_us') }}">Qui&eacute;nes somos</a>
           </div>
 
           <div class="col-12 col-md-2 mb-3 mb-md-0">
@@ -243,8 +265,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
   </script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  
+
   <!-- Bootstrap Dropdown Hover JS -->
   <script src="js/bootstrap-dropdownhover.min.js"></script>
 
@@ -253,6 +274,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
   @yield('scripts')
+
+  @include("\layouts\partials\\no_projects_layout_modal")
+  @include("\layouts\partials\\no_products_layout_modal")
+  @include("\layouts\partials\\no_researchers_layout_modal")
+  @include("\layouts\partials\\no_units_layout_modal")
 </body>
 
 </html>

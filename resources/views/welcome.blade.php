@@ -13,7 +13,7 @@
             @foreach ($invGroups as $invGroup)
             <div class="col-sm-12 col-md-6 col-lg-4 text-center" style="margin-bottom: 5rem;">
                 <a href="{{ route('investigationGroup', $invGroup->slug) }}" class="text-center">
-                    <img class=" mx-auto rounded border" src="{{ asset($invGroup->logo) }}"
+                    <img class=" mx-auto rounded thickBorder" src="{{ asset($invGroup->logo) }}"
                     alt="LogoGrupoInvestigacion" height="300" width="300">
 
                     <h3 class="text-dark d-flex d-inline justify-content-center">{{ $invGroup->name }}</h3>

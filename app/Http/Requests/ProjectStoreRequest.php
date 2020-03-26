@@ -43,9 +43,9 @@ class ProjectStoreRequest extends FormRequest
             'name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'El campo estado es obligatorio.',
             'startDate.required' => 'El campo fecha de inicio es obligatorio.',
-            'investigation_group_id.required' => 'El campo de Grupo de investigacion es obligatorio.',
+            'investigation_group_id.required' => 'El campo de grupo de investigacion es obligatorio.',
             'endDate.required' => 'El campo fecha de finalización es obligatorio.',
-            'researchers.required' => 'Es necesario por lo menos 1 investigador',
+            'researchers.required' => 'Es necesario seleccionar al menos 1 investigador.',
         ];
     }
 }

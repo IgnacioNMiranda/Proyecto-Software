@@ -26,14 +26,20 @@ class Researcher extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    //Scope
-
-    public function scopeCountry($query, $country)
-    {
-
-        if($country)
-            return $query->where('country','LIKE',"%$country%");
-
-
+    public function user(){
+        return $this->hasOne(User::class);
     }
+
+    //Scopes
+    public function scopeCountry($query, $country){
+        if($country){
+            return $query->where('country','LIKE',"%$country%");
+        }
+    }
+    public function scopeUnit($query, $unit_id){
+        if($unit_id){
+            return $query->where('unit_id', '=', "$unit_id");
+        }
+    }
+
 }

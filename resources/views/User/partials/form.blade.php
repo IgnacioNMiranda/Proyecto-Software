@@ -1,7 +1,11 @@
+@if (isset($id))
+{{ Form::hidden('researcher_id',$id)}}
+@endif
+
 <div class="form-group">
     {{ Form::label('userType','Tipo de Usuario')}}
     {{ Form::label('userType','*', array('class' => 'text-danger'))}}
-    {{ Form::select("userType",["Administrador" => "Administrador", "Investigador" => "Investigador"],null,['class' => 'form-control', 'placeholder'=>'Seleccionar tipo']) }}
+    {{ Form::select("userType",["Administrador" => "Administrador", "Investigador" => "Investigador"], null,['class' => 'form-control', 'placeholder'=>'Seleccionar tipo']) }}
 </div>
 
 <div class="form-group">
@@ -19,3 +23,4 @@
 <div class="form-group mt-4 text-center">
     {{ Form::submit('Guardar', ['class' => 'btn btn-secondary mb-4']) }}
 </div>
+

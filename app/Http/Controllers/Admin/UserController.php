@@ -25,6 +25,17 @@ class UserController extends Controller
         $this->middleware('auth');
         $this->middleware('checkRole');
     }
+
+    
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createResearcherAccount($id){
+        return view('User.create', compact('id'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +58,7 @@ class UserController extends Controller
         return view('User.create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -58,7 +70,7 @@ class UserController extends Controller
         $validator = new EmailValidator();
         $result = $validator->isValid($request->email, new RFCValidation());
         if(!$result){
-            return redirect()->route('users.create')->withErrors(['Formato de email inválido.']);
+            return back()->withErrors(['Formato de email inválido.']);
         }
 
         $user = User::create($request->all());
@@ -66,8 +78,15 @@ class UserController extends Controller
         //Permite que la clave del usuario se hashee y permite el logueo
         $user->password = Hash::make($request->password);
         $user->save();
+
+        if($request->researcher_id){
+            $AttachedResearcher = Researcher::find($request->researcher_id);
+            $user->researcher()->associate($AttachedResearcher);
+            $user->save();
+        }
+
         //No debe redirect al edit ya que un usuario no se puede editar
-        return back()->with('info','Usuario creado con exito!');
+        return redirect()->route('users.create')->with('info','Usuario creado con exito!');
     }
 
     /**

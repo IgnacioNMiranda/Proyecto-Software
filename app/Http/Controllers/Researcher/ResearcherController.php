@@ -24,9 +24,6 @@ class ResearcherController extends Controller
         //$this->middleware('checkRole');
     }
 
-    public static function researchers($id){
-        return Researcher::where('id','=',$id)->get();
-    }
     /**
      * Display a listing of the resource.
      *
@@ -35,80 +32,23 @@ class ResearcherController extends Controller
     public function index(Request $request)
     {
         $country = $request->get('country');
+        
+        if($request->get('unit') != null){
+            $unit_id = current(Unit::where('name', $request->get('unit'))->pluck('id')->all());
+            if(!$unit_id){
+                $unit_id = ' ';
+            }
+        }else{
+            $unit_id = $request->get('unit');
+        }
 
         $researchers = Researcher::orderBy('researcher_name','DESC')
         ->country($country)
+        ->unit($unit_id)
         ->paginate();
 
         return view('researcher.index', compact('researchers'));
     }
-
-    public function search(Request $request)
-    {
-
-        if($request->ajax()){
-
-
-            $researchers = Researcher::where('country','LIKE','%'.$request->country."%")->get();
-
-
-        }
-
-
-        return view('researcher.index', compact('researchers'));
-    }
-
-
-    public function action(Request $request)
-    {
-     if($request->ajax())
-     {
-      $output = '';
-      $query = $request->get('query');
-      if($query != '')
-      {
-       $data = DB::table('researchers')
-         ->where('country', 'like', '%'.$query.'%')
-        //  ->orWhere('Country', 'like', '%'.$query.'%')
-         ->orderBy('researcher_name', 'desc')
-         ->get();
-
-      }
-      else
-      {
-       $data = DB::table('researchers')
-         ->orderBy('researcher_name', 'desc')
-         ->get();
-      }
-      $total_row = $data->count();
-      if($total_row > 0)
-      {
-       foreach($data as $row)
-       {
-        $output .= '
-        <tr>
-         <td>'.$row->country.'</td>
-         </tr>
-        ';
-       }
-      }
-      else
-      {
-       $output = '
-       <tr>
-        <td align="center" colspan="5">No Data Found</td>
-       </tr>
-       ';
-      }
-      $data = array(
-       'table_data'  => $output,
-       'total_data'  => $total_row
-      );
-
-      echo json_encode($data);
-     }
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -128,7 +68,7 @@ class ResearcherController extends Controller
             }
         }
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
-    
+
 
         return view('researcher.create', compact('units','invGroups'));
     }

@@ -18,3 +18,15 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready(function () {
+        var researcher_id = $(this).find('input[name="researcher_id"]').val();
+        if(researcher_id != null){
+            $("#userType option[value='Administrador']").attr("disabled", "disabled");
+            $("#userType option[value='Investigador']").attr("selected", "selected");
+        }
+    });
+</script>
+@endsection

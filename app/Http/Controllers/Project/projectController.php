@@ -11,6 +11,7 @@ use App\Http\Requests\ProjectUpdateRequest;
 use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
+use App\Unit;
 
 use Illuminate\Support\Str;
 
@@ -22,7 +23,7 @@ class ProjectController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('show');
     }
 
     /**
@@ -37,21 +38,6 @@ class ProjectController extends Controller
         return view('admin-invest.projects.index',compact('projects'));
     }
 
-
-    public function getResearchers(Request $request,$id){
-        if($request->ajax()){
-            $researchers = Researcher::researchers($id);
-            return response()->json($researchers);
-        }
-    }
-
-    public function getResearchersForIDInvesigationGroup(Request $request,$id)
-    {
-        print_r($request);
-        $researchers = App\investigation_group_researcher::where('investigation_group_id', '=', $id);
-        echo($researchers);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -60,10 +46,9 @@ class ProjectController extends Controller
     //Crea un proyecto
     public function create()
     {
-        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.create',compact('researchers_group','researchers','investigation_groups'));
+        return view('admin-invest.projects.create',compact('units', 'investigation_groups'));
     }
 
     /**
@@ -75,7 +60,15 @@ class ProjectController extends Controller
     //Salva los datos del proyecto
     public function store(ProjectStoreRequest $request)
     {
-        //Validado en archivo externo
+        $todayDate = \Carbon\Carbon::now();
+        $todayDate = $todayDate->format('Y-m-d');
+        if($request->startDate > $todayDate){
+            return back()->withErrors(['La fecha de inicio debe ser menor o igual a la fecha actual.']);
+        }
+        else if($request->endDate < $request->startDate){
+            return back()->withErrors(['La fecha de término debe ser mayor o igual a la fecha de creación.']);
+        }
+
         $project = Project::create($request->all());
         $project->slug = Str::slug($project->name);
         $project->save();
@@ -96,8 +89,8 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::find($id);
-        $id = Project::find($id)->researchers()->pluck('researcher_name');
-        return view('admin-invest.projects.show',compact('project','id'));
+        $projectResearchers = $project->researchers()->pluck('researcher_name');
+        return view('admin-invest.projects.show',compact('project','projectResearchers'));
     }
 
     /**
@@ -110,10 +103,9 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::find($id);
-        $researchers_group = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
-        $researchers = Researcher::orderBy('researcher_name','ASC')->pluck('researcher_name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
-        return view('admin-invest.projects.edit',compact('project','researchers_group','researchers','investigation_groups'));
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        return view('admin-invest.projects.edit',compact('project','investigation_groups', 'units'));
     }
 
     /**
@@ -126,7 +118,15 @@ class ProjectController extends Controller
     //Se actualiza lo del formulario de edicion
     public function update(ProjectUpdateRequest $request, $id)
     {
-        //validado en archivo externo
+        $todayDate = \Carbon\Carbon::now();
+        $todayDate = $todayDate->format('Y-m-d');
+        if($request->startDate > $todayDate){
+            return back()->withErrors(['La fecha de inicio debe ser menor o igual a la fecha actual.']);
+        }
+        else if($request->endDate < $request->startDate){
+            return back()->withErrors(['La fecha de término debe ser mayor o igual a la fecha de creación.']);
+        }
+
         $project = Project::find($id);
         $project->fill($request->all())->save();
 
