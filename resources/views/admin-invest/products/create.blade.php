@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4 p-4">
+<section class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class = "col-md-9 justify-content-center">   
             <div class="card border-secondary shadow">
@@ -69,7 +69,6 @@
             </div>
         </div>
     </div>
-</body>
 </section>
 @include("admin-invest\products\partials\\researcher_form")
 @endsection
