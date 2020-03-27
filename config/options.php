@@ -4,7 +4,7 @@ return array(
 
     'states' => [
         'Postulado' => 'Postulado' ,
-        'En Ejecucion' =>'En Ejecucion',
+        'En ejecucion' =>'En ejecucion',
         'Finalizado' =>'Finalizado',
         'Cancelado' =>'Cancelado'
     ]
