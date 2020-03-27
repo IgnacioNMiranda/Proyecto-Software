@@ -4,7 +4,7 @@
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class = "col-md-8 justify-content-center">   
-            <div class="card border-secondary">
+            <div class="card border-secondary shadow">
                 <div class = "card-header h2 bg-tertiary">
                     Listado de unidades
                     <a href="{{ route('units.create') }}" class="btn btn-sm btn-success  float-right">Crear nueva unidad</a>
