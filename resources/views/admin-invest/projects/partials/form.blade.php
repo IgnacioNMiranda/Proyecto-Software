@@ -24,10 +24,18 @@
   {{ Form::select('state',config('options.states'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar estado']) }}
 </div>
 
+<!-- Investigadores elegidos que son del grupo de investigación seleccionado-->
 <div class="form-group">
   {{ Form::label('researchers[]','Investigador(es) participante(s)')}}
   {{ Form::label('researchers[]','*', array('class' => 'text-danger'))}}
   {{Form::select('researchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, ['class'=> 'form-control', 'multiple' => 'multiple', 'id' => 'researchers'])}}
+</div>
+
+<!-- Posibles investigadores elegidos que son externos al grupo de investigación seleccionado-->
+<div class="form-group">
+  {{ Form::label('notResearchers[]','Investigador(es) Asociado(s) externos al grupo de investigación')}}
+  {!! Form::select('notResearchers[]', ['placeholder' => 'Seleccione investigador(es)'], null, 
+  ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'notResearchers']) !!}
 </div>
 
 <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>

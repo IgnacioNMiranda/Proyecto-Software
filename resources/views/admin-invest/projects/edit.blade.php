@@ -53,8 +53,38 @@
             });
         }
 
-        loadResearchers(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
-        $(document).on('change', '#investigation_group_id', loadResearchers);
-        });
+        function loadNotResearchers(){
+            var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
+
+            var option = " "; // Define las opciones
+
+            $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
+                type: 'get',
+                url: '{!!URL::to('notResearchersGroup')!!}',
+                data: {'id': invGroup_id},
+                success: function (notResearchers) {
+                    for (var i = 0; i < notResearchers.length; i++) {
+                        option +=  "<option value='" + notResearchers[i].id + "'>" + notResearchers[i].researcher_name + "</option>";
+                    } 
+                
+                    $('#notResearchers').html(" ");
+                    $("#notResearchers").append(option); //Agrega las options al select #researchers
+                },
+                error: function () {
+                    option += '<option value="0" selected disabled>Seleccione investigador(es)</option>';
+                    $('#notResearchers').html(" ");
+                    $("#notResearchers").append(option); //Agrega las options al select #researchers
+                }
+            });
+        }
+
+        function loadAllResearchers(){
+            loadResearchers();
+            loadNotResearchers();
+        }
+
+        loadAllResearchers(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
+        $(document).on('change', '#investigation_group_id', loadAllResearchers);
+    });
 </script>
 @endsection

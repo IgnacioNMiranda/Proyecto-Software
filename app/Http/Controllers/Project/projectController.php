@@ -60,20 +60,18 @@ class ProjectController extends Controller
     //Salva los datos del proyecto
     public function store(ProjectStoreRequest $request)
     {
-        $todayDate = \Carbon\Carbon::now();
-        $todayDate = $todayDate->format('Y-m-d');
-        if($request->startDate > $todayDate){
-            return back()->withErrors(['La fecha de inicio debe ser menor o igual a la fecha actual.']);
-        }
-        else if($request->endDate < $request->startDate){
-            return back()->withErrors(['La fecha de término debe ser mayor o igual a la fecha de creación.']);
-        }
-
         $project = Project::create($request->all());
         $project->slug = Str::slug($project->name);
         $project->save();
 
-        $project->researchers()->attach($request->get('researchers'));
+        //Merge de arreglos de investigadores
+        if($request->get('notResearchers') != null){
+            $proyectResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+        }else{
+            $proyectResearchers = $request->get('researchers');
+        }
+
+        $project->researchers()->attach($proyectResearchers);
 
         return redirect()->route('projects.create',$project->id)
             ->with('info','Proyecto creado con exito');
@@ -118,22 +116,20 @@ class ProjectController extends Controller
     //Se actualiza lo del formulario de edicion
     public function update(ProjectUpdateRequest $request, $id)
     {
-        $todayDate = \Carbon\Carbon::now();
-        $todayDate = $todayDate->format('Y-m-d');
-        if($request->startDate > $todayDate){
-            return back()->withErrors(['La fecha de inicio debe ser menor o igual a la fecha actual.']);
-        }
-        else if($request->endDate < $request->startDate){
-            return back()->withErrors(['La fecha de término debe ser mayor o igual a la fecha de creación.']);
-        }
-
         $project = Project::find($id);
         $project->fill($request->all())->save();
 
         $project->slug = Str::slug($project->name);
         $project->save();
 
-        $project->researchers()->sync($request->get('researchers'));
+        //Merge de arreglos de investigadores
+        if($request->get('notResearchers') != null){
+            $proyectResearchers = array_merge($request->get('researchers'), $request->get('notResearchers'));
+        }else{
+            $proyectResearchers = $request->get('researchers');
+        }
+
+        $project->researchers()->sync($proyectResearchers);
 
         return redirect()->route('projects.edit',$project->id)
             ->with('info','Proyecto actualizado con exito');
