@@ -125,7 +125,11 @@
               Investigadores
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Investigador</a>
+              @else
+                <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
+              @endif
               <div class="dropdown-divider"></div>
               @if ($researchers->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
@@ -279,6 +283,7 @@
   @include("\layouts\partials\\no_products_layout_modal")
   @include("\layouts\partials\\no_researchers_layout_modal")
   @include("\layouts\partials\\no_units_layout_modal")
+  @include("\layouts\partials\\no_associate_researcher_modal")
 </body>
 
 </html>

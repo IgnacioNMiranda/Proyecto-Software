@@ -15,9 +15,11 @@ class checkRole
      */
     public function handle($request, Closure $next)
     {
+        dd($request);
         if($request->user()->userType == "Investigador"){ 
             return redirect('/');
         }
+        
         return $next($request);
     }
 }
