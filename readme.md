@@ -21,3 +21,4 @@ Para que el proyecto funcione adecuadamente se deben ejecutar los siguientes com
 5) composer require rinvex/countries (para despliegue y selección de paises)
 
 Con esto el proyecto debería estar completamente operativo y funcional.
+Recordar que se trabaja sobre la rama Development y todos los cambios hechos deben ser sobre esta rama.
