@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@php
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use App\Researcher;
+@endphp
 @section('content')
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
@@ -22,6 +26,15 @@
                     {!! Form::close() !!}
                     
                     @if ($projects->items() != null)
+                        @auth
+                        @if(Auth::user()->userType == "Investigador" && Auth::user()->researcher_id != null)
+                            @php
+                                $currentResearcher = Researcher::find(Auth::user()->researcher_id);
+                                //Se obtienen los grupos asociados al investigador conectado
+                                $currentProjectsids = Researcher::find($currentResearcher->id)->projects()->pluck('project_id')->toArray();
+                            @endphp
+                        @endif    
+                        @endauth
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -41,18 +54,27 @@
                                     <td> {{ $project->state }} </td>
                                     <td>{{ date('d-m-Y', strtotime($project->startDate)) }}</td>
                                     <td>{{ date('d-m-Y', strtotime($project->endDate)) }}</td>
-                                    <td width="10px">
-                                        <a href="{{ route('projects.show', $project->id) }}"
-                                            class="btn btn-sm btn-secondary">
-                                            Ver
-                                        </a>
-                                    </td>
-                                    <td width="10px">
-                                        <a href="{{ route('projects.edit', $project->id) }}"
-                                            class="btn btn-sm btn-secondary">
-                                            Editar
-                                        </a>
-                                    </td>
+                                    @auth
+                                    @if(Auth::user()->userType == "Administrador" || in_array($project->id,$currentProjectsids))
+                                        <td width="10px">
+                                            <a href="{{ route('projects.show', $project->id) }}"
+                                                class="btn btn-sm btn-secondary">
+                                                Ver
+                                            </a>
+                                        </td>
+                                        <td width="10px">
+                                            <a href="{{ route('projects.edit', $project->id) }}"
+                                                class="btn btn-sm btn-secondary">
+                                                Editar
+                                            </a>
+                                        </td>
+                                    @else
+                                        <td></td><td></td>
+                                    @endif
+                                    @endauth
+                                    @if(Auth::user() == null)
+                                        <td></td>
+                                    @endif
                                 </tr>
                                 @endforeach
                             </tbody>

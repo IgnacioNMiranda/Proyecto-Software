@@ -28,10 +28,11 @@ class ProjectStoreRequest extends FormRequest
             'code' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/',
             'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:projects,name',
             'state' => 'required',
-            'startDate' => 'required',
-            'endDate' => 'required',
+            'startDate' => 'required|before_or_equal:today',
+            'endDate' => 'required|after_or_equal:startDate',
             'investigation_group_id' => 'required',
             'researchers' => 'required|array',
+            'notResearchers' => 'nullable|array'
         ];
     }
 
@@ -43,9 +44,11 @@ class ProjectStoreRequest extends FormRequest
             'name.regex' => 'Formato de nombre inválido.',
             'state.required' => 'El campo estado es obligatorio.',
             'startDate.required' => 'El campo fecha de inicio es obligatorio.',
-            'investigation_group_id.required' => 'El campo de grupo de investigacion es obligatorio.',
+            'startDate.before_or_equal' => 'La fecha de inicio debe ser menor o igual a la fecha actual.',
             'endDate.required' => 'El campo fecha de finalización es obligatorio.',
-            'researchers.required' => 'Es necesario seleccionar al menos 1 investigador.',
+            'endDate.after_or_equal' => 'La fecha de término debe ser mayor o igual a la fecha de inicio.',
+            'investigation_group_id.required' => 'El campo de grupo de investigacion es obligatorio.',
+            'researchers.required' => 'Al menos 1 investigador debe pertenecer al grupo de investigación elegido.',
         ];
     }
 }
