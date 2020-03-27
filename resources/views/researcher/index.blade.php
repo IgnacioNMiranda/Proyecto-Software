@@ -9,7 +9,7 @@ use App\User;
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class="col-md-12 justify-content-center">
-            <div class="card border-secondary">
+            <div class="card border-secondary shadow">
                 <div class="card-header h2 bg-tertiary">
                     Listado Investigadores
                     <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success float-right">Crear nuevo
