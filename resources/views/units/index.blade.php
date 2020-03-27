@@ -10,7 +10,9 @@ use App\Researcher;
             <div class="card border-secondary shadow">
                 <div class = "card-header h2 bg-tertiary">
                     Listado de unidades
+                    @auth
                     <a href="{{ route('units.create') }}" class="btn btn-sm btn-success  float-right">Crear nueva unidad</a>
+                    @endauth
                 </div>
 
                 <div class="card-body">

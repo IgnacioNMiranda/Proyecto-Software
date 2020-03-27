@@ -13,7 +13,9 @@ use App\Researcher;
             <div class ="card border-secondary shadow">
                 <div class ="card-header h2 bg-tertiary">
                     Listado de Productos
+                    @auth
                     <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">Crear Producto</a>
+                    @endauth
                 </div>
                 
                 @if ($products->items() != null)
