@@ -84,6 +84,7 @@
             </div>
           </li>
           @endif
+          @endauth
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
@@ -91,8 +92,10 @@
               Proyectos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
               <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
               <div class="dropdown-divider"></div>
+              @endauth
               @if ($projects->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('projects.index')}}">Lista de Proyectos</a>
               @else
@@ -107,8 +110,10 @@
               Productos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
               <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
               <div class="dropdown-divider"></div>
+              @endauth
               @if ($products->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
               @else
@@ -125,12 +130,14 @@
               Investigadores
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
               @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Investigador</a>
               @else
                 <a class="dropdown-item" href="{{ route('researchers.create') }}">Crear Investigador</a>
               @endif
               <div class="dropdown-divider"></div>
+              @endauth
               @if ($researchers->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('researchers.index') }}">Lista de Investigadores</a>
               @else
@@ -145,8 +152,10 @@
               Unidades
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
               <a class="dropdown-item" href="{{ route('units.create') }}">Crear Unidad</a>
               <div class="dropdown-divider"></div>
+              @endauth
               @if ($units->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('units.index') }}">Lista de Unidades</a>
               @else
@@ -154,9 +163,7 @@
               @endif
             </div>
           </li>
-          @endauth
-
-
+          
         </ul>
         
         <ul class="navbar-nav ml-auto">
