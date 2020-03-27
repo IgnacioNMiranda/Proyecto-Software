@@ -16,11 +16,11 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code',128)->nullable();
-            $table->string('name',128);
-            $table->enum('state', ['Postulado','En ejecucion','Aceptado','Cancelado'])->default('Postulado');
+            $table->string('name',128)->unique();
+            $table->enum('state', ['Postulado','En ejecucion','Finalizado','Cancelado'])->default('Postulado');
             $table->date('startDate');
             $table->date('endDate')->nullable();
-            $table->string('slug',128)->unique();
+            $table->string('slug',128)->default('name');
 
             
             $table->bigInteger('investigation_group_id')->unsigned();

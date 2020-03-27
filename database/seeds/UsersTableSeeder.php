@@ -11,36 +11,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class,75)->create()->each(function(App\User $user){
-            $user->products()->attach([
-                rand(1,10),
-                rand(11,20),
-                rand(21,30),
-                rand(31,40)
-            ]);
-
-            $user->investigation_groups()->attach([
-                rand(1,10),
-                rand(11,20),
-                rand(21,30),
-            ]);
-
-            $user->projects()->attach([
-                rand(1,10),
-                rand(11,20),
-                rand(21,30),
-            ]);
-        });
+        factory(App\User::class,14)->create();
 
         App\User::create([
             'email' => 'carlos.mena@alumnos.ucn.cl',
-            'password' => bcrypt('pichiconcaca'),
+            'password' => bcrypt('123'),
             'userType' => 'Administrador'
         ]);
 
         App\User::create([
             'email' => 'ignacio.miranda01@alumnos.ucn.cl',
-            'password' => bcrypt('elcarlosselacome'),
+            'password' => bcrypt('1234'),
             'userType' => 'Administrador'
         ]);
 
@@ -52,7 +33,7 @@ class UsersTableSeeder extends Seeder
 
         App\User::create([
             'email' => 'fmp009@alumnos.ucn.cl',
-            'password' => bcrypt('pichiconcaca2'),
+            'password' => bcrypt('1'),
             'userType' => 'Administrador'
         ]);
 
@@ -60,6 +41,12 @@ class UsersTableSeeder extends Seeder
             'email' => 'eduardo.alvarez@alumnos.ucn.cl',
             'password' => bcrypt('novoyalajunta'),
             'userType' => 'Administrador'
+        ]);
+
+        App\User::create([
+            'email' => 'soyinvestigador.ejemplo@alumnos.ucn.cl',
+            'password' => bcrypt('123'),
+            'userType' => 'Investigador'
         ]);
 
     }

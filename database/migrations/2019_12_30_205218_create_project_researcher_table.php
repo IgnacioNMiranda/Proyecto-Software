@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectUserTable extends Migration
+class CreateProjectResearcherTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateProjectUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_user', function (Blueprint $table) {
+        Schema::create('project_researcher', function (Blueprint $table) {
             $table->bigIncrements('id');
            
             $table->bigInteger('project_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('researcher_id')->unsigned();
 
             $table->foreign('project_id')->references('id')->on('projects')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreign('researcher_id')->references('id')->on('researchers')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             
@@ -38,6 +38,6 @@ class CreateProjectUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_user');
+        Schema::dropIfExists('project_researcher');
     }
 }

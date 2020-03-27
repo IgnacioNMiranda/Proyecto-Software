@@ -9,7 +9,7 @@ $factory->define(App\Unit::class, function (Faker $faker) {
     $title = $faker->sentence(5);
     return [
         'name' => $title,
-        'country' => $title,
+        'country' => $faker->country,
         'slug' => str_slug($title)
     ];
 });

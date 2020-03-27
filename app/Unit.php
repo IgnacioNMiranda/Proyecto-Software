@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unit extends Model
 {
-    public function users(){
-        return $this->hasMany(User::class);
+    protected $fillable = [
+        'name', 'country', 'slug',
+    ];
+
+    public function researchers(){
+        return $this->hasMany(Researcher::class);
     }
 
     public function investigation_groups(){
-        return $this->belongsToMany(investigationGroup::class);
+        return $this->belongsToMany(investigationGroup::class)->withTimestamps();
     }
 }
