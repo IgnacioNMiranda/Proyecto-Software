@@ -20,8 +20,7 @@ class ResearcherController extends Controller
 {
     public function __construct(){
 
-        $this->middleware('auth');
-        //$this->middleware('checkRole');
+        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -99,9 +98,7 @@ class ResearcherController extends Controller
      */
     public function show($id)
     {
-        $researcher = Researcher::find($id);
-
-        return view('researcher.show',compact('researcher'));
+        return redirect('/');
     }
 
     /**

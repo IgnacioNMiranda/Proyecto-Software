@@ -18,6 +18,7 @@ class checkRole
         if($request->user()->userType == "Investigador"){ 
             return redirect('/');
         }
+        
         return $next($request);
     }
 }

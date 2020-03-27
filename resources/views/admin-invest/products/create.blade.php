@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4 p-4">
+<section class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class = "col-md-9 justify-content-center">   
             <div class="card border-secondary shadow">
@@ -69,7 +69,6 @@
             </div>
         </div>
     </div>
-</body>
 </section>
 @include("admin-invest\products\partials\\researcher_form")
 @endsection
@@ -80,6 +79,7 @@
 
         function loadResearchers(){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
+            console.log("id de grupo: " + invGroup_id);
 
             var option = " "; // Define las opciones
 
@@ -88,14 +88,9 @@
                 url: '{!!URL::to('researchersGroup')!!}',
                 data: {'id': invGroup_id},
                 success: function (researchers) {
-
-                    var old = $('#researchers').data('old') != '' ? $('#researchers').data('old') : '';
-                    console.log($('#researchers').data('old'));
-                    console.log(old);
-
+                    console.log("hola fue exitoso");
                     for (var i = 0; i < researchers.length; i++) {
-                        possiblySelected = ($.inArray(researchers[i].id, old) != -1 ? 'selected' : '');
-                        option +=  "<option value='" + researchers[i].id + "' " + possiblySelected + ">" + researchers[i].researcher_name + "</option>";
+                        option +=  "<option value='" + researchers[i].id + "'>" + researchers[i].researcher_name + "</option>";
                     }
 
                     $('#researchers').html(" ");
@@ -103,11 +98,11 @@
                 },
                 error: function () {
                     option += '<option value="0" selected disabled>Seleccione investigador(es)</option>';
+                    console.log("hola hubo un error");
                     $('#researchers').html(" ");
                     $("#researchers").append(option); //Agrega las options al select #researchers
                 }
             });
-
         }
 
         function loadNotResearchers(){
@@ -182,8 +177,3 @@
         });
 </script>
 @endsection
-
-
-
-
-

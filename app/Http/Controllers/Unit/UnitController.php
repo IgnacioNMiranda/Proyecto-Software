@@ -21,7 +21,7 @@ class UnitController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -73,7 +73,7 @@ class UnitController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect('/');
     }
 
     /**

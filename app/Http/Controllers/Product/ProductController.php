@@ -26,7 +26,7 @@ class productController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
 
     }
 
@@ -90,8 +90,7 @@ class productController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-        return view('admin-invest.products.show', compact('product'));
+        return redirect('/');
     }
 
     /**

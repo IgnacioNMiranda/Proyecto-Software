@@ -61,7 +61,6 @@ class Product_GroupController extends Controller
         foreach ($ids as $clave => $valor) {
             $researcher = Researcher::find($valor);
             $researchers[$researcher->id] = $researcher;
-            
         }
         return view('product_group.show', compact('products','currentUser','researchers','id'));
     }

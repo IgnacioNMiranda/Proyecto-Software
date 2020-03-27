@@ -4,7 +4,7 @@
 <div class="container mt-4 p-4">
     <div class="row justify-content-center">
         <div class = "col-md-8 justify-content-center">   
-            <div class="card border-secondary">
+            <div class="card border-secondary shadow">
                 <div class = "card-header h2 d-flex justify-content-center mb-4 bg-tertiary">
                     Crear Investigador 
                 </div>

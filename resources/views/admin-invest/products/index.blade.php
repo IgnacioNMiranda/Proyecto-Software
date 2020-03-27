@@ -4,7 +4,7 @@
 <div class ="container mt-4 p-4">
     <div class = "row justify-content-center">
         <div class ="col-md-12 justify-content-center">
-            <div class ="card border-secondary">
+            <div class ="card border-secondary shadow">
                 <div class ="card-header h2 bg-tertiary">
                     Listado de Productos
                     <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">Crear Producto</a>
@@ -24,7 +24,6 @@
                             <tbody>
                                 @foreach($products as $product)
                                 <tr>
-
                                     <td>{{ $product->id}}</td>
                                     <td>{{ $product->name}}</td>
                                     <td>{{$product->description}}</td>
