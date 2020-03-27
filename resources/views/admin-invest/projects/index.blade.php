@@ -11,8 +11,10 @@ use App\Researcher;
             <div class="card border-secondary shadow">
                 <div class="card-header h2 bg-tertiary">
                     Listado Proyectos
-                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-success  float-right">Crear nuevo
-                        proyecto</a>
+                    @auth
+                        <a href="{{ route('projects.create') }}" class="btn btn-sm btn-success  float-right">Crear nuevo
+                            proyecto</a>
+                    @endauth
                 </div>
 
                 

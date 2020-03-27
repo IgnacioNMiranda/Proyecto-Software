@@ -14,8 +14,10 @@ use App\Researcher;
             <div class="card border-secondary shadow">
                 <div class="card-header h2 bg-tertiary">
                     Listado Investigadores
+                    @auth
                     <a href="{{ route('researchers.create') }}" class="btn btn-sm btn-success float-right">Crear nuevo
-                        investigador</a>
+                            investigador</a>
+                    @endauth
                 </div>
 
                 <div class="card-body">
