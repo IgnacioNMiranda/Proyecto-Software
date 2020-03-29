@@ -27,7 +27,7 @@
 <script>
     $(document).ready(function () {
 
-        function loadResearchers(){
+        function loadResearchers(projectResearchers){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
         
             var option = " "; // Define las opciones
@@ -38,11 +38,12 @@
                 data: {'id': invGroup_id},
                 success: function (researchers) {
                     for (var i = 0; i < researchers.length; i++) {
-                        option +=  "<option value='" + researchers[i].id + "'>" + researchers[i].researcher_name + "</option>";
+                        var possiblySelected = projectResearchers.find(researcher => researcher.id === researchers[i].id) != undefined ? 'selected' : '';
+
+                        option +=  "<option value='" + researchers[i].id + "' " + possiblySelected + ">" + researchers[i].researcher_name + "</option>";
                     } 
                 
                     $('#researchers').html(" ");
-                    $("#researchers").append('<option value="0" selected disabled>Seleccione investigador(es)</option>');
                     $("#researchers").append(option); //Agrega las options al select #researchers
                 },
                 error: function () {
@@ -53,7 +54,7 @@
             });
         }
 
-        function loadNotResearchers(){
+        function loadNotResearchers(projectResearchers){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
 
             var option = " "; // Define las opciones
@@ -64,7 +65,9 @@
                 data: {'id': invGroup_id},
                 success: function (notResearchers) {
                     for (var i = 0; i < notResearchers.length; i++) {
-                        option +=  "<option value='" + notResearchers[i].id + "'>" + notResearchers[i].researcher_name + "</option>";
+                        var possiblySelected = projectResearchers.find(researcher => researcher.id === notResearchers[i].id) != undefined ? 'selected' : '';
+
+                        option +=  "<option value='" + notResearchers[i].id + "' " + possiblySelected + ">" + notResearchers[i].researcher_name + "</option>";
                     } 
                 
                     $('#notResearchers').html(" ");
@@ -79,8 +82,9 @@
         }
 
         function loadAllResearchers(){
-            loadResearchers();
-            loadNotResearchers();
+            var projectResearchers = {!! json_encode($project->researchers) !!};
+            loadResearchers(projectResearchers);
+            loadNotResearchers(projectResearchers);
         }
 
         loadAllResearchers(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
