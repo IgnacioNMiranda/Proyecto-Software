@@ -10,15 +10,19 @@
 ##Laravel
 
 Para instalar el proyecto, dentro de gitKraken seleccionar la opción "Clone repository". Se debe copiar en la carpeta C:\xampp\htdocs 
+
 Luego de haber seleccionado correctamente la carpeta de destino, copiar esta url: https://github.com/IgnacioNMiranda/researchNews.git
+
 Con esto realizado ya deberías tener el proyecto correctamente alojado en C:\xampp\htdocs\researchNews.
 
 Para que el proyecto funcione adecuadamente se deben ejecutar los siguientes comandos (preferiblemente en el orden en que están escritos):
 1) composer install
 2) composer update
-3) composer require intervention/image (para la subida de imágenes)
-4) composer require egulias/email-validator (para validación de email)
-5) composer require rinvex/countries (para despliegue y selección de paises)
+*En este punto deberías borrar el archivo .env que vino con el proyecto y crear un nuevo .env que sea igual a .env.example * 
+3) php artisan key:generate (esto crea tu propia key de acceso a la BD)
+4) composer require intervention/image (para la subida de imágenes)
+5) composer require egulias/email-validator (para validación de email)
+6) composer require rinvex/countries (para despliegue y selección de paises)
 
 Con esto el proyecto debería estar completamente operativo y funcional.
 Recordar que se trabaja sobre la rama Development y todos los cambios hechos deben ser sobre esta rama.
