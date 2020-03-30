@@ -35,8 +35,8 @@ use App\Researcher;
                             <thead>
                                 <tr>
                                     <th style="width: 1cm;">ID</th>
-                                    <th style="width: 10cm;">Título</th>
-                                    <th style="width: 3cm;">Tiítulo Segundo Idioma</th>
+                                    <th style="width: 7cm;">Título</th>
+                                    <th style="width: 7cm;">Título Segundo Idioma</th>
                                     <th style="width: 3.8cm;">Fecha de Publicación</th>
                                     <th style="width: 3.8cm;">Tipo</th>
                                     <th style="width: 3.8cm;">Subtipo</th>
