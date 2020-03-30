@@ -14,6 +14,8 @@
                         'method'=> 'PUT'])!!}
                         @csrf
 
+                        {{ Form::hidden('id',$product->id)}}
+
                         <div class="form-group">
                             {{ Form::label('name', 'Nombre del Producto') }}
                             {{ Form::label('name','*', array('class' => 'text-danger'))}}
@@ -82,7 +84,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        function loadResearchers(){
+        function loadResearchers(productResearchers){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
 
             var option = " "; // Define las opciones
@@ -92,8 +94,11 @@
                 url: '{!!URL::to('researchersGroup')!!}',
                 data: {'id': invGroup_id},
                 success: function (researchers) {
+
                     for (var i = 0; i < researchers.length; i++) {
-                        option +=  "<option value='" + researchers[i].id + "'>" + researchers[i].researcher_name + "</option>";
+                        var possiblySelected = productResearchers.find(researcher => researcher.id === researchers[i].id) != undefined ? 'selected' : '';
+
+                        option +=  "<option value='" + researchers[i].id + "' " + possiblySelected + ">" + researchers[i].researcher_name + "</option>";
                     }
 
                     $('#researchers').html(" ");
@@ -108,7 +113,7 @@
 
         }
 
-        function loadNotResearchers(){
+        function loadNotResearchers(productResearchers){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
 
             var option = " "; // Define las opciones
@@ -118,9 +123,10 @@
                 url: '{!!URL::to('notResearchersGroup')!!}',
                 data: {'id': invGroup_id},
                 success: function (notResearchers) {
-                    console.log(notResearchers);
                     for (var i = 0; i < notResearchers.length; i++) {
-                        option +=  "<option value='" + notResearchers[i].id + "'>" + notResearchers[i].researcher_name + "</option>";
+                        var possiblySelected = productResearchers.find(researcher => researcher.id === notResearchers[i].id) != undefined ? 'selected' : '';
+
+                        option +=  "<option value='" + notResearchers[i].id + "' " + possiblySelected + ">" + notResearchers[i].researcher_name + "</option>";
                     } 
                 
                     $('#notResearchers').html(" ");
@@ -135,8 +141,9 @@
         }
 
         function loadAllResearchers(){
-            loadResearchers();
-            loadNotResearchers();
+            var productResearchers = {!! json_encode($product->researchers) !!};
+            loadResearchers(productResearchers);
+            loadNotResearchers(productResearchers);
         }
 
         loadAllResearchers(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
@@ -147,9 +154,10 @@
 <script>
         $(document).ready(function () {
 
-            function loadProjects(){
+            function loadProjects(productProject){
                 var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
-            
+                console.log(productProject);
+
                 var option = " "; // Define las opciones
             
                 $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
@@ -159,10 +167,13 @@
                     success: function (projects) {
 
                         var old = $('#project_id').data('old') != '' ? $('#project_id').data('old') : '';
-                        console.log(old);
 
                         for (var i = 0; i < projects.length; i++) {
-                            option +=  "<option value='" + projects[i].id + "' " + (old == projects[i].id ? 'selected' : '') + ">" + projects[i].name + "</option>";
+                            var possiblySelected = '';
+                            if(old == projects[i].id || projects[i].id == productProject.id){
+                                possiblySelected = 'selected';
+                            }
+                            option +=  "<option value='" + projects[i].id + "' " + possiblySelected + ">" + projects[i].name + "</option>";
                         }
                     
                         $('#project_id').html(" ");
@@ -176,8 +187,8 @@
                     }
                 });
             }
-
-            loadProjects(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
+            var productProject = {!! json_encode($product->project) !!};
+            loadProjects(productProject); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
             $(document).on('change', '#investigation_group_id', loadProjects);
             });
 </script>

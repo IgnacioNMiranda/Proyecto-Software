@@ -14,11 +14,11 @@ class Product extends Model
         return $this->belongsToMany(Researcher::class)->withTimestamps();
     }
     
-    public function projects(){
+    public function project(){
         return $this->belongsTo(Project::class);
     }
 
-    public function invGroups(){
+    public function investigation_group(){
         return $this->belongsTo(InvestigationGroup::class);
     }
 }

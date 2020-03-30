@@ -255,7 +255,7 @@
           </div>
 
           <div class="col-12 col-md-2 mb-3 mb-md-0">
-            <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
+            <a class="text-white d-flex" href="{{ route('HelpVideos') }}">¿Necesitas ayuda?</a>
           </div>
 
         </div>
