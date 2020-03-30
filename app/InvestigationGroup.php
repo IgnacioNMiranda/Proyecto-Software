@@ -25,4 +25,10 @@ class InvestigationGroup extends Model
     public function projects(){
         return $this->hasMany(Project::class);
     }
+
+    public function publications(){
+        return $this->hasMany(Publication::class);
+    }
+
+
 }

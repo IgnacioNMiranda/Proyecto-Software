@@ -22,6 +22,10 @@ class Researcher extends Model
         return $this->belongsToMany(Project::class)->withTimestamps();
     }
 
+    public function publications(){
+        return $this->belongsToMany(Publication::class)->withTimestamps();
+    }
+
     public function unit(){
         return $this->belongsTo(Unit::class);
     }
