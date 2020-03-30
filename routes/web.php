@@ -23,6 +23,9 @@ Route::get('/HelpVideos', 'Web\PageController@helpVideos')->name('HelpVideos');
 //Product
 Route::resource('products', 'Product\productController');
 
+//Publication
+Route::resource('publications', 'Publication\publicationController');
+
 //Admin
 Route::get('/createResearcherAccount/{id}','Admin\UserController@createResearcherAccount')->name('createResearcherAccount');
 Route::resource('users','Admin\UserController');
@@ -51,6 +54,9 @@ Route::resource('researchers_groups','Researcher_Group\Researcher_GroupControlle
 
 //Product_Group
 Route::resource('products_groups','Product_Group\Product_GroupController');
+
+//Publication_Group
+Route::resource('publication_groups','Publication_Group\Publication_GroupController');
 
 //Proyect_Group
 Route::resource('projects_groups','Project_Group\Project_GroupController');

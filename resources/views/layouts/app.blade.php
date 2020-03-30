@@ -4,11 +4,15 @@
     use App\Product;
     use App\Researcher;
     use App\Unit;
+    use App\Publication;
+
 
     $projects = Project::orderBy('id','DESC')->get();
     $products = Product::orderBy('id','DESC')->get();
     $researchers = Researcher::orderBy('id','DESC')->get();
     $units = Unit::orderBy('id','DESC')->get();
+    $publications = Publication::orderBy('id','DESC')->get();
+
 @endphp
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -117,9 +121,9 @@
               @if ($products->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
               @else
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>  
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>
               @endif
-              
+
             </div>
 
           </li>
@@ -163,9 +167,27 @@
               @endif
             </div>
           </li>
-          
+
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Publicaciones
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
+              <a class="dropdown-item" href="{{ route('publications.create') }}">Crear Publicación</a>
+              <div class="dropdown-divider"></div>
+              @endauth
+              @if ($publications->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('publications.index') }}">Lista de Publicaciones</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_publications_layout_modal">Lista de Publicaciones</a>
+              @endif
+            </div>
+          </li>
+
         </ul>
-        
+
         <ul class="navbar-nav ml-auto">
           @auth
           <li class="nav-item pr-4">
@@ -178,7 +200,7 @@
                 <span class="navbar-text text-white">Bienvenido, {{ $researcher->researcher_name }}</span>
             @endif
           </li>
-          
+
           @if (Auth::user()->userType == "Investigador")
             <li class="nav-item">
                 @if(Auth::user()->researcher_id == null)
@@ -264,7 +286,7 @@
 
   </div>
 
-  
+
   <!--Archivos JS-->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
