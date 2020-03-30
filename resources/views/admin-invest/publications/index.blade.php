@@ -35,8 +35,8 @@ use App\Researcher;
                             <thead>
                                 <tr>
                                     <th style="width: 1cm;">ID</th>
-                                    <th style="width: 7cm;">Título</th>
-                                    <th style="width: 7cm;">Título Segundo Idioma</th>
+                                    <th style="width: 10cm;">Título</th>
+                                    <th style="width: 5cm;">Nombre de la Revista o Acta</th>
                                     <th style="width: 3.8cm;">Fecha de Publicación</th>
                                     <th style="width: 3.8cm;">Tipo</th>
                                     <th style="width: 3.8cm;">Subtipo</th>
@@ -48,7 +48,7 @@ use App\Researcher;
                                 <tr>
                                     <td> {{ $publication->id }} </td>
                                     <td> {{ $publication->title }} </td>
-                                    <td> {{ $publication->titleSecondLanguage }} </td>
+                                    <td> {{ $publication->type }} </td>
                                     <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
                                     <td> {{ $publication->publicationType }} </td>
                                     <td> {{ $publication->publicationIndex }} </td>
