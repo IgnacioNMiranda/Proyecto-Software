@@ -57,7 +57,7 @@ use App\Researcher;
                                     <td>{{ date('d-m-Y', strtotime($project->startDate)) }}</td>
                                     <td>{{ date('d-m-Y', strtotime($project->endDate)) }}</td>
                                     @auth
-                                    @if(Auth::user()->userType == "Administrador" || in_array($project->id,$currentProjectsids))
+                                    @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && in_array($project->id,$currentProjectsids)))
                                         <td width="10px">
                                             <a href="{{ route('projects.show', $project->id) }}"
                                                 class="btn btn-sm btn-secondary">

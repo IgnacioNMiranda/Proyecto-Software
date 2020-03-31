@@ -37,7 +37,7 @@ use App\Researcher;
                                 <td> {{ $unit->name }} </td> 
                                 <td> {{ $unit->country }} </td>
                                 @auth
-                                @if(Auth::user()->userType == "Administrador" || $currentResearcher->unit_id == $unit->id)
+                                @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && $currentResearcher->unit_id == $unit->id))
                                 <td width="10px">
                                     <a href="{{ route('units.edit', $unit->id) }}" class="btn btn-sm btn-secondary">
                                         Editar

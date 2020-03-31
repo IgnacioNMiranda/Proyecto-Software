@@ -46,7 +46,7 @@ use App\Researcher;
                                     <td>{{ $product->name}}</td>
                                     <td>{{$product->description}}</td>
                                     @auth
-                                    @if(Auth::user()->userType == "Administrador" || in_array($product->id,$currentProductsids))
+                                    @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && in_array($product->id,$currentProductsids)))
                                         <td width="10px">
                                             <a href=" {{route('products.edit', $product->id) }}" class="btn btn-sm btn-secondary">
                                                 Editar
