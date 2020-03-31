@@ -27,6 +27,17 @@ use App\Researcher;
                     <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
                     {!! Form::close() !!}
 
+                    {!! Form::open(['route' => 'publications.store','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                    <div class="form-group">
+                        {{ Form::label('researchers','Autor a Buscar') }}
+                        {!! Form::text('researchers',null,['class'=>'form-control','placeholder'=>'Ingrese Autor']) !!}
+
+
+                    </div>
+                    <button class="btn btn-secondary mr-4" type="submit">Buscar</button>
+
+                    {!! Form::close()!!}
+
 
                     @if ($publications->items() != null)
                         @auth
@@ -67,7 +78,7 @@ use App\Researcher;
                                         </a>
                                     </td>
                                     @auth
-                                    @if(Auth::user()->userType == "Administrador" || in_array($publication->id,$currentProjectsids))
+                                    @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && in_array($publication->id,$currentProjectsids)))
                                         <td width="10px">
                                             <a href="{{ route('publications.edit', $publication->id) }}"
                                                 class="btn btn-sm btn-secondary">
@@ -88,7 +99,7 @@ use App\Researcher;
 
                                     @if(isset($currentResearcher))
                                     @php
-                                        $groupIds = Researcher::find($researcher->id)->investigation_groups()->pluck('investigation_group_id')->toArray();
+                                        $groupIds = Researcher::find($researcher->id)->invGroups()->pluck('investigation_group_id')->toArray();
                                         $itsIn = false;
                                     @endphp
                                     @foreach ($currentGroupids as $group_id)
