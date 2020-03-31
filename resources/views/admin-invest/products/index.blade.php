@@ -17,7 +17,7 @@ use App\Researcher;
                     <a href="{{ route('products.create') }}" class="btn btn-sm btn-success float-right">Crear Producto</a>
                     @endauth
                 </div>
-                
+
                 @if ($products->items() != null)
                     @auth
                     @if(Auth::user()->userType == "Investigador" && Auth::user()->researcher_id != null)
@@ -26,7 +26,7 @@ use App\Researcher;
                             //Se obtienen los grupos asociados al investigador conectado
                             $currentProductsids = Researcher::find($currentResearcher->id)->products()->pluck('product_id')->toArray();
                         @endphp
-                    @endif    
+                    @endif
                     @endauth
 
                     <div class="card-body">
@@ -54,11 +54,12 @@ use App\Researcher;
                                         </td>
                                         <td width="10px">
                                             {!! Form::open(['route' => ['products.destroy', $product->id], 'method' => 'DELETE'])!!}
-                                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar este producto?')"> 
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar este producto?')">
                                                     Eliminar
                                                 </button>
                                             {!! Form::close() !!}
                                         </td>
+
                                     @else
                                         <td></td><td></td>
                                     @endif
@@ -73,7 +74,7 @@ use App\Researcher;
                         {{ $products->render()}}
                     </div>
                 @else
-                    <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>       
+                    <p class="h1 text-center mt-4"> No se encontraron coincidencias </p>
                 @endif
 
             </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductUpdateRequest extends FormRequest
+class PublicationStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +25,10 @@ class ProductUpdateRequest extends FormRequest
     {
         return [
             //Regex alfanumerico de máximo 50 caracteres
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:products,name,' . $this->id,
-            //Regex alfanumerico de máximo 500 caracteres
-            'description' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,500}$/',
+            'title' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,title',
+            'titleSecondLanguage' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,titleSecondLanguage',
+            'publicationType' => 'required',
+            'type'=>'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,type',
             'researchers' => 'required|array',
             'notResearchers' => 'nullable|array',
             'date' => 'required',
@@ -39,13 +40,15 @@ class ProductUpdateRequest extends FormRequest
     public function messages(){
 
         return [
-            'name.required' => 'El campo nombre es obligatorio.',
-            'name.regex' => 'Formato de nombre inválido.',
-            'name.unique' => 'Este nombre ya se encuentra en uso.',
-            'description.regex' => 'Formato de descripción inválido.',
+            'title.required' => 'El campo del Titulo es obligatorio.',
+            'title.regex' => 'Formato de Titulo inválido.',
+            'title.unique' => 'Este Titulo ya se encuentra en uso.',
+            'publicationType.required' => 'Seleccionar el Tipo de Publicacion es obligatorio.',
+            'type.required' => 'Ingresar datos en Revista o Acta es obligatorio',
             'researchers.required' => 'Debe elegir al menos un investigador perteneciente al grupo de investigación',
             'date.required' => 'El campo fecha es obligatorio.',
             'investigation_group_id.required' => 'el campo grupo de investigacion es obligatorio.',
         ];
     }
 }
+

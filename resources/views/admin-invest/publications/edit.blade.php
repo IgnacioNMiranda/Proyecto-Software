@@ -6,20 +6,24 @@
         <div class = "col-md-9 justify-content-center">
             <div class="card border-secondary">
                 <div class = "card-header h2 d-flex justify-content-center mb-4 bg-tertiary" >
-                    Editar Producto
+                    Editar Publicación
                 </div>
 
                 <div class="card-body">
-                    {!! Form::model($product, ['route' => ['products.update', $product->id],
+                    {!! Form::model($publication, ['route' => ['publications.update', $publication->id],
                         'method'=> 'PUT'])!!}
                         @csrf
 
-                        {{ Form::hidden('id',$product->id)}}
+                        {{ Form::hidden('id',$publication->id)}}
 
                         <div class="form-group">
-                            {{ Form::label('name', 'Nombre del Producto') }}
-                            {{ Form::label('name','*', array('class' => 'text-danger'))}}
-                            {{ Form::text('name', null, ['class' => 'form-control', 'id' => 'name']) }}
+                            {{ Form::label('title', 'Titulo de la Publicación') }}
+                            {{ Form::label('title','*', array('class' => 'text-danger'))}}
+                            {{ Form::text('title', null, ['class' => 'form-control', 'id' => 'title']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('titleSecondLanguage ', 'Titulo de la Publicación en otro Idioma') }}
+                            {{ Form::text('titleSecondLanguage', null, ['class' => 'form-control', 'id' => 'titleSecondLanguage']) }}
                         </div>
 
                         <div class = "form-group">
@@ -47,8 +51,24 @@
                         <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
 
                         <div class="form-group">
-                            {{ Form::label('description', 'Descripción del Producto') }}
-                            {{ Form::textarea('description', null, ['class' => 'form-control', 'id' => 'description']) }}
+                            {{ Form::label('publicationType','Tipo de Publicación') }}
+                            {{ Form::label('publicationType','*', array('class' => 'text-danger'))}}
+                            {{ Form::select('publicationType',config('publicationTypes.Types'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Tipo de Publicación']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('publicationIndex','Sub Tipo') }}
+                            {{ Form::label('publicationIndex','*', array('class' => 'text-danger'))}}
+                            {{ Form::select('publicationIndex',config('publicationTypes.indexSubTypes'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Sub-Tipo de Publicación']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('publicationNoIndex','Sub Tipo') }}
+                            {{ Form::label('publicationNoIndex','*', array('class' => 'text-danger'))}}
+                            {{ Form::select('publicationNoIndex',config('publicationTypes.notIndexSubTypes'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Sub-Tipo de Publicación']) }}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('type', 'Revista o Acta') }}
+                            {{ Form::label('type','*', array('class' => 'text-danger'))}}
+                            {{ Form::text('type', null, ['class' => 'form-control', 'id' => 'type']) }}
                         </div>
 
                         <div class = "form-group">
@@ -64,27 +84,26 @@
                         </div>
 
                         <div class="form-group mt-4 text-center">
-                            <button type="submit" class="btn btn-secondary mb-4" name="product">
+                            <button type="submit" class="btn btn-secondary mb-4" name="publication">
                                 {{ __('Guardar') }}
                             </button>
                         </div>
                     {!! Form::close() !!}
 
                 </div>
-
-
             </div>
         </div>
     </div>
 </section>
-@include("admin-invest\products\partials\\researcher_form")
+@include("admin-invest\publications\partials\\researcher_form")
 @endsection
+
 
 @section('scripts')
 <script type="text/javascript">
     $(document).ready(function () {
 
-        function loadResearchers(productResearchers){
+        function loadResearchers(publicationResearchers){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
 
             var option = " "; // Define las opciones
@@ -96,7 +115,7 @@
                 success: function (researchers) {
 
                     for (var i = 0; i < researchers.length; i++) {
-                        var possiblySelected = productResearchers.find(researcher => researcher.id === researchers[i].id) != undefined ? 'selected' : '';
+                        var possiblySelected = publicationResearchers.find(researcher => researcher.id === researchers[i].id) != undefined ? 'selected' : '';
 
                         option +=  "<option value='" + researchers[i].id + "' " + possiblySelected + ">" + researchers[i].researcher_name + "</option>";
                     }
@@ -113,7 +132,7 @@
 
         }
 
-        function loadNotResearchers(productResearchers){
+        function loadNotResearchers(publicationResearchers){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
 
             var option = " "; // Define las opciones
@@ -124,7 +143,7 @@
                 data: {'id': invGroup_id},
                 success: function (notResearchers) {
                     for (var i = 0; i < notResearchers.length; i++) {
-                        var possiblySelected = productResearchers.find(researcher => researcher.id === notResearchers[i].id) != undefined ? 'selected' : '';
+                        var possiblySelected = publicationResearchers.find(researcher => researcher.id === notResearchers[i].id) != undefined ? 'selected' : '';
 
                         option +=  "<option value='" + notResearchers[i].id + "' " + possiblySelected + ">" + notResearchers[i].researcher_name + "</option>";
                     }
@@ -141,9 +160,9 @@
         }
 
         function loadAllResearchers(){
-            var productResearchers = {!! json_encode($product->researchers) !!};
-            loadResearchers(productResearchers);
-            loadNotResearchers(productResearchers);
+            var publicationResearchers = {!! json_encode($publication->researchers) !!};
+            loadResearchers(publicationResearchers);
+            loadNotResearchers(publicationResearchers);
         }
 
         loadAllResearchers(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
@@ -154,9 +173,9 @@
 <script>
         $(document).ready(function () {
 
-            function loadProjects(productProject){
+            function loadProjects(publicationProject){
                 var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
-                console.log(productProject);
+                console.log(publicationProject);
 
                 var option = " "; // Define las opciones
 
@@ -170,7 +189,7 @@
 
                         for (var i = 0; i < projects.length; i++) {
                             var possiblySelected = '';
-                            if(old == projects[i].id || projects[i].id == productProject.id){
+                            if(old == projects[i].id || projects[i].id == publicationProject.id){
                                 possiblySelected = 'selected';
                             }
                             option +=  "<option value='" + projects[i].id + "' " + possiblySelected + ">" + projects[i].name + "</option>";
@@ -187,8 +206,8 @@
                     }
                 });
             }
-            var productProject = {!! json_encode($product->project) !!};
-            loadProjects(productProject); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
+            var publicationProject = {!! json_encode($publication->project) !!};
+            loadProjects(publicationProject); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
             $(document).on('change', '#investigation_group_id', loadProjects);
             });
 </script>

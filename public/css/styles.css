@@ -10,6 +10,14 @@
     background-color: #E0EBF6;
 }
 
+.text-primary{
+    color:#23415B!important;
+}
+
+.text-secondary{
+    color: #4E7CA8!important;
+}
+
 body {
     position: relative;
     padding-bottom: 100px;

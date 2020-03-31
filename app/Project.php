@@ -16,6 +16,9 @@ class Project extends Model
     public function products(){
         return $this->hasMany(Product::class);
     }
+    public function publications(){
+        return $this->hasMany(Publication::class);
+    }
 
     public function investigation_group(){
         return $this->belongsTo(InvestigationGroup::class);
@@ -24,7 +27,7 @@ class Project extends Model
     public function scopeState($query,$state)
     {
         $states = config('options.states');
-   
+
         if($state != "" && isset($states[$state])){
             $query->where('state',$state);
         }
