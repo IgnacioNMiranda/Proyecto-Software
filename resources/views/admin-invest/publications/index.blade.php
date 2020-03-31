@@ -21,7 +21,7 @@ use App\Researcher;
                 <div class="card-body">
                     {!! Form::open(['route' => 'publications.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}
                     <div class="form-group">
-                        {{ Form::label('publicationType','Estado') }}
+                        {{ Form::label('publicationType','Tipo de Publicacion') }}
                         {{ Form::select('publicationType', config('publicationTypes.Types'),null, ['class' => 'form-control', 'placeholder' => 'Seleccione un Tipo de Publicacion']) }}
                     </div>
                     <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
