@@ -19,17 +19,24 @@ use App\Researcher;
 
 
                 <div class="card-body">
+                    {!! Form::open(['route' => 'publications.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}
+                    <div class="form-group">
+                        {{ Form::label('publicationType','Tipo de Publicacion') }}
+                        {{ Form::select('publicationType', config('publicationTypes.Types'),null, ['class' => 'form-control', 'placeholder' => 'Seleccione un Tipo de Publicacion']) }}
+                    </div>
+                    <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
+                    {!! Form::close() !!}
 
 
                     @if ($publications->items() != null)
                         @auth
                         @if(Auth::user()->userType == "Investigador" && Auth::user()->researcher_id != null)
-                            @php
-                                $currentResearcher = Researcher::find(Auth::user()->researcher_id);
-                                //Se obtienen los grupos asociados al investigador conectado
-                                $currentProjectsids = Researcher::find($currentResearcher->id)->publications()->pluck('publication_id')->toArray();
-                            @endphp
-                        @endif
+                                @php
+                                    $currentResearcher = Researcher::find(Auth::user()->researcher_id);
+                                    //Se obtienen los grupos asociados al investigador conectado
+                                    $currentGroupids = Researcher::find($currentResearcher->id)->investigation_groups()->pluck('investigation_group_id')->toArray();
+                                @endphp
+                            @endif
                         @endauth
                         <table class="table table-striped table-hover">
                             <thead>
@@ -71,6 +78,31 @@ use App\Researcher;
                                         <td></td><td></td>
                                     @endif
                                     @endauth
+
+                                    @if(isset($currentResearcher))
+                                    @php
+                                        $groupIds = Researcher::find($researcher->id)->investigation_groups()->pluck('investigation_group_id')->toArray();
+                                        $itsIn = false;
+                                    @endphp
+                                    @foreach ($currentGroupids as $group_id)
+                                        @if(in_array($group_id,$groupIds))
+                                            @php
+                                                $itsIn = true;
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                    @if ($itsIn == true)
+                                        <td width="10px">
+                                            <a href="{{ route('researchers.edit', $researcher->id) }}"
+                                                class="btn btn-sm btn-secondary">
+                                                Editar
+                                            </a>
+                                        </td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                @endif
+
                                     @if(Auth::user() == null)
                                         <td></td>
                                     @endif
