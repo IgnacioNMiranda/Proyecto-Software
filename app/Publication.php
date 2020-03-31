@@ -21,4 +21,15 @@ class Publication extends Model
     public function invGroups(){
         return $this->belongsTo(InvestigationGroup::class);
     }
+
+
+    public function scopePublicationType($query,$publicationType)
+    {
+        $publicationTypes = config('publicationTypes.Types');
+
+        if($publicationType != "" && isset($publicationTypes[$publicationType])){
+            $query->where('publicationType',$publicationType);
+        }
+    }
+
 }
