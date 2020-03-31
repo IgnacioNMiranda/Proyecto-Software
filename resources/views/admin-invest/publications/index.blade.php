@@ -69,7 +69,7 @@ use App\Researcher;
                                         </td>
                                         <td width="10px">
                                             {!! Form::open(['route' => ['publications.destroy', $publication->id], 'method' => 'DELETE'])!!}
-                                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar esta publicación?')">
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta publicación?')">
                                                     Eliminar
                                                 </button>
                                             {!! Form::close() !!}
