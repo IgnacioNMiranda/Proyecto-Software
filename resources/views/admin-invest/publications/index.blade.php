@@ -59,6 +59,13 @@ use App\Researcher;
                                     <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
                                     <td> {{ $publication->publicationType }} </td>
                                     <td> {{ $publication->publicationIndex }} </td>
+
+                                    <td width="10px">
+                                        <a href="{{ route('publications.show', $publication->id) }}"
+                                            class="btn btn-sm btn-secondary">
+                                            Ver
+                                        </a>
+                                    </td>
                                     @auth
                                     @if(Auth::user()->userType == "Administrador" || in_array($publication->id,$currentProjectsids))
                                         <td width="10px">

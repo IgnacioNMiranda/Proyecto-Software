@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Publication;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Publication;
-use App\Researcher;
+
 use App\InvestigationGroup;
 use App\Unit;
+use App\Researcher;
+use Illuminate\Support\Facades\Auth;
+
+
 
 use App\Http\Requests\PublicationStoreRequest;
 use App\Http\Requests\PublicationUpdateRequest;
-
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Str;
 
@@ -23,7 +25,7 @@ class publicationController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['show', 'index']);
     }
 
     /**
@@ -88,7 +90,9 @@ class publicationController extends Controller
      */
     public function show($id)
     {
-        return redirect('/');
+        $publication = Publication::find($id);
+        $publicationResearchers = $publication->researchers()->pluck('researcher_name');
+        return view('admin-invest.publications.show',compact('publication','publicationResearchers'));
     }
 
     public function edit($id)

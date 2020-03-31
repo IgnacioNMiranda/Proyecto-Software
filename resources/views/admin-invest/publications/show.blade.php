@@ -3,15 +3,23 @@
 @section('content')
 <div class = "container">
     <div class = "row justify-content-center">
-        <div class = "col-md-8 border shadow pt-4">
-            <div class = "card border-secondary">
+        <div class = "col-md-8">
+            <div class = "card border-secondary shadow">
                 <div class = "card-header h4" >
-                    Ver Publicación
+                    {{$publication->title}}
                 </div>
 
-                <div class="panel-body">
-                    <p><strong>Titulo</strong> {{$publication->title}}</p>
-                    <p><strong>Slug</strong> {{$publication->slug}}</p>
+                <div class="card-body">
+                    <p><strong>Id:</strong> {{$publication->id}}</p>
+                    <p><strong>Título:</strong> {{$publication->title}}</p>
+                    <p><strong>Título segundo idioma:</strong> {{$publication->titleSecondLanguage}}</p>
+                    <p><strong>Tipo de Publicacion:</strong> {{$publication->publicationType}}</p>
+                    <p><strong>Fecha de Publicación:</strong> {{ date('d-m-Y', strtotime($publication->date)) }}</p>
+                    <p><strong>Id del Grupo de Investigación:</strong> {{$publication->investigation_group_id}}</p>
+                    <div class="form-group">
+                        {{ Form::label('id','Investigador(es) participante(s)')}}
+                        {{Form::select('id[]',$publicationResearchers,null, ['class'=>'form-control', 'multiple' => true,'id' => 'researchers_id2','name' => 'researchers_name2'])}}
+                      </div>
                 </div>
 
             </div>
