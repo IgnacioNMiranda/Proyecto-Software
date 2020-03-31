@@ -14,6 +14,8 @@
                     <p><strong>Título:</strong> {{$publication->title}}</p>
                     <p><strong>Título segundo idioma:</strong> {{$publication->titleSecondLanguage}}</p>
                     <p><strong>Tipo de Publicacion:</strong> {{$publication->publicationType}}</p>
+                    <p><strong>SubTipo de Publicacion:</strong> {{$publication->publicationIndex}}</p>
+                    <p><strong>Revista o Acta:</strong> {{$publication->type}}</p>
                     <p><strong>Fecha de Publicación:</strong> {{ date('d-m-Y', strtotime($publication->date)) }}</p>
                     <p><strong>Id del Grupo de Investigación:</strong> {{$publication->investigation_group_id}}</p>
                     <div class="form-group">
