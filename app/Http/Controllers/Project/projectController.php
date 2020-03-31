@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
@@ -48,6 +50,14 @@ class ProjectController extends Controller
     {
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
         $investigation_groups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+        if(Auth::user()->userType == "Investigador"){
+            if(Auth::user()->researcher_id != null){
+                $investigation_groups = Researcher::find(Auth::user()->researcher_id)->investigation_groups()->get()->pluck('name', 'id');
+            }else{
+                return back()->withErrors(['Debe asociarse a un grupo de investigación antes de crear proyectos.']);
+            }
+        }
+
         return view('admin-invest.projects.create',compact('units', 'investigation_groups'));
     }
 
