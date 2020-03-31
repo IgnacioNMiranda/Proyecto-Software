@@ -14,7 +14,7 @@ class Publication extends Model
         return $this->belongsToMany(Researcher::class)->withTimestamps();
     }
 
-    public function projects(){
+    public function project(){
         return $this->belongsTo(Project::class);
     }
 
