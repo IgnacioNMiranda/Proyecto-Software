@@ -14,11 +14,22 @@ class Publication extends Model
         return $this->belongsToMany(Researcher::class)->withTimestamps();
     }
 
-    public function projects(){
+    public function project(){
         return $this->belongsTo(Project::class);
     }
 
     public function invGroups(){
         return $this->belongsTo(InvestigationGroup::class);
     }
+
+
+    public function scopePublicationType($query,$publicationType)
+    {
+        $publicationTypes = config('publicationTypes.Types');
+
+        if($publicationType != "" && isset($publicationTypes[$publicationType])){
+            $query->where('publicationType',$publicationType);
+        }
+    }
+
 }

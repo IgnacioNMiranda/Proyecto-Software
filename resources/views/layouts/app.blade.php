@@ -97,7 +97,12 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
+
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Proyecto</a>
+              @else
+                <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
+              @endif
               <div class="dropdown-divider"></div>
               @endauth
               @if ($projects->isNotEmpty())
@@ -115,7 +120,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Producto</a>
+              @else
+                <a class="dropdown-item" href="{{ route('products.create') }}">Crear Producto</a>
+              @endif
               <div class="dropdown-divider"></div>
               @endauth
               @if ($products->isNotEmpty())
@@ -123,7 +132,6 @@
               @else
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>
               @endif
-
             </div>
 
           </li>
@@ -175,7 +183,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <a class="dropdown-item" href="{{ route('publications.create') }}">Crear Publicación</a>
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Publicación</a>
+              @else
+                <a class="dropdown-item" href="{{ route('publications.create') }}">Crear Publicación</a>
+              @endif
               <div class="dropdown-divider"></div>
               @endauth
               @if ($publications->isNotEmpty())

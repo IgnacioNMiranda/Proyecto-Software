@@ -110,7 +110,6 @@
                 url: '{!!URL::to('researchersGroup')!!}',
                 data: {'id': invGroup_id},
                 success: function (researchers) {
-                    console.log("hola fue exitoso");
                     for (var i = 0; i < researchers.length; i++) {
                         option +=  "<option value='" + researchers[i].id + "'>" + researchers[i].researcher_name + "</option>";
                     }
@@ -120,7 +119,6 @@
                 },
                 error: function () {
                     option += '<option value="0" selected disabled>Seleccione investigador(es)</option>';
-                    console.log("hola hubo un error");
                     $('#researchers').html(" ");
                     $("#researchers").append(option); //Agrega las options al select #researchers
                 }

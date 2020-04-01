@@ -46,8 +46,8 @@
                         
                             <div id="invGroupCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                               <div class="card-body">
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear grupos de investigaci&oacute;n</a>
-                                <p> Demostraci&oacute;n de c&oacute;mo crear nuevos grupos de investigaci&oacute;n.</p>
+                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear y editar grupos de investigaci&oacute;n</a>
+                                <p> Demostraci&oacute;n de c&oacute;mo crear nuevos grupos de investigaci&oacute;n y de cómo editarlos.</p>
                               </div>
                             </div>
                         </div>
@@ -144,7 +144,31 @@
                                 <p> Acceso al listado de unidades presentes en el sistema.</p>
                               </div>
                             </div>
+                        </div>
+
+                        <div class="card mb-4">
+                          <div class="card-header" id="headingSeven">
+                            <button class="btn btn-success border-secondary" data-toggle="collapse" data-target="#PublicationCollapse" aria-expanded="false" aria-controls="PublicationCollapse">
+                              📃 Publicaciones
+                            </button>
                           </div>
+                      
+                          <div id="PublicationCollapse" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                            <div class="card-body">
+                              @auth
+                              🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear publicaciones</a>
+                              <p> Demostraci&oacute;n de c&oacute;mo crear nuevas publicaciones en el sistema.</p>
+
+                              🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de publicaciones</a>
+                              <p> Edici&oacute;n de una publicaci&oacute;n existente.</p>
+                              @endauth
+
+                              🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Listado de publicaciones</a>
+                              <p> Acceso al listado de publicaciones presentes en el sistema.</p>
+                            </div>
+                          </div>
+                        </div>
+
                     </section>
                   </div>
                 </div>

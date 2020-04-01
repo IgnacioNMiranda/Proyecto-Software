@@ -19,17 +19,35 @@ use App\Researcher;
 
 
                 <div class="card-body">
+                    {!! Form::open(['route' => 'publications.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search']) !!}
+                    <div class="form-group">
+                        {{ Form::label('publicationType','Tipo de Publicacion') }}
+                        {{ Form::select('publicationType', config('publicationTypes.Types'),null, ['class' => 'form-control', 'placeholder' => 'Seleccione un Tipo de Publicacion']) }}
+                    </div>
+                    <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
+                    {!! Form::close() !!}
+
+                    {!! Form::open(['route' => 'publications.store','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                    <div class="form-group">
+                        {{ Form::label('researchers','Autor a Buscar') }}
+                        {!! Form::text('researchers',null,['class'=>'form-control','placeholder'=>'Ingrese Autor']) !!}
+
+
+                    </div>
+                    <button class="btn btn-secondary mr-4" type="submit">Buscar</button>
+
+                    {!! Form::close()!!}
 
 
                     @if ($publications->items() != null)
                         @auth
                         @if(Auth::user()->userType == "Investigador" && Auth::user()->researcher_id != null)
-                            @php
-                                $currentResearcher = Researcher::find(Auth::user()->researcher_id);
-                                //Se obtienen los grupos asociados al investigador conectado
-                                $currentProjectsids = Researcher::find($currentResearcher->id)->publications()->pluck('publication_id')->toArray();
-                            @endphp
-                        @endif
+                                @php
+                                    $currentResearcher = Researcher::find(Auth::user()->researcher_id);
+                                    //Se obtienen los grupos asociados al investigador conectado
+                                    $currentPublicationsids = Researcher::find($currentResearcher->id)->publications()->pluck('publication_id')->toArray();
+                                @endphp
+                            @endif
                         @endauth
                         <table class="table table-striped table-hover">
                             <thead>
@@ -52,8 +70,15 @@ use App\Researcher;
                                     <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
                                     <td> {{ $publication->publicationType }} </td>
                                     <td> {{ $publication->publicationIndex }} </td>
+
+                                    <td width="10px">
+                                        <a href="{{ route('publications.show', $publication->id) }}"
+                                            class="btn btn-sm btn-secondary">
+                                            Ver
+                                        </a>
+                                    </td>
                                     @auth
-                                    @if(Auth::user()->userType == "Administrador" || in_array($publication->id,$currentProjectsids))
+                                    @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && in_array($publication->id,$currentPublicationsids)))
                                         <td width="10px">
                                             <a href="{{ route('publications.edit', $publication->id) }}"
                                                 class="btn btn-sm btn-secondary">
@@ -62,7 +87,7 @@ use App\Researcher;
                                         </td>
                                         <td width="10px">
                                             {!! Form::open(['route' => ['publications.destroy', $publication->id], 'method' => 'DELETE'])!!}
-                                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estas seguro que deseas eliminar esta publicación?')">
+                                                <button class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar esta publicación?')">
                                                     Eliminar
                                                 </button>
                                             {!! Form::close() !!}

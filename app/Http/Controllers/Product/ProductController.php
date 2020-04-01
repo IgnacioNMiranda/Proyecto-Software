@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Product;
 use App\Project;
 use App\Researcher;
@@ -51,6 +53,13 @@ class productController extends Controller
     {
         $units = Unit::orderBy('name','ASC')->pluck('name','id');
         $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+        if(Auth::user()->userType == "Investigador"){
+            if(Auth::user()->researcher_id != null){
+                $invGroups = Researcher::find(Auth::user()->researcher_id)->investigation_groups()->get()->pluck('name', 'id');
+            }else{
+                return back()->withErrors(['Debe asociarse a un grupo de investigación antes de crear productos.']);
+            }
+        }
 
         return view('admin-invest.products.create', compact('invGroups','units'));
     }
@@ -121,6 +130,8 @@ class productController extends Controller
         $product -> fill($request->all())->save();
 
         $product->slug = Str::slug($product->name);
+        $request->project_id == null ? $product->project_id = null : '';
+
         $product->save();
 
         //Merge de arreglos de investigadores
