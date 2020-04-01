@@ -45,7 +45,7 @@ use App\Researcher;
                                 @php
                                     $currentResearcher = Researcher::find(Auth::user()->researcher_id);
                                     //Se obtienen los grupos asociados al investigador conectado
-                                    $currentGroupids = Researcher::find($currentResearcher->id)->investigation_groups()->pluck('investigation_group_id')->toArray();
+                                    $currentPublicationsids = Researcher::find($currentResearcher->id)->publications()->pluck('publication_id')->toArray();
                                 @endphp
                             @endif
                         @endauth
@@ -78,7 +78,7 @@ use App\Researcher;
                                         </a>
                                     </td>
                                     @auth
-                                    @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && in_array($publication->id,$currentProjectsids)))
+                                    @if(Auth::user()->userType == "Administrador" || ( isset($currentResearcher) && in_array($publication->id,$currentPublicationsids)))
                                         <td width="10px">
                                             <a href="{{ route('publications.edit', $publication->id) }}"
                                                 class="btn btn-sm btn-secondary">
@@ -96,31 +96,6 @@ use App\Researcher;
                                         <td></td><td></td>
                                     @endif
                                     @endauth
-
-                                    @if(isset($currentResearcher))
-                                    @php
-                                        $groupIds = Researcher::find($researcher->id)->invGroups()->pluck('investigation_group_id')->toArray();
-                                        $itsIn = false;
-                                    @endphp
-                                    @foreach ($currentGroupids as $group_id)
-                                        @if(in_array($group_id,$groupIds))
-                                            @php
-                                                $itsIn = true;
-                                            @endphp
-                                        @endif
-                                    @endforeach
-                                    @if ($itsIn == true)
-                                        <td width="10px">
-                                            <a href="{{ route('researchers.edit', $researcher->id) }}"
-                                                class="btn btn-sm btn-secondary">
-                                                Editar
-                                            </a>
-                                        </td>
-                                    @else
-                                        <td></td>
-                                    @endif
-                                @endif
-
                                     @if(Auth::user() == null)
                                         <td></td>
                                     @endif
