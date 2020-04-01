@@ -46,8 +46,8 @@
                         
                             <div id="invGroupCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                               <div class="card-body">
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear grupos de investigaci&oacute;n</a>
-                                <p> Demostraci&oacute;n de c&oacute;mo crear nuevos grupos de investigaci&oacute;n.</p>
+                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear y editar grupos de investigaci&oacute;n</a>
+                                <p> Demostraci&oacute;n de c&oacute;mo crear nuevos grupos de investigaci&oacute;n y de cómo editarlos.</p>
                               </div>
                             </div>
                         </div>

@@ -56,7 +56,7 @@ Route::resource('researchers_groups','Researcher_Group\Researcher_GroupControlle
 Route::resource('products_groups','Product_Group\Product_GroupController');
 
 //Publication_Group
-Route::resource('publication_groups','Publication_Group\Publication_GroupController');
+Route::resource('publications_groups','Publication_Group\Publication_GroupController');
 
 //Proyect_Group
 Route::resource('projects_groups','Project_Group\Project_GroupController');
