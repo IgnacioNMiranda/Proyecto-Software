@@ -94,6 +94,8 @@
                                 <p> Ver Lista de Productos y Edici&oacute;n de un producto existente.</p>
                                 @endauth
 
+                                🎞️ <a href="https://youtu.be/UTee40g7Y0w" target="_blank">Listado de productos</a>
+                                <p> Acceso al listado de productos presentes en el sistema.</p>
                               </div>
                             </div>
                         </div>
