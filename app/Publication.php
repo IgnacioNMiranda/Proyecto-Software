@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Publication extends Model
 {
     protected $fillable = [
-        'title','titleSecondLanguage','publicationType','publicationIndex','publicationNoIndex','type','date','slug','investigation_group_id', 'project_id'
+        'title','titleSecondLanguage','publicationType','publicationSubType','type','date','slug','investigation_group_id', 'project_id'
     ];
 
     public function researchers(){
