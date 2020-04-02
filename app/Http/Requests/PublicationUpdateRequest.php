@@ -23,7 +23,6 @@ class PublicationUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this);
         return [
             //Regex alfanumerico de máximo 50 caracteres
             'title' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,title,' . $this->id,
