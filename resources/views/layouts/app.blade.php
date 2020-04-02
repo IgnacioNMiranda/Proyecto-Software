@@ -183,7 +183,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <a class="dropdown-item" href="{{ route('publications.create') }}">Crear Publicación</a>
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Publicación</a>
+              @else
+                <a class="dropdown-item" href="{{ route('publications.create') }}">Crear Publicación</a>
+              @endif
               <div class="dropdown-divider"></div>
               @endauth
               @if ($publications->isNotEmpty())

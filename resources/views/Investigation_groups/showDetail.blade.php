@@ -45,23 +45,7 @@
     </div>
 
     <div class="row justify-content-around text-center verticalTopOffset">
-        <div class="col-12 col-md-4 mb-4">
-            <!-- exists() comprueba si existen products relacionados con invGroup -->
-            @if ($invGroup->products()->exists())
-                <a href="{{ route('products_groups.show',$invGroup->id) }}" class="btn btn-lg btn-secondary"> Productos </a>
-            @else
-                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_products_modal"> Productos </a>
-            @endif
-        </div>
-        <div class="col-12 col-md-4 mb-4">
-            <!-- exists() comprueba si existen projects relacionados con invGroup -->
-            @if ($invGroup->projects()->exists())
-                <a href="{{ route('projects_groups.show', $invGroup->id)}}" class="btn btn-lg btn-secondary"> Proyectos </a>
-            @else
-                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_projects_modal"> Proyectos </a>
-            @endif
-        </div>
-        <div class="col-12 col-md-4 mb-4">
+        <div class="col-12 col-md-3 mb-4">
             <!-- exists() comprueba si existen researchers relacionados con invGroup -->
             @if ($invGroup->researchers()->exists())
             <a href="{{ route('researchers_groups.show',$invGroup->id) }}" class="btn btn-lg btn-secondary"> Investigadores </a>
@@ -69,11 +53,36 @@
                 <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_researchers_modal"> Investigadores </a>
             @endif
         </div>
+        <div class="col-12 col-md-3 mb-4">
+            <!-- exists() comprueba si existen products relacionados con invGroup -->
+            @if ($invGroup->products()->exists())
+                <a href="{{ route('products_groups.show',$invGroup->id) }}" class="btn btn-lg btn-secondary"> Productos </a>
+            @else
+                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_products_modal"> Productos </a>
+            @endif
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <!-- exists() comprueba si existen projects relacionados con invGroup -->
+            @if ($invGroup->projects()->exists())
+                <a href="{{ route('projects_groups.show', $invGroup->id)}}" class="btn btn-lg btn-secondary"> Proyectos </a>
+            @else
+                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_projects_modal"> Proyectos </a>
+            @endif
+        </div>
+        <div class="col-12 col-md-3 mb-4">
+            <!-- exists() comprueba si existen projects relacionados con invGroup -->
+            @if ($invGroup->publications()->exists())
+                <a href="{{ route('publications_groups.show', $invGroup->id)}}" class="btn btn-lg btn-secondary"> Publicaciones </a>
+            @else
+                <a href="#" class="btn btn-lg btn-secondary" data-toggle="modal" data-target="#no_publications_modal"> Publicaciones </a>
+            @endif
+        </div>
     </div>
 
 </div>
 
+@include("\investigation_groups\partials\\no_researchers_modal")
 @include("\investigation_groups\partials\\no_products_modal")
 @include("\investigation_groups\partials\\no_projects_modal")
-@include("\investigation_groups\partials\\no_researchers_modal")
+@include("\investigation_groups\partials\\no_publications_modal")
 @endsection
