@@ -31,11 +31,13 @@
                       
                           <div id="userCollapse" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
-                              🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear Usuarios y login</a>
+                              🎞️ <a href="https://youtu.be/clsHYzjkhjY" target="_blank">Crear Usuarios y login</a>
                               <p> Demostraci&oacute;n de c&oacute;mo crear un nuevo usuario en el sistema y de c&oacute;mo loguearse.</p>
                             </div>
                           </div>
                         </div>
+                        @endif
+                        @endauth
                         
                         <div class="card mb-4">
                             <div class="card-header" id="headingTwo">
@@ -46,14 +48,19 @@
                         
                             <div id="invGroupCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                               <div class="card-body">
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear y editar grupos de investigaci&oacute;n</a>
-                                <p> Demostraci&oacute;n de c&oacute;mo crear nuevos grupos de investigaci&oacute;n y de cómo editarlos.</p>
+                                @auth
+                                @if(Auth::user()->userType == "Administrador")
+                                  🎞️ <a href="https://youtu.be/q-v6bCqr39M" target="_blank">Crear y editar grupos de investigaci&oacute;n</a>
+                                  <p> Demostraci&oacute;n de c&oacute;mo crear nuevos grupos de investigaci&oacute;n y de cómo editarlos.</p>
+                                @endif
+                                @endauth
+
+                                🎞️ <a href="https://youtu.be/pcTg9i-yJOI" target="_blank">Detalle de un grupo de investigaci&oacute;n</a>
+                                <p> Demostraci&oacute;n de c&oacute;mo acceder a la informaci&oacute;n espec&iacute;fica de un grupo de investigaci&oacute;n.</p>
                               </div>
                             </div>
                         </div>
-                        @endif
-                        @endauth
-        
+
                         <div class="card mb-4">
                             <div class="card-header" id="headingThree">
                               <button class="btn btn-success border-secondary" data-toggle="collapse" data-target="#proyectCollapse" aria-expanded="false" aria-controls="proyectCollapse">
@@ -76,7 +83,26 @@
                               </div>
                             </div>
                         </div>
-        
+
+                        
+                        @if (!Auth::user())
+                          <div class="card mb-4">
+                            <div class="card-header" id="headingAux">
+                              <button class="btn btn-success border-secondary" data-toggle="collapse" data-target="#AuxCollapse" aria-expanded="false" aria-controls="AuxCollapse">
+                                📝 Productos y Unidades 🏢
+                              </button>
+                            </div>
+                        
+                            <div id="AuxCollapse" class="collapse" aria-labelledby="headingAux" data-parent="#accordion">
+                              <div class="card-body">
+                                🎞️ <a href="https://youtu.be/0gtmCOsA8uM" target="_blank">Listado de productos y unidades</a>
+                                <p> Despliegue del listado de productos y unidades.</p>
+                              </div>
+                            </div>
+                          </div>
+                        @endif
+
+                        @auth
                         <div class="card mb-4">
                             <div class="card-header" id="headingFour">
                               <button class="btn btn-success border-secondary" data-toggle="collapse" data-target="#productCollapse" aria-expanded="false" aria-controls="productCollapse">
@@ -86,19 +112,15 @@
                         
                             <div id="productCollapse" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                               <div class="card-body">
-                                @auth
                                 🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear productos</a>
                                 <p> Demostraci&oacute;n de c&oacute;mo crear nuevos productos en el sistema.</p>
 
                                 🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de productos</a>
                                 <p> Edici&oacute;n de un producto existente.</p>
-                                @endauth
-
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Listado de productos</a>
-                                <p> Acceso al listado de productos presentes en el sistema.</p>
                               </div>
                             </div>
                         </div>
+                        @endauth
 
                         <div class="card mb-4">
                             <div class="card-header" id="headingFive">
@@ -122,7 +144,8 @@
                               </div>
                             </div>
                         </div>
-        
+                        
+                        @auth
                         <div class="card mb-4">
                             <div class="card-header" id="headingSix">
                               <button class="btn btn-success border-secondary" data-toggle="collapse" data-target="#UnitCollapse" aria-expanded="false" aria-controls="UnitCollapse">
@@ -132,19 +155,15 @@
                         
                             <div id="UnitCollapse" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
                               <div class="card-body">
-                                @auth
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear unidades</a>
+                                🎞️ <a href="https://youtu.be/JLr-xv_f6Nc" target="_blank">Crear unidades</a>
                                 <p> Demostraci&oacute;n de c&oacute;mo crear nuevas unidades en el sistema.</p>
 
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de unidades</a>
+                                🎞️ <a href="https://youtu.be/jhAGzY7RAC4" target="_blank">Edici&oacute;n de unidades</a>
                                 <p> Edici&oacute;n de una unidad existente.</p>
-                                @endauth
-
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Listado de unidades</a>
-                                <p> Acceso al listado de unidades presentes en el sistema.</p>
                               </div>
                             </div>
                         </div>
+                        @endauth
 
                         <div class="card mb-4">
                           <div class="card-header" id="headingSeven">

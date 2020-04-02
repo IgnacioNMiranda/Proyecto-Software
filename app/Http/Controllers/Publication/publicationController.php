@@ -38,9 +38,7 @@ class publicationController extends Controller
 
         $publications = Publication::publicationType($request->get('publicationType'))
         ->orderBy('id','DESC')
-        // $publications = Publication::orderBy('id','DESC')
         ->paginate();
-
 
         return view('admin-invest.publications.index',compact('publications'));
     }
