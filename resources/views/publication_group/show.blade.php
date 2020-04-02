@@ -52,7 +52,7 @@ use App\Researcher;
                                             @endphp
                                             @if (in_array($currentRes,$researchers))
                                             <td width="10px">
-                                                <a href="{{ route('publication.edit', $product->id) }}" class="btn btn-sm btn-secondary">
+                                                <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
                                                     Editar
                                                 </a>
                                             </td>
