@@ -28,49 +28,42 @@ use App\Researcher;
                         </thead>
                         <tbody>
                             @foreach ($publications as $publication)
-                            <tr>
-                                @if ($publication->investigation_group_id == $id)
+                                <tr>
+                                    @if ($publication->investigation_group_id == $id)
 
-                                <td> {{ $publication->id }} </td>
-                                <td> {{ $publication->title }} </td>
-                                <td> {{ $publication->type }} </td>
-                                <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
-                                <td> {{ $publication->publicationType }} </td>
-                                <td> {{ $publication->publicationIndex }} </td>
+                                        <td> {{ $publication->id }} </td>
+                                        <td> {{ $publication->title }} </td>
+                                        <td> {{ $publication->type }} </td>
+                                        <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
+                                        <td> {{ $publication->publicationType }} </td>
+                                        <td> {{ $publication->publicationIndex }} </td>
 
-
-                                @if($currentUser != null)
-                                        @if ($currentUser->userType == "Administrador")
-                                        <td width="10px">
-                                            <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
-                                                Editar
-                                            </a>
-                                        </td>
-                                        @elseif(Researcher::find($currentUser->researcher_id) != null)
-                                            @php
-                                                $currentRes = Researcher::find($currentUser->researcher_id);
-                                            @endphp
-                                            @if (in_array($currentRes,$researchers))
-<<<<<<< HEAD
+                                        @if($currentUser != null)
+                                            @if ($currentUser->userType == "Administrador")
                                                 <td width="10px">
                                                     <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
                                                         Editar
                                                     </a>
                                                 </td>
-                                            @else
-                                                <td></td>
-=======
-                                            <td width="10px">
-                                                <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
-                                                    Editar
-                                                </a>
-                                            </td>
->>>>>>> development
+                                            @elseif(Researcher::find($currentUser->researcher_id) != null)
+                                                @php
+                                                    $currentRes = Researcher::find($currentUser->researcher_id);
+                                                @endphp
+                                                @if (in_array($currentRes,$researchers))
+                                                    <td width="10px">
+                                                        <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
+                                                            Editar
+                                                        </a>
+                                                    </td>
+                                                @else
+                                                    <td></td>
+                                                @endif
                                             @endif
+                                        @else
+                                            <td></td>
                                         @endif
                                     @endif
-                                @endif
-                            </tr>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
