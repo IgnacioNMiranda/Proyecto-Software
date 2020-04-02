@@ -51,6 +51,7 @@ use App\Researcher;
                                                 $currentRes = Researcher::find($currentUser->researcher_id);
                                             @endphp
                                             @if (in_array($currentRes,$researchers))
+<<<<<<< HEAD
                                                 <td width="10px">
                                                     <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
                                                         Editar
@@ -58,6 +59,13 @@ use App\Researcher;
                                                 </td>
                                             @else
                                                 <td></td>
+=======
+                                            <td width="10px">
+                                                <a href="{{ route('publications.edit', $publication->id) }}" class="btn btn-sm btn-secondary">
+                                                    Editar
+                                                </a>
+                                            </td>
+>>>>>>> development
                                             @endif
                                         @endif
                                     @endif
