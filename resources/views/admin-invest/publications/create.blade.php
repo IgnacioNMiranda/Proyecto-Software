@@ -48,20 +48,18 @@
                     <a href="#" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#researcher_form">Crear nuevo Investigador</a>
 
                     <div class="form-group">
+
+
                         {{ Form::label('publicationType','Tipo de Publicación') }}
                         {{ Form::label('publicationType','*', array('class' => 'text-danger'))}}
-                        {{ Form::select('publicationType',config('publicationTypes.Types'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Tipo de Publicación']) }}
+                        {{ Form::select('publicationType',config('publicationTypes.Types'),null,['class' => 'form-control','id'=>'pubType' ,'placeholder'=>'Seleccionar Tipo de Publicación']) }}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('publicationIndex','Sub Tipo') }}
-                        {{ Form::label('publicationIndex','*', array('class' => 'text-danger'))}}
-                        {{ Form::select('publicationIndex',config('publicationTypes.indexSubTypes'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Sub-Tipo de Publicación']) }}
+                        {{ Form::label('publicationSubType','Sub Tipo') }}
+                        {{ Form::label('publicationSubType','*', array('class' => 'text-danger'))}}
+                        {{ Form::select('publicationSubType',['placeholder'=>'Seleccionar Sub-Tipo de Publicación'],null,['class' => 'form-control','id'=>'pubSubType'])}}
                     </div>
-                    <div class="form-group">
-                        {{ Form::label('publicationNoIndex','Sub Tipo') }}
-                        {{ Form::label('publicationNoIndex','*', array('class' => 'text-danger'))}}
-                        {{ Form::select('publicationNoIndex',config('publicationTypes.notIndexSubTypes'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Sub-Tipo de Publicación']) }}
-                    </div>
+
                     <div class="form-group">
                         {{ Form::label('type', 'Revista o Acta') }}
                         {{ Form::label('type','*', array('class' => 'text-danger'))}}
@@ -101,7 +99,7 @@
 
         function loadResearchers(){
             var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
-            console.log("id de grupo: " + invGroup_id);
+            // console.log("id de grupo: " + invGroup_id);
 
             var option = " "; // Define las opciones
 
@@ -191,9 +189,43 @@
                     }
                 });
             }
-
             loadProjects(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
             $(document).on('change', '#investigation_group_id', loadProjects);
         });
 </script>
+
+<script type="text/javascript">
+            $(document).ready(function () {
+                function loadSubType(){
+                var pubType = $('#pubType').val(); //Obtiene la id del grupo de investigacion
+                    if(pubType=='Indexada'){
+
+                        $('#pubSubType').html(" ");
+                        $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
+                        $("#pubSubType").append('<option value="1"  >WOS</option>');
+                        $("#pubSubType").append('<option value="2"  >SCOPUS</option>');
+                        $("#pubSubType").append('<option value="3"  >SCIELO</option>');
+                        $("#pubSubType").append('<option value="4"  >Otro Indice</option>');
+
+                    }else if(pubType=='No Indexada'){
+                        $('#pubSubType').html(" ");
+                        $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
+                        $("#pubSubType").append('<option value="1"  >CONGRESO</option>');
+                        $("#pubSubType").append('<option value="2"  >REVISTA</option>');
+
+                    }
+                }
+                loadSubType();
+                $(document).on('change', '#pubType', loadSubType);
+            });
+</script>
+
+
+
+
+
+
+
+
+
 @endsection

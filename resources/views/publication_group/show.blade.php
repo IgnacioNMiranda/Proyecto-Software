@@ -36,7 +36,7 @@ use App\Researcher;
                                         <td> {{ $publication->type }} </td>
                                         <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
                                         <td> {{ $publication->publicationType }} </td>
-                                        <td> {{ $publication->publicationIndex }} </td>
+                                        <td> {{ $publication->publicationSubType }} </td>
 
                                         @if($currentUser != null)
                                             @if ($currentUser->userType == "Administrador")
