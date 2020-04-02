@@ -55,7 +55,7 @@ class Publication_GroupController extends Controller
         if(Auth::user() != null){
             $currentUser = User::find(Auth::user()->id);
         }else{ $currentUser = null; }
-        $publications = Publication::orderBy('name','ASC')->get();
+        $publications = Publication::orderBy('id','ASC')->get();
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
