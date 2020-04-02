@@ -57,22 +57,8 @@ class Researcher_GroupController extends Controller
         if(Auth::user() != null){
             $currentUser = User::find(Auth::user()->id);
         }else{ $currentUser = null; }
-
-        //Aplicación de filtros
-        $country = $request->get('country');
-
-        if($request->get('unit') != null){
-            $unit_id = current(Unit::where('name', $request->get('unit'))->pluck('id')->all());
-            if(!$unit_id){
-                $unit_id = ' ';
-            }
-        }else{
-            $unit_id = $request->get('unit');
-        }
-        //
-
-        $ids = InvestigationGroup::find($id)->researchers()->orderBy('researcher_name','DESC')
-        ->country($country)->unit($unit_id)->pluck('researcher_id');
+        
+        $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
             $researcher = Researcher::find($valor);

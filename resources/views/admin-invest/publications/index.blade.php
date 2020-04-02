@@ -27,10 +27,10 @@ use App\Researcher;
                     <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
                     {!! Form::close() !!}
 
-                    {!! Form::open(['route' => 'publications.store','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                    {!! Form::open(['route' => 'publications.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                     <div class="form-group">
-                        {{ Form::label('researchers','Autor a Buscar') }}
-                        {!! Form::text('researchers',null,['class'=>'form-control','placeholder'=>'Ingrese Autor']) !!}
+                        {{ Form::label('researcher','Autor a Buscar') }}
+                        {!! Form::text('researcher',null,['class'=>'form-control','placeholder'=>'Ingrese Autor']) !!}
 
 
                     </div>
@@ -69,7 +69,7 @@ use App\Researcher;
                                     <td> {{ $publication->type }} </td>
                                     <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
                                     <td> {{ $publication->publicationType }} </td>
-                                    <td> {{ $publication->publicationIndex }} </td>
+                                    <td> {{ $publication->publicationSubType }} </td>
 
                                     <td width="10px">
                                         <a href="{{ route('publications.show', $publication->id) }}"

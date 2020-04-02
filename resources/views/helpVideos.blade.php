@@ -112,11 +112,16 @@
                         
                             <div id="productCollapse" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                               <div class="card-body">
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear productos</a>
+                                @auth
+                                🎞️ <a href="https://youtu.be/vfdh5jmRvQc" target="_blank">Crear productos</a>
                                 <p> Demostraci&oacute;n de c&oacute;mo crear nuevos productos en el sistema.</p>
 
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de productos</a>
-                                <p> Edici&oacute;n de un producto existente.</p>
+                                🎞️ <a href="https://youtu.be/efLsr24HcUs" target="_blank">Edici&oacute;n de productos</a>
+                                <p> Ver Lista de Productos y Edici&oacute;n de un producto existente.</p>
+                                @endauth
+
+                                🎞️ <a href="https://youtu.be/UTee40g7Y0w" target="_blank">Listado de productos</a>
+                                <p> Acceso al listado de productos presentes en el sistema.</p>
                               </div>
                             </div>
                         </div>

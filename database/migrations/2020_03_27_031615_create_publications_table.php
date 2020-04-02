@@ -17,9 +17,8 @@ class CreatePublicationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title',128)->unique();
             $table->string('titleSecondLanguage',128)->nullable();
-            $table->enum('publicationType',['Indexada','No Indexada'])->default('Indexada')->nullable();
-            $table->enum('publicationIndex',['WOS','SCOPUS','SCIELO','Otro Indice'])->default('WOS')->nullable();
-            $table->enum('publicationNoIndex',['CONGRESO','REVISTA'])->default('CONGRESO')->nullable();
+            $table->enum('publicationType',['Indexada','No Indexada'])->default('Indexada');
+            $table->enum('publicationSubType',['WOS','SCOPUS','SCIELO','Otro Indice','CONGRESO','REVISTA'])->default('WOS');
             $table->string('type',128)->unique(); //Revista o Acta
 
             $table->date('date');
