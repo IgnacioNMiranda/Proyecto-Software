@@ -35,10 +35,23 @@ class publicationController extends Controller
      */
     public function index(Request $request)
     {
-
         $publications = Publication::publicationType($request->get('publicationType'))
         ->orderBy('id','DESC')
         ->paginate();
+
+        if($request->get('researcher') != null){
+            $researcher_name = current(Researcher::where('researcher_name', $request->get('researcher'))->pluck('id')->all());
+            dd($researcher_name);
+
+            if(!$researcher_name){
+                $researcher_name= ' ';
+            }
+        }else{
+            $researcher_name = $request->get('researcher');
+        }
+
+
+
 
         return view('admin-invest.publications.index',compact('publications'));
     }
@@ -77,7 +90,7 @@ class publicationController extends Controller
         $publication->researchers()->attach($publicationResearchers);
 
         return redirect()->route('publications.create')
-            ->with('info', 'Publicacion creada con éxito');
+            ->with('info', 'Publicación creada con éxito');
     }
 
     /**

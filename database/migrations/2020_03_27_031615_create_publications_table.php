@@ -19,7 +19,7 @@ class CreatePublicationsTable extends Migration
             $table->string('titleSecondLanguage',128)->nullable();
             $table->enum('publicationType',['Indexada','No Indexada'])->default('Indexada');
             $table->enum('publicationSubType',['WOS','SCOPUS','SCIELO','Otro Indice','CONGRESO','REVISTA'])->default('WOS');
-            $table->string('type',128)->unique(); //Revista o Acta
+            $table->string('type',128); //Revista o Acta
 
             $table->date('date');
 

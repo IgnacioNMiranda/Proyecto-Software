@@ -197,23 +197,22 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         function loadSubType(){
             var pubType = $('#pubType').val(); //Obtiene la id del grupo de investigacion
             if(pubType=='Indexada'){
-
                 $('#pubSubType').html(" ");
-                $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
-                $("#pubSubType").append('<option value="1"  >WOS</option>');
-                $("#pubSubType").append('<option value="2"  >SCOPUS</option>');
-                $("#pubSubType").append('<option value="3"  >SCIELO</option>');
-                $("#pubSubType").append('<option value="4"  >Otro Indice</option>');
-
+                $("#pubSubType").append('<option value="0" selected disabled>Seleccionar Sub-Tipo de Publicación</option>');
+                $("#pubSubType").append('<option value="WOS">WOS</option>');
+                $("#pubSubType").append('<option value="SCOPUS">SCOPUS</option>');
+                $("#pubSubType").append('<option value="SCIELO">SCIELO</option>');
+                $("#pubSubType").append('<option value="Otro Indice">Otro Indice</option>');
+                
             }else if(pubType=='No Indexada'){
                 $('#pubSubType').html(" ");
-                $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
-                $("#pubSubType").append('<option value="1"  >CONGRESO</option>');
-                $("#pubSubType").append('<option value="2"  >REVISTA</option>');
-
+                $("#pubSubType").append('<option value="0" selected disabled>Seleccionar Sub-Tipo de Publicación</option>');
+                $("#pubSubType").append('<option value="CONGRESO">CONGRESO</option>');
+                $("#pubSubType").append('<option value="REVISTA">REVISTA</option>');
             }
         }
         

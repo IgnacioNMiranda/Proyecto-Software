@@ -28,7 +28,8 @@ class PublicationStoreRequest extends FormRequest
             'title' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,title',
             'titleSecondLanguage' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,titleSecondLanguage',
             'publicationType' => 'required',
-            'type'=>'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,type',
+            'publicationSubType' => 'required',
+            'type'=>'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/',
             'researchers' => 'required|array',
             'notResearchers' => 'nullable|array',
             'date' => 'required',
@@ -43,12 +44,13 @@ class PublicationStoreRequest extends FormRequest
             'title.required' => 'El campo del Titulo es obligatorio.',
             'title.regex' => 'Formato de Titulo inválido.',
             'title.unique' => 'Este Titulo ya se encuentra en uso.',
-            'publicationType.required' => 'Seleccionar el Tipo de Publicacion es obligatorio.',
-            'type.required' => 'Ingresar datos en Revista o Acta es obligatorio',
-            'researchers.required' => 'Debe elegir al menos un investigador perteneciente al grupo de investigación',
-            'date.required' => 'El campo fecha es obligatorio.',
+            'publicationType.required' => 'Seleccionar el tipo de publicación es obligatorio.',
+            'publicationSubType.required' => 'Seleccionar el subtipo de publicación es obligatorio.',
+            'type.required' => 'Especificar una revista o acta es obligatorio.',
+            'type.regex' => 'Formato de revista o acta inválido.',
+            'researchers.required' => 'Debe elegir al menos un investigador perteneciente al grupo de investigación.',
+            'date.required' => 'La fecha de creación es obligatoria.',
             'investigation_group_id.required' => 'el campo grupo de investigacion es obligatorio.',
         ];
     }
 }
-

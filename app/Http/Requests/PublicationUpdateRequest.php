@@ -23,11 +23,13 @@ class PublicationUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        dd($this);
         return [
             //Regex alfanumerico de máximo 50 caracteres
-            'title' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,title,'. $this->id,
-            'titleSecondLanguage' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,titleSecondLanguage,'. $this->id,
+            'title' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,title,' . $this->id,
+            'titleSecondLanguage' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:publications,titleSecondLanguage,' . $this->id,
             'publicationType' => 'required',
+            'publicationSubType' => 'required',
             'type'=>'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/',
             'researchers' => 'required|array',
             'notResearchers' => 'nullable|array',
@@ -42,12 +44,14 @@ class PublicationUpdateRequest extends FormRequest
         return [
             'title.required' => 'El campo del Titulo es obligatorio.',
             'title.regex' => 'Formato de Titulo inválido.',
-            'titleSecondLanguage.regex' => 'Formato de Titulo inválido.',
-            'publicationType.required' => 'Seleccionar el Tipo de Publicacion es obligatorio.',
-            'type.required' => 'Ingresar datos en Revista o Acta es obligatorio',
-            'researchers.required' => 'Debe elegir al menos un investigador perteneciente al grupo de investigación',
-            'date.required' => 'El campo fecha es obligatorio.',
-            'investigation_group_id.required' => 'El campo grupo de investigacion es obligatorio.',
+            'title.unique' => 'Este Titulo ya se encuentra en uso.',
+            'publicationType.required' => 'Seleccionar el tipo de publicación es obligatorio.',
+            'publicationSubType.required' => 'Seleccionar el subtipo de publicación es obligatorio.',
+            'type.required' => 'Especificar una revista o acta es obligatorio.',
+            'type.regex' => 'Formato de revista o acta inválido.',
+            'researchers.required' => 'Debe elegir al menos un investigador perteneciente al grupo de investigación.',
+            'date.required' => 'La fecha de creación es obligatoria.',
+            'investigation_group_id.required' => 'el campo grupo de investigacion es obligatorio.',
         ];
     }
 }

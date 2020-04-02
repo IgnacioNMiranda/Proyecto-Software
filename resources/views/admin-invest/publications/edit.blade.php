@@ -166,70 +166,71 @@
 </script>
 
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            function loadProjects(publicationProject){
-                var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
-                // console.log(publicationProject);
+        function loadProjects(publicationProject){
+            var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
+            // console.log(publicationProject);
 
-                var option = " "; // Define las opciones
+            var option = " "; // Define las opciones
 
-                $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
-                    type: 'get',
-                    url: '{!!URL::to('projectsGroup')!!}',
-                    data: {'id': invGroup_id},
-                    success: function (projects) {
+            $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
+                type: 'get',
+                url: '{!!URL::to('projectsGroup')!!}',
+                data: {'id': invGroup_id},
+                success: function (projects) {
 
-                        var old = $('#project_id').data('old') != '' ? $('#project_id').data('old') : '';
+                    var old = $('#project_id').data('old') != '' ? $('#project_id').data('old') : '';
 
-                        for (var i = 0; i < projects.length; i++) {
-                            var possiblySelected = '';
-                            if(old == projects[i].id || projects[i].id == publicationProject.id){
-                                possiblySelected = 'selected';
-                            }
-                            option +=  "<option value='" + projects[i].id + "' " + possiblySelected + ">" + projects[i].name + "</option>";
+                    for (var i = 0; i < projects.length; i++) {
+                        var possiblySelected = '';
+                        if(old == projects[i].id || projects[i].id == publicationProject.id){
+                            possiblySelected = 'selected';
                         }
-
-                        $('#project_id').html(" ");
-                        $("#project_id").append('<option value="0" selected disabled>Seleccione proyecto asociado</option>');
-                        $("#project_id").append(option); //Agrega las options al select #researchers
-                    },
-                    error: function () {
-                        option += '<option value="0" selected disabled>Seleccione proyecto asociado</option>';
-                        $('#project_id').html(" ");
-                        $("#project_id").append(option); //Agrega las options al select #researchers
+                        option +=  "<option value='" + projects[i].id + "' " + possiblySelected + ">" + projects[i].name + "</option>";
                     }
-                });
-            }
-            var publicationProject = {!! json_encode($publication->project) !!};
-            loadProjects(publicationProject); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
-            $(document).on('change', '#investigation_group_id', loadProjects);
+
+                    $('#project_id').html(" ");
+                    $("#project_id").append('<option value="0" selected disabled>Seleccione proyecto asociado</option>');
+                    $("#project_id").append(option); //Agrega las options al select #researchers
+                },
+                error: function () {
+                    option += '<option value="0" selected disabled>Seleccione proyecto asociado</option>';
+                    $('#project_id').html(" ");
+                    $("#project_id").append(option); //Agrega las options al select #researchers
+                }
             });
+        }
+        var publicationProject = {!! json_encode($publication->project) !!};
+        loadProjects(publicationProject); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
+        $(document).on('change', '#investigation_group_id', loadProjects);
+    });
 </script>
 
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         function loadSubType(publicationSubType){
             var pubType = $('#pubType').val(); //Obtiene la id del grupo de investigacion
+            console.log(publicationSubType);
+
             if(pubType=='Indexada'){
                 $('#pubSubType').html(" ");
-                $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
-                $("#pubSubType").append('<option value="1">WOS</option>');
-                $("#pubSubType").append('<option value="2">SCOPUS</option>');
-                $("#pubSubType").append('<option value="3">SCIELO</option>');
-                $("#pubSubType").append('<option value="4">Otro Indice</option>');
+                $("#pubSubType").append('<option value="0" selected disabled>Seleccionar Sub-Tipo de Publicación</option>');
+                $("#pubSubType").append('<option value="WOS" ' + (publicationSubType == "WOS" ? 'selected' : '') + '>WOS</option>');
+                $("#pubSubType").append('<option value="SCOPUS" ' + (publicationSubType == "SCOPUS" ? 'selected' : '') + '>SCOPUS</option>');
+                $("#pubSubType").append('<option value="SCIELO" ' + (publicationSubType == "SCIELO" ? 'selected' : '') + '>SCIELO</option>');
+                $("#pubSubType").append('<option value="Otro Indice" ' + (publicationSubType == "Otro Indice" ? 'selected' : '') + '>Otro Indice</option>');
 
             }else if(pubType=='No Indexada'){
                 $('#pubSubType').html(" ");
-                $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
-                $("#pubSubType").append('<option value="1">CONGRESO</option>');
-                $("#pubSubType").append('<option value="2">REVISTA</option>');
+                $("#pubSubType").append('<option value="0" selected disabled>Seleccionar Sub-Tipo de Publicación</option>');
+                $("#pubSubType").append('<option value="CONGRESO" ' + (publicationSubType == "CONGRESO" ? 'selected' : '') + '>CONGRESO</option>');
+                $("#pubSubType").append('<option value="REVISTA" ' + (publicationSubType == "REVISTA" ? 'selected' : '') + '>REVISTA</option>');
             }
         }
-        
         var publicationSubType = {!! json_encode($publication->publicationSubType) !!};
-
         loadSubType(publicationSubType);
         $(document).on('change', '#pubType', loadSubType);
     });
