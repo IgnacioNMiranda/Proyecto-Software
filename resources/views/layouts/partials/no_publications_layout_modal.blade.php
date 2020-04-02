@@ -1,4 +1,4 @@
-<section class="modal fade" id="no_products_layout_modal" tabindex="-1" role="dialog" aria-labelledby="title">
+<section class="modal fade" id="no_publications_layout_modal" tabindex="-1" role="dialog" aria-labelledby="title">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

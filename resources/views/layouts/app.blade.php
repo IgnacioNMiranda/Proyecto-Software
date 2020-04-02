@@ -325,6 +325,7 @@
   @include("\layouts\partials\\no_researchers_layout_modal")
   @include("\layouts\partials\\no_units_layout_modal")
   @include("\layouts\partials\\no_associate_researcher_modal")
+  @include("\layouts\partials\\no_publications_layout_modal")
 </body>
 
 </html>
