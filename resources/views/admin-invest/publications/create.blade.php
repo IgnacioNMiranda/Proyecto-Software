@@ -159,73 +159,66 @@
 </script>
 
 <script>
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            function loadProjects(){
-                var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
+        function loadProjects(){
+            var invGroup_id = $('#investigation_group_id').val(); //Obtiene la id del grupo de investigacion
 
-                var option = " "; // Define las opciones
+            var option = " "; // Define las opciones
 
-                $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
-                    type: 'get',
-                    url: '{!!URL::to('projectsGroup')!!}',
-                    data: {'id': invGroup_id},
-                    success: function (projects) {
+            $.ajax({ //Define la respuesta ajax de tipo get, llamando a la ruta researchersGroup y enviando invGroup_id como id
+                type: 'get',
+                url: '{!!URL::to('projectsGroup')!!}',
+                data: {'id': invGroup_id},
+                success: function (projects) {
 
-                        var old = $('#project_id').data('old') != '' ? $('#project_id').data('old') : '';
+                    var old = $('#project_id').data('old') != '' ? $('#project_id').data('old') : '';
 
-                        for (var i = 0; i < projects.length; i++) {
-                            option +=  "<option value='" + projects[i].id + "' " + (old == projects[i].id ? 'selected' : '') + ">" + projects[i].name + "</option>";
-                        }
-
-                        $('#project_id').html(" ");
-                        $("#project_id").append('<option value="0" selected disabled>Seleccione proyecto asociado</option>');
-                        $("#project_id").append(option); //Agrega las options al select #researchers
-                    },
-                    error: function () {
-                        option += '<option value="0" selected disabled>Seleccione proyecto asociado</option>';
-                        $('#project_id').html(" ");
-                        $("#project_id").append(option); //Agrega las options al select #researchers
+                    for (var i = 0; i < projects.length; i++) {
+                        option +=  "<option value='" + projects[i].id + "' " + (old == projects[i].id ? 'selected' : '') + ">" + projects[i].name + "</option>";
                     }
-                });
-            }
-            loadProjects(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
-            $(document).on('change', '#investigation_group_id', loadProjects);
-        });
+
+                    $('#project_id').html(" ");
+                    $("#project_id").append('<option value="0" selected disabled>Seleccione proyecto asociado</option>');
+                    $("#project_id").append(option); //Agrega las options al select #researchers
+                },
+                error: function () {
+                    option += '<option value="0" selected disabled>Seleccione proyecto asociado</option>';
+                    $('#project_id').html(" ");
+                    $("#project_id").append(option); //Agrega las options al select #researchers
+                }
+            });
+        }
+
+        loadProjects(); //Se llama apenas cargue la página para que rellene con investigadores del grupo si es que hubo un error al rellenar el formulario->Guardar
+        $(document).on('change', '#investigation_group_id', loadProjects);
+    });
 </script>
 
 <script type="text/javascript">
-            $(document).ready(function () {
-                function loadSubType(){
-                var pubType = $('#pubType').val(); //Obtiene la id del grupo de investigacion
-                    if(pubType=='Indexada'){
+    $(document).ready(function () {
+        function loadSubType(){
+            var pubType = $('#pubType').val(); //Obtiene la id del grupo de investigacion
+            if(pubType=='Indexada'){
 
-                        $('#pubSubType').html(" ");
-                        $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
-                        $("#pubSubType").append('<option value="1"  >WOS</option>');
-                        $("#pubSubType").append('<option value="2"  >SCOPUS</option>');
-                        $("#pubSubType").append('<option value="3"  >SCIELO</option>');
-                        $("#pubSubType").append('<option value="4"  >Otro Indice</option>');
+                $('#pubSubType').html(" ");
+                $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
+                $("#pubSubType").append('<option value="1"  >WOS</option>');
+                $("#pubSubType").append('<option value="2"  >SCOPUS</option>');
+                $("#pubSubType").append('<option value="3"  >SCIELO</option>');
+                $("#pubSubType").append('<option value="4"  >Otro Indice</option>');
 
-                    }else if(pubType=='No Indexada'){
-                        $('#pubSubType').html(" ");
-                        $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
-                        $("#pubSubType").append('<option value="1"  >CONGRESO</option>');
-                        $("#pubSubType").append('<option value="2"  >REVISTA</option>');
+            }else if(pubType=='No Indexada'){
+                $('#pubSubType').html(" ");
+                $("#pubSubType").append('<option value="0" selected disabled>Seleccione SubTipo de la publicación</option>');
+                $("#pubSubType").append('<option value="1"  >CONGRESO</option>');
+                $("#pubSubType").append('<option value="2"  >REVISTA</option>');
 
-                    }
-                }
-                loadSubType();
-                $(document).on('change', '#pubType', loadSubType);
-            });
+            }
+        }
+        
+        loadSubType();
+        $(document).on('change', '#pubType', loadSubType);
+    });
 </script>
-
-
-
-
-
-
-
-
-
 @endsection
