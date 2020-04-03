@@ -71,14 +71,14 @@
                             <div id="proyectCollapse" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                               <div class="card-body">
                                 @auth
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear proyectos</a>
+                                🎞️ <a href="https://youtu.be/q0QY7h-dxjs" target="_blank">Crear proyectos</a>
                                 <p> Demostraci&oacute;n de c&oacute;mo crear nuevos proyectos en el sistema.</p>
 
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de proyectos</a>
+                                🎞️ <a href="https://youtu.be/gpFscYbHT84" target="_blank">Edici&oacute;n de proyectos</a>
                                 <p> Edici&oacute;n de un proyecto existente.</p>
                                 @endauth
 
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Listado de proyectos</a>
+                                🎞️ <a href="https://youtu.be/smuf81RC8Ec" target="_blank">Listado de proyectos</a>
                                 <p> Acceso al listado de proyectos presentes en el sistema.</p>
                               </div>
                             </div>

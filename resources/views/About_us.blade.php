@@ -57,7 +57,7 @@
                 <p class="firstM fiice"> Fabian Muñoz </p>
                 <p class="roles"> Encargado Base de Datos </p>
                 <p class="firstM fiice"> Ignacio Santander </p>
-                <p class="roles"> Jefe de Grupo </p>
+                <p class="roles"> L&iacute;der de Grupo </p>
                 <p class="firstM fiice"> Ignacio Miranda</p>
                 <p class="roles"> L&iacute;der Programación </p>
                 <p class="firstM fiice"> Carlos Mena</p>
