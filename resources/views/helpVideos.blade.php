@@ -187,7 +187,7 @@
                               <p> Edici&oacute;n de una publicaci&oacute;n existente.</p>
                               @endauth
 
-                              🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Listado de publicaciones</a>
+                              🎞️ <a href="https://www.youtube.com/watch?v=pW1kn_9u_B4" target="_blank">Listado de publicaciones</a>
                               <p> Acceso al listado de publicaciones presentes en el sistema.</p>
                             </div>
                           </div>
