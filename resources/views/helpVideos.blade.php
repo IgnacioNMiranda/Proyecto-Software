@@ -137,14 +137,14 @@
                             <div id="ResearcherCollapse" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
                               <div class="card-body">
                                 @auth
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Crear investigadores</a>
+                                🎞️ <a href="https://youtu.be/0Q5BKD82guo" target="_blank">Crear investigadores</a>
                                 <p> Demostraci&oacute;n de c&oacute;mo crear nuevos investigadores en el sistema.</p>
 
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de investigadores</a>
+                                🎞️ <a href="https://youtu.be/Y-eWoqf5R3I" target="_blank">Edici&oacute;n de investigadores</a>
                                 <p> Edici&oacute;n de un investigador existente.</p>
                                 @endauth
 
-                                🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Listado de investigadores</a>
+                                🎞️ <a href="https://youtu.be/hLHVtiIxS-A" target="_blank">Listado de investigadores</a>
                                 <p> Acceso al listado de investigadores presentes en el sistema.</p>
                               </div>
                             </div>
