@@ -183,7 +183,7 @@
                               🎞️ <a href="https://www.youtube.com/watch?v=ZMCUBvHFYRc" target="_blank">Crear publicaciones</a>
                               <p> Demostraci&oacute;n de c&oacute;mo crear nuevas publicaciones en el sistema.</p>
 
-                              🎞️ <a href="https://www.youtube.com/watch?v=QwoXobFSFwc" target="_blank">Edici&oacute;n de publicaciones</a>
+                              🎞️ <a href="https://www.youtube.com/watch?v=Z9tHi232ODs" target="_blank">Edici&oacute;n de publicaciones</a>
                               <p> Edici&oacute;n de una publicaci&oacute;n existente.</p>
                               @endauth
 
