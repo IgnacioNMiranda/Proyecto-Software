@@ -29,22 +29,15 @@
     {{ Form::select('publicationType',config('publicationTypes.Types'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Tipo de Publicación']) }}
 </div>
 <div class="form-group">
-    {{ Form::label('publicationIndex','Sub Tipo') }}
-    {{ Form::label('publicationIndex','*', array('class' => 'text-danger'))}}
-    {{ Form::select('publicationIndex',config('publicationTypes.indexSubTypes'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Sub-Tipo de Publicación']) }}
-</div>
-<div class="form-group">
-    {{ Form::label('publicationNoIndex','Sub Tipo') }}
-    {{ Form::label('publicationNoIndex','*', array('class' => 'text-danger'))}}
-    {{ Form::select('publicationNoIndex',config('publicationTypes.notIndexSubTypes'),null,['class' => 'form-control', 'placeholder'=>'Seleccionar Sub-Tipo de Publicación']) }}
+    {{ Form::label('publicationSubType','Sub Tipo') }}
+    {{ Form::label('publicationSubType','*', array('class' => 'text-danger'))}}
+    {{ Form::select('publicationSubType',['placeholder'=>'Seleccionar Sub-Tipo de Publicación'],null,['class' => 'form-control','id'=>'pubSubType'])}}
 </div>
 <div class="form-group">
     {{ Form::label('type', 'Revista o Acta') }}
     {{ Form::label('type','*', array('class' => 'text-danger'))}}
     {{ Form::text('type', null, ['class' => 'form-control', 'id' => 'type']) }}
 </div>
-
-
 <div class="form-group">
     {{ Form::label('date', 'Fecha de Creación') }}
     {{ Form::label('date','*', array('class' => 'text-danger'))}}

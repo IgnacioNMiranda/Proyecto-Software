@@ -59,26 +59,21 @@
                         {{ Form::label('publicationSubType','*', array('class' => 'text-danger'))}}
                         {{ Form::select('publicationSubType',['placeholder'=>'Seleccionar Sub-Tipo de Publicación'],null,['class' => 'form-control','id'=>'pubSubType'])}}
                     </div>
-
                     <div class="form-group">
                         {{ Form::label('type', 'Revista o Acta') }}
                         {{ Form::label('type','*', array('class' => 'text-danger'))}}
                         {{ Form::text('type', null, ['class' => 'form-control', 'id' => 'type']) }}
                     </div>
-
-
                     <div class = "form-group">
                         {{ Form::label('date', 'Fecha de Creación') }}
                         {{ Form::label('date','*', array('class' => 'text-danger'))}}
                         {{ Form::date('date', \Carbon\Carbon::now(), ['readonly'])}}
                     </div>
-
                     <div class="form-group">
                         {{ Form::label('project_id', "Nombre del Proyecto asociado") }}
                         {{ Form::select('project_id', ['placeholder' => 'Seleccione proyecto asociado'], null,
                         ['class' => 'form-control', 'id' => 'project_id', 'data-old' => old('project_id')]) }}
                     </div>
-
                     <div class="form-group mt-4 text-center">
                         <button type="submit" class="btn btn-secondary mb-4" name="product">
                             {{ __('Guardar') }}
@@ -207,7 +202,7 @@
                 $("#pubSubType").append('<option value="SCOPUS">SCOPUS</option>');
                 $("#pubSubType").append('<option value="SCIELO">SCIELO</option>');
                 $("#pubSubType").append('<option value="Otro Indice">Otro Indice</option>');
-                
+
             }else if(pubType=='No Indexada'){
                 $('#pubSubType').html(" ");
                 $("#pubSubType").append('<option value="0" selected disabled>Seleccionar Sub-Tipo de Publicación</option>');
@@ -215,7 +210,7 @@
                 $("#pubSubType").append('<option value="REVISTA">REVISTA</option>');
             }
         }
-        
+
         loadSubType();
         $(document).on('change', '#pubType', loadSubType);
     });
