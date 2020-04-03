@@ -55,7 +55,7 @@
             </div>
             <div class="col-12 offset-md-1 col-md-4 mb-4">
                 <p class="firstM fiice"> Fabian Muñoz </p>
-                <p class="roles"> Encargado Base de Datos </p>
+                <p class="roles"> Encargado de la Base de Datos </p>
                 <p class="firstM fiice"> Ignacio Santander </p>
                 <p class="roles"> L&iacute;der de Grupo </p>
                 <p class="firstM fiice"> Ignacio Miranda</p>
