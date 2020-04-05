@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use DB;
+use Illuminate\Support\Facades\DB;
+
 
 class Publication extends Model
 {
@@ -45,9 +46,5 @@ class Publication extends Model
 
         }
     }
-
-
-
-
 
 }

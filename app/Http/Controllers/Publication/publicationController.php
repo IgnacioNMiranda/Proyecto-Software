@@ -37,38 +37,10 @@ class publicationController extends Controller
     {
         $buscar = $request->get('buscar');
 
-        // $data = DB::table('publications')
-        //  ->join('publication_researcher','publication_researcher.publication_id','=','publications.id')
-        //  ->join('researchers','researchers.id','=','publication_researcher.researcher_id')
-        //  ->where('researcher_name','like','%'.$buscar.'%')
-        //  ->get();
-         //->paginate();
-         //dd($data);
-
-
-        // $researchers= Researcher::find($id);
-        // $publicationResearchers = $researchers->publications()->pluck('researcher_name');
-
-
-
-
         $publications = Publication::publicationType($request->get('publicationType'))
         ->orderBy('id','DESC')
         ->buscar($buscar)
         ->paginate();
-
-        // if($request->get('buscar') != null){
-        //     $researcher_name = current(Researcher::where('researcher_name', $request->get('buscar'))->pluck('id')->all());
-        //     dd($researcher_name);
-
-        //     if(!$researcher_name){
-        //         $researcher_name= ' ';
-        //     }
-        // }else{
-        //     $researcher_name = $request->get('buscar');
-        // }
-
-
 
         return view('admin-invest.publications.index',compact('publications','buscar'));
     }
