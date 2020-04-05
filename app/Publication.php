@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Publication extends Model
 {
@@ -31,5 +32,22 @@ class Publication extends Model
             $query->where('publicationType',$publicationType);
         }
     }
+
+
+    public function scopeBuscar($query, $buscar){
+
+        if($buscar){
+
+            return $query = DB::table('researchers')
+            ->join('publication_researcher','publication_researcher.researcher_id','=','researchers.id')
+            ->join('publications','publications.id','=','publication_researcher.publication_id')
+            ->where('researcher_name','like','%'.$buscar.'%');
+
+        }
+    }
+
+
+
+
 
 }

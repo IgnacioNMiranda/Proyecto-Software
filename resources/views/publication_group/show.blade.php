@@ -37,6 +37,7 @@ use App\Researcher;
                                         <td>{{ date('d-m-Y', strtotime($publication->date)) }}</td>
                                         <td> {{ $publication->publicationType }} </td>
                                         <td> {{ $publication->publicationSubType }} </td>
+
                                         <td width="10px">
                                             <a href="{{ route('publications.show', $publication->id) }}"
                                                 class="btn btn-sm btn-secondary">

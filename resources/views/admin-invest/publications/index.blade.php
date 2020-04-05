@@ -27,10 +27,10 @@ use App\Researcher;
                     <button type="submit" class="btn btn-secondary mr-4">Buscar</button>
                     {!! Form::close() !!}
 
-                    {!! Form::open(['route' => 'publications.index','method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                    {!! Form::open(['route' => 'publications.index','method' =>'GET','class' =>'navbar navbar-light bg-light','name'=>'buscar','role' => 'search'])!!}
                     <div class="form-group">
                         {{ Form::label('researcher','Autor a Buscar') }}
-                        {!! Form::text('researcher',null,['class'=>'form-control','placeholder'=>'Ingrese Autor']) !!}
+                        {!! Form::text('researcher',null,['class'=>'form-control','name'=>'buscar','placeholder'=>'Ingrese Autor']) !!}
 
 
                     </div>

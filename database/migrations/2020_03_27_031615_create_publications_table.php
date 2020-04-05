@@ -16,7 +16,7 @@ class CreatePublicationsTable extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title',128)->unique();
-            $table->string('titleSecondLanguage',128)->nullable();
+            $table->string('titleSecondLanguage',128)->unique()->nullable();
             $table->enum('publicationType',['Indexada','No Indexada'])->default('Indexada');
             $table->enum('publicationSubType',['WOS','SCOPUS','SCIELO','Otro Indice','CONGRESO','REVISTA'])->default('WOS');
             $table->string('type',128); //Revista o Acta
