@@ -180,14 +180,14 @@
                           <div id="PublicationCollapse" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
                             <div class="card-body">
                               @auth
-                              🎞️ <a href="https://www.youtube.com/watch?v=ZMCUBvHFYRc" target="_blank">Crear publicaciones</a>
+                              🎞️ <a href="https://youtu.be/ZMCUBvHFYRc" target="_blank">Crear publicaciones</a>
                               <p> Demostraci&oacute;n de c&oacute;mo crear nuevas publicaciones en el sistema.</p>
 
-                              🎞️ <a href="https://www.youtube.com/watch?v=Z9tHi232ODs" target="_blank">Edici&oacute;n de publicaciones</a>
+                              🎞️ <a href="https://youtu.be/Z9tHi232ODs" target="_blank">Edici&oacute;n de publicaciones</a>
                               <p> Edici&oacute;n de una publicaci&oacute;n existente.</p>
                               @endauth
 
-                              🎞️ <a href="https://www.youtube.com/watch?v=pW1kn_9u_B4" target="_blank">Listado de publicaciones</a>
+                              🎞️ <a href="https://youtu.be/X4VwKtuTkhs" target="_blank">Listado de publicaciones</a>
                               <p> Acceso al listado de publicaciones presentes en el sistema.</p>
                             </div>
                           </div>
