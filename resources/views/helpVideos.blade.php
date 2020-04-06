@@ -3,13 +3,13 @@
 @section('content')
 <section class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-4">
             <div class="p-2 mb-4">
                 <h2 class="p-2 text-secondary font-weight-bold bg-tertiary">🎞️ Tutoriales 🎞️</h3>
                 <p class= "h5 mt-3"> En esta secci&oacute;n se encuentran videos dedicados a explicar c&oacute;mo realizar las distintas acciones que maneja este sitio web.</p>
             </div>
 
-            <article class="card">
+            <article class="card mb-4">
 
                 <div class="card-header" id="headingMaster">
                   <button class="btn btn-info" data-toggle="collapse" data-target="#MasterCollapse" aria-expanded="false" aria-controls="MasterCollapse">
