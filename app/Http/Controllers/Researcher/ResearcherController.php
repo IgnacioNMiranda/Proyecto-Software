@@ -56,18 +56,15 @@ class ResearcherController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->userType=="Administrador"){ $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id'); }
-        else{
-            $ids = Researcher::find(Auth::user()->researcher_id)->investigation_groups()->pluck('investigation_group_id');
-            $invGroups = array();
-            foreach ($ids as $clave => $valor) {
-                $invGroup = InvestigationGroup::find($valor);
-                $invGroups[$invGroup->id] = $invGroup->name;
-
+        $units = Unit::orderBy('name','ASC')->pluck('name','id');
+        $invGroups = InvestigationGroup::orderBy('name','ASC')->pluck('name','id');
+        if(Auth::user()->userType == "Investigador"){
+            if(Auth::user()->researcher_id != null){
+                $invGroups = Researcher::find(Auth::user()->researcher_id)->investigation_groups()->get()->pluck('name', 'id');
+            }else{
+                return back()->withErrors(['Debe asociarse a un grupo de investigación antes de crear investigadores.']);
             }
         }
-        $units = Unit::orderBy('name','ASC')->pluck('name','id');
-
 
         return view('researcher.create', compact('units','invGroups'));
     }

@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Researcher_Group;
+namespace App\Http\Controllers\Publication_Group;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\Controller;
-
-use App\Researcher;
+use App\Publication;
 use App\InvestigationGroup;
 use App\User;
-use App\Unit;
+use App\Researcher;
 
-class Researcher_GroupController extends Controller
+class Publication_GroupController extends Controller
 {
-    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id)
+    public function index()
     {
         //
     }
@@ -52,20 +50,19 @@ class Researcher_GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
         if(Auth::user() != null){
             $currentUser = User::find(Auth::user()->id);
         }else{ $currentUser = null; }
-        
+        $publications = Publication::orderBy('id','ASC')->get();
         $ids = InvestigationGroup::find($id)->researchers()->pluck('researcher_id');
         $researchers = array();
         foreach ($ids as $clave => $valor) {
             $researcher = Researcher::find($valor);
             $researchers[$researcher->id] = $researcher;
         }
-
-        return view('researcher_group.show', compact('researchers','currentUser', 'id'));
+        return view('publication_group.show', compact('publications','currentUser','researchers','id'));
     }
 
     /**

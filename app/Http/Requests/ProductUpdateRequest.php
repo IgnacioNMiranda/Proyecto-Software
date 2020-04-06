@@ -25,7 +25,7 @@ class ProductUpdateRequest extends FormRequest
     {
         return [
             //Regex alfanumerico de máximo 50 caracteres
-            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:products,name,' . $this->product,
+            'name' => 'required|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,50}$/|unique:products,name,' . $this->id,
             //Regex alfanumerico de máximo 500 caracteres
             'description' => 'nullable|regex:/^(?!\s*$)[-a-zA-Z0-9_:,. ]{1,500}$/',
             'researchers' => 'required|array',

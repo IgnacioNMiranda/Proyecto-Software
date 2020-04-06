@@ -4,11 +4,15 @@
     use App\Product;
     use App\Researcher;
     use App\Unit;
+    use App\Publication;
+
 
     $projects = Project::orderBy('id','DESC')->get();
     $products = Product::orderBy('id','DESC')->get();
     $researchers = Researcher::orderBy('id','DESC')->get();
     $units = Unit::orderBy('id','DESC')->get();
+    $publications = Publication::orderBy('id','DESC')->get();
+
 @endphp
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -93,7 +97,12 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
+
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Proyecto</a>
+              @else
+                <a class="dropdown-item" href="{{ route('projects.create') }}">Crear Proyecto</a>
+              @endif
               <div class="dropdown-divider"></div>
               @endauth
               @if ($projects->isNotEmpty())
@@ -111,15 +120,18 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               @auth
-              <a class="dropdown-item" href="{{ route('products.create') }}">Crear producto</a>
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Producto</a>
+              @else
+                <a class="dropdown-item" href="{{ route('products.create') }}">Crear Producto</a>
+              @endif
               <div class="dropdown-divider"></div>
               @endauth
               @if ($products->isNotEmpty())
                 <a class="dropdown-item" href="{{ route('products.index') }}">Lista de Productos</a>
               @else
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>  
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_products_layout_modal">Lista de Productos</a>
               @endif
-              
             </div>
 
           </li>
@@ -163,9 +175,31 @@
               @endif
             </div>
           </li>
-          
+
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white btn-lg" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Publicaciones
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              @auth
+              @if (Auth::user()->researcher_id == null && Auth::user()->userType == "Investigador")
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_associate_researcher_modal">Crear Publicación</a>
+              @else
+                <a class="dropdown-item" href="{{ route('publications.create') }}">Crear Publicación</a>
+              @endif
+              <div class="dropdown-divider"></div>
+              @endauth
+              @if ($publications->isNotEmpty())
+                <a class="dropdown-item" href="{{ route('publications.index') }}">Lista de Publicaciones</a>
+              @else
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#no_publications_layout_modal">Lista de Publicaciones</a>
+              @endif
+            </div>
+          </li>
+
         </ul>
-        
+
         <ul class="navbar-nav ml-auto">
           @auth
           <li class="nav-item pr-4">
@@ -178,7 +212,7 @@
                 <span class="navbar-text text-white">Bienvenido, {{ $researcher->researcher_name }}</span>
             @endif
           </li>
-          
+
           @if (Auth::user()->userType == "Investigador")
             <li class="nav-item">
                 @if(Auth::user()->researcher_id == null)
@@ -255,7 +289,7 @@
           </div>
 
           <div class="col-12 col-md-2 mb-3 mb-md-0">
-            <a class="text-white d-flex" href="#">¿Necesitas ayuda?</a>
+            <a class="text-white d-flex" href="{{ route('HelpVideos') }}">¿Necesitas ayuda?</a>
           </div>
 
         </div>
@@ -264,7 +298,7 @@
 
   </div>
 
-  
+
   <!--Archivos JS-->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -291,6 +325,7 @@
   @include("\layouts\partials\\no_researchers_layout_modal")
   @include("\layouts\partials\\no_units_layout_modal")
   @include("\layouts\partials\\no_associate_researcher_modal")
+  @include("\layouts\partials\\no_publications_layout_modal")
 </body>
 
 </html>

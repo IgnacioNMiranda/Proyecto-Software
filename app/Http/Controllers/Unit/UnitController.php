@@ -31,7 +31,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $units = Unit::orderBy('name','ASC')->paginate();
+        $units = Unit::orderBy('id','DESC')->paginate();
 
         return view('units.index', compact('units'));
     }

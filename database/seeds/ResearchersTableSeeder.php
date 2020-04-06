@@ -30,6 +30,13 @@ class ResearchersTableSeeder extends Seeder
                 rand(11,20),
                 rand(21,30),
             ]);
+
+            $researcher->publications()->attach([
+                rand(1,10),
+                rand(11,20),
+                rand(21,30),
+                rand(31,40),
+            ]);
         });
     }
 }
