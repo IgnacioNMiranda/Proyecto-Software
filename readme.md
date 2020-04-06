@@ -8,10 +8,13 @@
 </p>
 
 ##Laravel
+Si se quiere realizar la clonación del proyecto para tener acceso a él y hacer commits:
+    Seleccionar la opción "Clone repository". Se debe copiar en la carpeta C:\xampp\htdocs 
+    Luego de haber seleccionado correctamente la carpeta de destino, copiar esta url: https://github.com/IgnacioNMiranda/researchNews.git
+    
+Si se quiere realizar la clonación o descarga únicamente para revisión:
+    Seleccionar la opción "Clone repository" o descargar como zip. Se debe copiar en la carpeta C:\xampp\htdocs 
 
-Para instalar el proyecto, dentro de gitKraken seleccionar la opción "Clone repository". Se debe copiar en la carpeta C:\xampp\htdocs 
-
-Luego de haber seleccionado correctamente la carpeta de destino, copiar esta url: https://github.com/IgnacioNMiranda/researchNews.git
 
 Con esto realizado ya deberías tener el proyecto correctamente alojado en C:\xampp\htdocs\researchNews.
 
