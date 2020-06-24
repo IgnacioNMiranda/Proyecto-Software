@@ -7,7 +7,13 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-##Laravel
+# Descripción 
+Proyecto realizado para la asignatura de Ingeniería de Software, dictado en la Universidad Católica del Norte para las carreras Ingeniería en Computación e Informática (IenCI) e Ingenería Civil en Computación e Informática (ICCI).
+Su propósito fue la construcción de un sistema web de gestión para grupos de investigación, los cuales poseían diversos productos, proyectos y publicaciones.
+
+
+
+# Configuración
 Si se quiere realizar la clonación del proyecto para tener acceso a él y hacer commits:
 Seleccionar la opción "Clone repository". Se debe copiar en la carpeta C:\xampp\htdocs
 Luego de haber seleccionado correctamente la carpeta de destino, copiar esta url: https://github.com/IgnacioNMiranda/researchNews.git
