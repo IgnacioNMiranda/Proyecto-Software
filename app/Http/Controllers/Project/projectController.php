@@ -4,17 +4,13 @@ namespace App\Http\Controllers\Project;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
 use App\Unit;
-
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller

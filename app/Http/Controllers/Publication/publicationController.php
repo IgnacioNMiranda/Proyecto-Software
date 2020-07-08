@@ -5,17 +5,12 @@ namespace App\Http\Controllers\Publication;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Publication;
-
 use App\InvestigationGroup;
 use App\Unit;
 use App\Researcher;
 use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Support\Facades\DB;
-
 use App\Http\Requests\PublicationStoreRequest;
 use App\Http\Requests\PublicationUpdateRequest;
-
 use Illuminate\Support\Str;
 
 class publicationController extends Controller

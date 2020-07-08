@@ -5,12 +5,8 @@ namespace App\Http\Controllers\Researcher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests\ResearchStoreRequest;
 use App\Http\Requests\ResearchUpdateRequest;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\DB;
-
 use App\Researcher;
 use App\Unit;
 use App\InvestigationGroup;

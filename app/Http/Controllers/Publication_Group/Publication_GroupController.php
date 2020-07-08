@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Publication_Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use App\Publication;
 use App\InvestigationGroup;
 use App\User;

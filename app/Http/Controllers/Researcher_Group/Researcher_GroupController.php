@@ -20,9 +20,25 @@ class Researcher_GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id)
+    public function index(Request $request)
     {
-        //
+        $country = $request->get('country');
+        
+        if($request->get('unit') != null){
+            $unit_id = current(Unit::where('name', $request->get('unit'))->pluck('id')->all());
+            if(!$unit_id){
+                $unit_id = ' ';
+            }
+        }else{
+            $unit_id = $request->get('unit');
+        }
+
+        $researchers = Researcher::orderBy('researcher_name','DESC')
+        ->country($country)
+        ->unit($unit_id)
+        ->paginate();
+
+        return view('researcher.index', compact('researchers'));
     }
 
     /**

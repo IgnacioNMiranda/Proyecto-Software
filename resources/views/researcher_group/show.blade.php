@@ -28,7 +28,7 @@ use App\Researcher;
                                 @endphp
                             @endforeach
 
-                            {!! Form::open(['route' => ['researchers_groups.show', $id],'method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
+                            {!! Form::open(['route' => ['researchers_groups.index'],'method' =>'GET','class' =>'navbar navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
                                     {{ Form::text('country',null,['class' => 'form-control','placeholder'=>'País']) }}
                                 </div>
@@ -39,7 +39,7 @@ use App\Researcher;
                         </div>
 
                         <div class="col-sm-12 col-md-4">
-                            {!! Form::open(['route' => ['researchers_groups.show', $id],'method' =>'GET','class' =>'navbar
+                            {!! Form::open(['route' => ['researchers_groups.index'],'method' =>'GET','class' =>'navbar
                             navbar-light bg-light','role' => 'search'])!!}
                                 <div class="form-group">
                                     {!! Form::text('unit',null,['class'=>'form-control','placeholder'=>'Unidad']) !!}

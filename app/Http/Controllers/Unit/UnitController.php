@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers\Unit;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\UnitStoreRequest;
 use App\Http\Requests\UnitUpdateRequest;
-
 use App\Unit;
-
 use Illuminate\Support\Str;
 
 class UnitController extends Controller

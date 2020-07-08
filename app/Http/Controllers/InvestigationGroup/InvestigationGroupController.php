@@ -4,21 +4,14 @@ namespace App\Http\Controllers\InvestigationGroup;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\InvestigationGroupStoreRequest;
 use App\Http\Requests\InvestigationGroupUpdateRequest;
-
 use App\InvestigationGroup;
 use App\Unit;
 use App\Researcher;
-
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Str;
-
-
-use Image;
+use Intervention\Image\Facades\Image;
 
 class InvestigationGroupController extends Controller
 {

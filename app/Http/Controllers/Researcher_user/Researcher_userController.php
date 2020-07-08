@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\Researcher_user;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests\Research_userStoreRequest;
 use App\Http\Requests\Research_userUpdateRequest;
-
 use App\Researcher;
 use App\Unit;
 use App\User;

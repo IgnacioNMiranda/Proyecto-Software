@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers\Product;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Product;
-use App\Project;
 use App\Researcher;
 use App\InvestigationGroup;
 use App\Unit;
-
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
 
